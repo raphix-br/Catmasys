@@ -67,40 +67,37 @@
         });
         stars.appendChild(starSvg);
 
-        /* Chão Space Harrier: tabuleiro verde em perspectiva, convergindo para o horizonte. */
+        /* Chão Space Harrier: checkerboard verde em perspectiva, cobrindo toda a largura. */
         const floorSvg=document.createElementNS(ns,'svg');
         floorSvg.setAttribute('viewBox','0 0 1024 440');
         floorSvg.setAttribute('preserveAspectRatio','none');
         floorSvg.setAttribute('aria-hidden','true');
         floorSvg.className='space-harrier-floor-pixels';
 
-        rect(floorSvg,0,0,1024,440,'#159d29');
+        rect(floorSvg,0,0,1024,440,'#178f25');
 
-        /* Cada linha cresce rapidamente em direção à câmera, como no piso do arcade. */
         const rows=[0,8,18,31,48,70,98,132,173,222,281,350,440];
-        const widths=[34,58,88,126,178,245,330,430,545,670,805,960,1260];
-        const cols=16;
-        const vanishX=512;
+        const bottomX=[-500,-350,-200,-50,100,250,400,512,624,774,924,1074,1224,1374,1524];
+        const topScale=0.035;
+        const topX=bottomX.map(x=>512+(x-512)*topScale);
 
         for(let r=0;r<rows.length-1;r++){
             const y1=rows[r], y2=rows[r+1];
-            const w1=widths[r], w2=widths[r+1];
-            const left1=(1024-w1)/2, left2=(1024-w2)/2;
-            for(let col=0;col<cols;col++){
-                const a1=left1+w1*col/cols;
-                const b1=left1+w1*(col+1)/cols;
-                const a2=left2+w2*col/cols;
-                const b2=left2+w2*(col+1)/cols;
+            const t1=y1/440, t2=y2/440;
+            for(let col=0;col<bottomX.length-1;col++){
+                const a1=topX[col]*(1-t1)+bottomX[col]*t1;
+                const b1=topX[col+1]*(1-t1)+bottomX[col+1]*t1;
+                const a2=topX[col]*(1-t2)+bottomX[col]*t2;
+                const b2=topX[col+1]*(1-t2)+bottomX[col+1]*t2;
                 const poly=document.createElementNS(ns,'polygon');
                 poly.setAttribute('points',a1+','+y1+' '+b1+','+y1+' '+b2+','+y2+' '+a2+','+y2);
-                poly.setAttribute('fill',(r+col)%2===0?'#39bd45':'#119326');
+                poly.setAttribute('fill',(r+col)%2===0?'#35b941':'#108c22');
                 floorSvg.appendChild(poly);
             }
         }
 
-        /* Pequena linha de horizonte e separações horizontais em estilo pixel art. */
         rows.slice(1).forEach((y,i)=>{
-            rect(floorSvg,0,y,1024,i<4?2:3,'#087d18');
+            rect(floorSvg,0,y,1024,i<4?2:3,'#087518');
         });
         floor.appendChild(floorSvg);
         const badge=document.createElement('div');
