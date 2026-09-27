@@ -27,71 +27,73 @@
         const horizon=document.createElement('div');
         horizon.className='space-harrier-horizon';
 
-        /* Pixel art: céu preto com estrelas em pequenos cruzamentos azuis,
-           reproduzindo a estética da tela de referência. */
+        /* Céu pixelado inspirado diretamente na referência:
+           estrelas pequenas + estrelas maiores em cruz, em azul e branco. */
         const starSvg=document.createElementNS('http://www.w3.org/2000/svg','svg');
         starSvg.setAttribute('viewBox','0 0 1024 768');
         starSvg.setAttribute('preserveAspectRatio','none');
         starSvg.setAttribute('aria-hidden','true');
         starSvg.className='space-harrier-star-pixels';
 
-        const starsPos=[
-          [26,17],[78,42],[143,106],[154,49],[250,9],[270,74],[335,8],
-          [473,10],[590,10],[698,18],[750,41],[909,74],[975,137],
-          [144,137],[238,166],[333,139],[486,137],[667,91],[846,88],
-          [898,143],[70,72],[252,41],[348,140],[668,139],[752,137],
-          [909,43],[973,73],[140,106],[235,104]
+        const ns='http://www.w3.org/2000/svg';
+        const rect=(parent,x,y,w,h,fill)=>{
+            const e=document.createElementNS(ns,'rect');
+            e.setAttribute('x',x);e.setAttribute('y',y);
+            e.setAttribute('width',w);e.setAttribute('height',h);
+            e.setAttribute('fill',fill);parent.appendChild(e);
+        };
+
+        const small=[
+          [26,17],[154,49],[250,9],[335,8],[473,10],[590,10],[698,18],
+          [750,41],[909,74],[975,137],[144,137],[238,166],[333,139],
+          [486,137],[667,91],[846,88],[898,143],[70,72],[252,41],
+          [348,140],[668,139],[752,137],[909,43],[973,73],[140,106],
+          [235,104],[430,52],[543,80],[812,34],[52,183],[188,202]
         ];
-        starsPos.forEach(([x,y])=>{
-          const g=document.createElementNS('http://www.w3.org/2000/svg','g');
-          g.setAttribute('shape-rendering','crispEdges');
-          const c=document.createElementNS('http://www.w3.org/2000/svg','rect');
-          c.setAttribute('x',x); c.setAttribute('y',y); c.setAttribute('width','3'); c.setAttribute('height','3');
-          c.setAttribute('fill','#00aeea');
-          g.appendChild(c);
-          if((x+y)%3===0){
-            const h=document.createElementNS('http://www.w3.org/2000/svg','rect');
-            h.setAttribute('x',x-3); h.setAttribute('y',y+1); h.setAttribute('width','9'); h.setAttribute('height','1');
-            h.setAttribute('fill','#00aeea');
-            const v=document.createElementNS('http://www.w3.org/2000/svg','rect');
-            v.setAttribute('x',x+1); v.setAttribute('y',y-3); v.setAttribute('width','1'); v.setAttribute('height','9');
-            v.setAttribute('fill','#00aeea');
-            g.append(h,v);
-          }
-          starSvg.appendChild(g);
+        small.forEach(([x,y],i)=>{
+            rect(starSvg,x,y,2,2,i%4===0?'#7de8ff':'#00aeea');
+        });
+
+        const big=[
+          [78,42,'#00aeea'],[270,74,'#ffffff'],[335,8,'#ffffff'],
+          [750,41,'#ffffff'],[143,106,'#00aeea'],[698,18,'#ffffff'],
+          [590,10,'#00aeea'],[486,137,'#ffffff'],[909,143,'#00aeea']
+        ];
+        big.forEach(([x,y,color],i)=>{
+            const s=i%3===0?3:2;
+            rect(starSvg,x,y,s,s,color);
+            rect(starSvg,x-(i%2?2:3),y+Math.floor(s/2),s+(i%2?4:6),1,color);
+            rect(starSvg,x+Math.floor(s/2),y-(i%2?2:3),1,s+(i%2?4:6),color);
         });
         stars.appendChild(starSvg);
 
-        /* Pixel-art checkerboard: horizonte fixo + faixas trapezoidais */
-        const floorSvg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        /* Chão: checkerboard verde pixelado, terminando exatamente no rodapé. */
+        const floorSvg=document.createElementNS(ns,'svg');
         floorSvg.setAttribute('viewBox','0 0 1024 200');
         floorSvg.setAttribute('preserveAspectRatio','none');
         floorSvg.setAttribute('aria-hidden','true');
         floorSvg.className='space-harrier-floor-pixels';
 
-        const ns='http://www.w3.org/2000/svg';
-        const rect=(x,y,w,h,fill)=>{const e=document.createElementNS(ns,'rect');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('width',w);e.setAttribute('height',h);e.setAttribute('fill',fill);floorSvg.appendChild(e);};
-        const poly=(pts,fill)=>{const e=document.createElementNS(ns,'polygon');e.setAttribute('points',pts);e.setAttribute('fill',fill);floorSvg.appendChild(e);};
+        rect(floorSvg,0,0,1024,200,'#005f00');
+        rect(floorSvg,0,0,1024,8,'#007900');
 
-        rect(0,0,1024,200,'#006400');
-        rect(0,0,1024,9,'#007d00');
-
-        const rows=[0,12,27,47,72,104,143,200];
-        const widths=[28,72,132,215,330,480,690,1024];
+        const rows=[0,10,24,43,69,102,145,200];
+        const widths=[20,58,112,190,305,470,710,1024];
         for(let r=0;r<rows.length-1;r++){
-          const y1=rows[r],y2=rows[r+1],w1=widths[r],w2=widths[r+1];
-          const left1=(1024-w1)/2,left2=(1024-w2)/2;
-          const cols=6;
-          for(let col=0;col<cols;col++){
-            if((col+r)%2===0){
-              const a1=left1+w1*col/cols,b1=left1+w1*(col+1)/cols;
-              const a2=left2+w2*col/cols,b2=left2+w2*(col+1)/cols;
-              poly(`${a1},${y1} ${b1},${y1} ${b2},${y2} ${a2},${y2}`,'#00b900');
+            const y1=rows[r],y2=rows[r+1],w1=widths[r],w2=widths[r+1];
+            const l1=(1024-w1)/2,l2=(1024-w2)/2;
+            for(let col=0;col<8;col++){
+                if((col+r)%2===0){
+                    const a1=l1+w1*col/8,b1=l1+w1*(col+1)/8;
+                    const a2=l2+w2*col/8,b2=l2+w2*(col+1)/8;
+                    const p=document.createElementNS(ns,'polygon');
+                    p.setAttribute('points',`${a1},${y1} ${b1},${y1} ${b2},${y2} ${a2},${y2}`);
+                    p.setAttribute('fill','#00b800');
+                    floorSvg.appendChild(p);
+                }
             }
-          }
         }
-        /* Linhas horizontais pixeladas atravessando a pista */
-        rows.slice(1,-1).forEach(y=>rect(0,y,1024,2,'#005900'));
+        rows.slice(1,-1).forEach(y=>rect(floorSvg,0,y,1024,2,'#005000'));
         floor.appendChild(floorSvg);
 
         const badge=document.createElement('div');
