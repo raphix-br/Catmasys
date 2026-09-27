@@ -54,7 +54,7 @@ body.space-harrier-skin > .space-harrier-floor{
     min-height:260px !important;
     max-height:none !important;
     overflow:hidden !important;
-    z-index:1 !important;
+    z-index:0 !important;
     pointer-events:none !important;
     background:#178f25 !important;
 }
@@ -177,4 +177,14 @@ body.space-harrier-skin .space-harrier-skin-badge{
     letter-spacing:.05em;
     pointer-events:none;
     opacity:.65;
+}
+
+
+/* O cenário fica atrás do conteúdo: thumbnails/cards continuam visíveis. */
+body.space-harrier-skin > main,
+body.space-harrier-skin > .toolbar,
+body.space-harrier-skin > .collection-toolbar,
+body.space-harrier-skin > .collection-grid{
+    position:relative;
+    z-index:2;
 }
