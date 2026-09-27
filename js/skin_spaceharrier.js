@@ -67,35 +67,38 @@
         });
         stars.appendChild(starSvg);
 
-        /* Chão: checkerboard verde pixelado, terminando exatamente no rodapé. */
+        /* Chão Space Harrier: perspectiva de tabuleiro verde, com o ponto de fuga no horizonte. */
         const floorSvg=document.createElementNS(ns,'svg');
-        floorSvg.setAttribute('viewBox','0 0 1024 200');
+        floorSvg.setAttribute('viewBox','0 0 1024 440');
         floorSvg.setAttribute('preserveAspectRatio','none');
         floorSvg.setAttribute('aria-hidden','true');
         floorSvg.className='space-harrier-floor-pixels';
 
-        rect(floorSvg,0,0,1024,200,'#005f00');
-        rect(floorSvg,0,0,1024,8,'#007900');
+        rect(floorSvg,0,0,1024,440,'#0a8f18');
 
-        const rows=[0,10,24,43,69,102,145,200];
-        const widths=[20,58,112,190,305,470,710,1024];
+        /* Faixas horizontais cada vez mais largas = perspectiva pseudo-3D do arcade. */
+        const rows=[0,8,18,31,48,70,98,132,173,222,281,350,440];
+        const colors=['#42c94a','#2caf35'];
         for(let r=0;r<rows.length-1;r++){
-            const y1=rows[r],y2=rows[r+1],w1=widths[r],w2=widths[r+1];
-            const l1=(1024-w1)/2,l2=(1024-w2)/2;
-            for(let col=0;col<8;col++){
-                if((col+r)%2===0){
-                    const a1=l1+w1*col/8,b1=l1+w1*(col+1)/8;
-                    const a2=l2+w2*col/8,b2=l2+w2*(col+1)/8;
-                    const p=document.createElementNS(ns,'polygon');
-                    p.setAttribute('points',`${a1},${y1} ${b1},${y1} ${b2},${y2} ${a2},${y2}`);
-                    p.setAttribute('fill','#00b800');
-                    floorSvg.appendChild(p);
-                }
-            }
+            const y1=rows[r], y2=rows[r+1];
+            rect(floorSvg,0,y1,1024,y2-y1,colors[r%2]);
         }
-        rows.slice(1,-1).forEach(y=>rect(floorSvg,0,y,1024,2,'#005000'));
-        floor.appendChild(floorSvg);
 
+        /* Colunas que convergem para um único ponto de fuga central. */
+        const vanishX=512;
+        const bottomX=[-220,-105,10,125,240,355,470,585,700,815,930,1045,1160,1275];
+        for(let i=0;i<bottomX.length-1;i++){
+            const poly=document.createElementNS(ns,'polygon');
+            poly.setAttribute('points',vanishX+',0 '+vanishX+',0 '+bottomX[i+1]+',440 '+bottomX[i]+',440');
+            poly.setAttribute('fill',i%2===0?'#28b93a':'#139c27');
+            floorSvg.appendChild(poly);
+        }
+
+        /* Linhas de separação discretas, preservando o aspecto pixelado. */
+        rows.slice(1).forEach((y,i)=>{
+            rect(floorSvg,0,y,1024,i<4?2:3,'#087c16');
+        });
+        floor.appendChild(floorSvg);
         const badge=document.createElement('div');
         badge.className='space-harrier-skin-badge';
         badge.textContent='SPACE HARRIER';
