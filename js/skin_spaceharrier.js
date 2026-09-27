@@ -82,18 +82,17 @@
         /* Mais colunas e maior largura: o checkerboard ocupa também as laterais. */
         /* A malha continua além das duas bordas para que o xadrez
            cubra 100% da largura do piso, inclusive nas laterais. */
-        const columns=24;
-        const cell=150;
-
-        /* A grade é calculada para atravessar toda a largura real do SVG.
-           As colunas externas passam deliberadamente para fora da tela,
-           eliminando qualquer faixa sem quadrado nas laterais. */
+        /* Quadrados bem mais largos: menos colunas e maior distância
+           lateral. A malha ultrapassa as duas bordas para preencher 100%
+           da tela também nas linhas que seguem ao horizonte. */
+        const columns=12;
         const bottomX=[];
+        const edge=1500;
         for(let i=0;i<=columns;i++){
-            bottomX.push(-300+(i*1024/columns));
+            bottomX.push(-edge+(i*(edge*2/columns)));
         }
 
-        /* Todos os raios convergem para o ponto de fuga central. */
+        /* Ponto de fuga central, com abertura contínua até o rodapé. */
         const topX=bottomX.map(x=>512+(x-512)*0.012);
 
         for(let row=0;row<rows.length-1;row++){
