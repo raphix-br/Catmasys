@@ -77,14 +77,17 @@
 
         rect(floorSvg,0,0,1024,440,'#168f24');
 
-        const rows=[0,7,16,28,43,63,89,122,163,214,278,352,440];
-        const bottomX=[];
-        const columns=16;
-        const cell=110;
-        for(let i=0;i<=columns;i++) bottomX.push(512+(i-columns/2)*cell);
+        const rows=[0,8,19,33,52,77,109,149,198,259,330,440];
 
-        /* No horizonte as colunas ficam comprimidas no centro.
-           Embaixo elas abrem para fora da tela, criando a perspectiva. */
+        /* Mais colunas e maior largura: o checkerboard ocupa também as laterais. */
+        const columns=12;
+        const cell=150;
+        const bottomX=[];
+        for(let i=0;i<=columns;i++){
+            bottomX.push(512+(i-columns/2)*cell);
+        }
+
+        /* Compressão forte no horizonte e abertura gradual até o rodapé. */
         const topX=bottomX.map(x=>512+(x-512)*0.035);
 
         for(let row=0;row<rows.length-1;row++){
@@ -108,22 +111,10 @@
             }
         }
 
-        /* Linhas horizontais e divisões verticais, em pixel art. */
+        /* Linhas horizontais de referência do grid. */
         rows.slice(1).forEach((y,i)=>{
             rect(floorSvg,0,y,1024,i<3?2:3,'#045f14');
         });
-        for(let col=1;col<columns;col++){
-            const xTop=topX[col];
-            const xBottom=bottomX[col];
-            const poly=document.createElementNS(ns,'polygon');
-            poly.setAttribute('points',
-                (512+(xTop-512)*0.0)+',0 '+xTop+',0 '+xBottom+',440 '+(512+(xBottom-512)*0.0)+',440'
-            );
-            poly.setAttribute('fill','none');
-            poly.setAttribute('stroke','#075f16');
-            poly.setAttribute('stroke-width','1');
-            floorSvg.appendChild(poly);
-        }
 
         floor.appendChild(floorSvg);
         const badge=document.createElement('div');
