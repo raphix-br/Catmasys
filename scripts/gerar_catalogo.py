@@ -88,8 +88,8 @@ def main():
             "name": r["Titulo_BR"],
             "year": r["Ano"],
             "edition": r["Edicao"],
-            "image": c,
-            "thumb": re.sub(r"\.[^.]+$", ".webp", c.replace("CAPAS_MASTER_SYSTEM/", "thumbs/")),
+            "image": c if c.startswith("CAPAS_MASTER_SYSTEM/") else "CAPAS_MASTER_SYSTEM/" + c,
+            "thumb": ("thumbs/" + re.sub(r"\.[^.]+$", ".webp", c.replace("CAPAS_MASTER_SYSTEM/", ""))) if not c.startswith("thumbs/") else re.sub(r"\.[^.]+$", ".webp", c),
             "titulo_original": r["Titulo_Original"],
             "codigo_tectoy": r["Codigo_TecToy"],
             "variante": r["Variante"],
@@ -117,4 +117,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-# workflow bootstrap
