@@ -84,13 +84,17 @@
            cubra 100% da largura do piso, inclusive nas laterais. */
         const columns=24;
         const cell=150;
+
+        /* A grade é calculada para atravessar toda a largura real do SVG.
+           As colunas externas passam deliberadamente para fora da tela,
+           eliminando qualquer faixa sem quadrado nas laterais. */
         const bottomX=[];
         for(let i=0;i<=columns;i++){
-            bottomX.push(512+(i-columns/2)*cell);
+            bottomX.push(-300+(i*1024/columns));
         }
 
-        /* Todos os raios convergem para um único ponto de fuga. */
-        const topX=bottomX.map(x=>512+(x-512)*0.018);
+        /* Todos os raios convergem para o ponto de fuga central. */
+        const topX=bottomX.map(x=>512+(x-512)*0.012);
 
         for(let row=0;row<rows.length-1;row++){
             const y1=rows[row], y2=rows[row+1];
