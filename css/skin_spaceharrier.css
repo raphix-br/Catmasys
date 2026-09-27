@@ -286,3 +286,38 @@ body.space-harrier-skin > main{
     position:relative !important;
     z-index:10 !important;
 }
+
+
+/* SPACE HARRIER — chão em perspectiva, ocupando o rodapé como na referência arcade */
+body.space-harrier-skin > .space-harrier-floor{
+    top:auto !important;
+    bottom:0 !important;
+    left:0 !important;
+    right:0 !important;
+    width:100vw !important;
+    height:44vh !important;
+    min-height:260px !important;
+    max-height:none !important;
+    overflow:hidden !important;
+    background:#0a8f18 !important;
+    z-index:2 !important;
+}
+body.space-harrier-skin > .space-harrier-floor .space-harrier-floor-pixels{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    image-rendering:pixelated !important;
+    shape-rendering:crispEdges !important;
+}
+body.space-harrier-skin > .space-harrier-horizon{
+    top:auto !important;
+    bottom:44vh !important;
+    height:3px !important;
+    z-index:3 !important;
+    background:#32d34a !important;
+    box-shadow:0 0 5px rgba(50,211,74,.45) !important;
+    transform:none !important;
+}
+body.space-harrier-skin > .space-harrier-stars{
+    inset:0 0 44vh 0 !important;
+}
