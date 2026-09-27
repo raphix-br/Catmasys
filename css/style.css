@@ -857,11 +857,11 @@ main {
 .view-menu{
     position:fixed;
     left:0;
-    top:0;
+    top:82px;
     bottom:0;
-    z-index:2000;
+    z-index:900;
     width:54px;
-    padding:88px 6px 10px;
+    padding:34px 6px 10px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -923,11 +923,7 @@ main,.toolbar{margin-left:54px}
 @media(max-width:700px){
     .view-menu{
         width:48px;
-        padding:76px 5px 8px;
+        top:0;
+        padding:86px 5px 8px;
+        z-index:900;
     }
-    .view-mode{width:38px;height:38px;flex-basis:38px}
-    .view-icon{font-size:22px}
-    main,.toolbar{margin-left:48px}
-    #grid{padding-left:10px}
-    .thumbs-grid{grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:22px 12px}
-}
