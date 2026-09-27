@@ -4,6 +4,7 @@
     const count = document.getElementById("collection-count");
     const statusText = document.getElementById("collection-status");
     const search = document.getElementById("search");
+    const genreFilter=document.getElementById("genre-filter"), yearFilter=document.getElementById("year-filter"), sortFilter=document.getElementById("sort-filter"), statusFilter=document.getElementById("status-filter"), editionButtons=document.querySelectorAll("#editions button");
     const filters = document.querySelectorAll("#collection-filters button");
     const STORAGE_KEY = "catmasys_minha_colecao_v1";
 
@@ -35,6 +36,8 @@
     function getStatus(id) {
         return collection[id] || "NAO_POSSUO";
     }
+
+    function fillFilters(){const gs=[...new Set(games.map(g=>String(g.genero||"").trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"pt-BR"));const ys=[...new Set(games.map(g=>String(g.year||"").trim()).filter(Boolean))].sort((a,b)=>Number(b)-Number(a));genreFilter.innerHTML='<option value="">GÊNERO</option>'+gs.map(x=>`<option>${esc(x)}</option>`).join("");yearFilter.innerHTML='<option value="">ANO</option>'+ys.map(x=>`<option>${esc(x)}</option>`).join("")}
 
     function render(list) {
         grid.innerHTML = list.map(g => {
@@ -81,16 +84,23 @@
 
     function applyFilters() {
         const q = search.value.trim().toLowerCase();
-        const active = document.querySelector("#collection-filters button.active").dataset.status;
+        const active = statusFilter.value || "TODOS";
+        const genre=genreFilter.value, year=yearFilter.value, sort=sortFilter.value;
+        const editions=[...editionButtons].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);
 
         const list = games.filter(g => {
             const matchesSearch = !q || String(g.name).toLowerCase().includes(q);
             const matchesStatus = active === "TODOS" || getStatus(g.id) === active;
-            return matchesSearch && matchesStatus;
+            const matchesGenre=!genre || String(g.genero||"").trim()===genre;
+            const matchesYear=!year || String(g.year||"").trim()===year;
+            const matchesEdition=!editions.length || editions.includes(String(g.edition||"").toUpperCase());
+            return matchesSearch && matchesStatus && matchesGenre && matchesYear && matchesEdition;
         });
 
-        render(list);
+        if(sort==="az") list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR")); if(sort==="za") list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR")); render(list);
     }
+
+    [search,genreFilter,yearFilter,sortFilter,statusFilter].forEach(el=>el.addEventListener(el===search?"input":"change",applyFilters)); editionButtons.forEach(b=>b.addEventListener("click",()=>{b.classList.toggle("active");applyFilters()}));
 
     filters.forEach(button => {
         button.addEventListener("click", function () {
@@ -102,5 +112,6 @@
 
     search.addEventListener("input", applyFilters);
 
-    render(games);
+    fillFilters();
+    applyFilters();
 })();
