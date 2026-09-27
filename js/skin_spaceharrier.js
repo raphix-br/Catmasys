@@ -87,14 +87,19 @@
            da tela também nas linhas que seguem ao horizonte. */
         /* Quadrados realmente largos (~2x): cada faixa tem 300 px
            no rodapé. A grade é contínua além das duas bordas. */
-        const columns=16;
+        /* Muitas colunas fora da viewport: assim cada faixa horizontal
+           mantém quadrados visíveis até as duas bordas da tela.
+           A largura real de cada quadrado no rodapé continua grande. */
+        const columns=100;
         const cell=300;
         const bottomX=[];
         for(let i=0;i<=columns;i++){
             bottomX.push(512+(i-columns/2)*cell);
         }
 
-        /* Convergência gradual ao ponto de fuga, sem cortar as laterais. */
+        /* Perspectiva: todas as linhas convergem para o ponto de fuga,
+           mas a quantidade de colunas garante que as laterais continuem
+           preenchidas mesmo nas faixas próximas ao horizonte. */
         const topX=bottomX.map(x=>512+(x-512)*0.035);
 
         for(let row=0;row<rows.length-1;row++){
