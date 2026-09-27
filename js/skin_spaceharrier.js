@@ -67,38 +67,64 @@
         });
         stars.appendChild(starSvg);
 
-        /* Chão Space Harrier: checkerboard verde em perspectiva, cobrindo toda a largura. */
+        /* Chão Space Harrier: tabuleiro xadrez verde em perspectiva.
+           A faixa superior é estreita e cada coluna se abre até a borda inferior. */
         const floorSvg=document.createElementNS(ns,'svg');
         floorSvg.setAttribute('viewBox','0 0 1024 440');
         floorSvg.setAttribute('preserveAspectRatio','none');
         floorSvg.setAttribute('aria-hidden','true');
         floorSvg.className='space-harrier-floor-pixels';
 
-        rect(floorSvg,0,0,1024,440,'#178f25');
+        rect(floorSvg,0,0,1024,440,'#168f24');
 
-        const rows=[0,8,18,31,48,70,98,132,173,222,281,350,440];
-        const bottomX=[-500,-350,-200,-50,100,250,400,512,624,774,924,1074,1224,1374,1524];
-        const topScale=0.035;
-        const topX=bottomX.map(x=>512+(x-512)*topScale);
+        const rows=[0,7,16,28,43,63,89,122,163,214,278,352,440];
+        const bottomX=[];
+        const columns=16;
+        const cell=110;
+        for(let i=0;i<=columns;i++) bottomX.push(512+(i-columns/2)*cell);
 
-        for(let r=0;r<rows.length-1;r++){
-            const y1=rows[r], y2=rows[r+1];
+        /* No horizonte as colunas ficam comprimidas no centro.
+           Embaixo elas abrem para fora da tela, criando a perspectiva. */
+        const topX=bottomX.map(x=>512+(x-512)*0.035);
+
+        for(let row=0;row<rows.length-1;row++){
+            const y1=rows[row], y2=rows[row+1];
             const t1=y1/440, t2=y2/440;
-            for(let col=0;col<bottomX.length-1;col++){
+
+            for(let col=0;col<columns;col++){
                 const a1=topX[col]*(1-t1)+bottomX[col]*t1;
                 const b1=topX[col+1]*(1-t1)+bottomX[col+1]*t1;
                 const a2=topX[col]*(1-t2)+bottomX[col]*t2;
                 const b2=topX[col+1]*(1-t2)+bottomX[col+1]*t2;
+
                 const poly=document.createElementNS(ns,'polygon');
-                poly.setAttribute('points',a1+','+y1+' '+b1+','+y1+' '+b2+','+y2+' '+a2+','+y2);
-                poly.setAttribute('fill',(r+col)%2===0?'#35b941':'#108c22');
+                poly.setAttribute('points',
+                    a1+','+y1+' '+b1+','+y1+' '+b2+','+y2+' '+a2+','+y2
+                );
+                poly.setAttribute('fill',
+                    (row+col)%2===0 ? '#39bd45' : '#087c1c'
+                );
                 floorSvg.appendChild(poly);
             }
         }
 
+        /* Linhas horizontais e divisões verticais, em pixel art. */
         rows.slice(1).forEach((y,i)=>{
-            rect(floorSvg,0,y,1024,i<4?2:3,'#087518');
+            rect(floorSvg,0,y,1024,i<3?2:3,'#045f14');
         });
+        for(let col=1;col<columns;col++){
+            const xTop=topX[col];
+            const xBottom=bottomX[col];
+            const poly=document.createElementNS(ns,'polygon');
+            poly.setAttribute('points',
+                (512+(xTop-512)*0.0)+',0 '+xTop+',0 '+xBottom+',440 '+(512+(xBottom-512)*0.0)+',440'
+            );
+            poly.setAttribute('fill','none');
+            poly.setAttribute('stroke','#075f16');
+            poly.setAttribute('stroke-width','1');
+            floorSvg.appendChild(poly);
+        }
+
         floor.appendChild(floorSvg);
         const badge=document.createElement('div');
         badge.className='space-harrier-skin-badge';
