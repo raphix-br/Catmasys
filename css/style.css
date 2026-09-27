@@ -848,3 +848,91 @@ main {
 .topbar #catalog-filters{grid-column:3!important;grid-row:1 / 4!important;display:contents!important;}
 .topbar #catalogs{grid-column:3!important;grid-row:1!important;height:26px!important;align-items:center!important;}
 .topbar #editions{grid-column:3!important;grid-row:3!important;height:26px!important;align-items:center!important;}
+
+/* =========================================================
+   MENU LATERAL - MODOS DE EXIBIÇÃO
+   ========================================================= */
+.view-menu{
+    position:fixed;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:900;
+    width:158px;
+    padding:10px 8px;
+    background:#fff;
+    border:1px solid #bbb;
+    border-left:0;
+    border-radius:0 5px 5px 0;
+    box-shadow:2px 3px 10px rgba(0,0,0,.16);
+}
+.view-menu-title{
+    padding:3px 4px 8px;
+    color:#555;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.04em;
+    border-bottom:1px solid #ddd;
+    margin-bottom:6px;
+}
+.view-mode{
+    display:block;
+    width:100%;
+    margin:4px 0;
+    padding:7px 6px;
+    border:1px solid #aaa;
+    border-radius:3px;
+    background:#fff;
+    color:#222;
+    text-align:left;
+    font-size:9px;
+    font-weight:700;
+    cursor:pointer;
+}
+.view-mode:hover{background:#eee}
+.view-mode.active{
+    background:#d71920;
+    color:#fff;
+    border-color:#b51218;
+}
+.thumbs-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+    justify-items:center;
+    align-items:start;
+    gap:34px 34px;
+    width:100%;
+}
+.view-section{
+    width:100%;
+    margin-top:36px;
+}
+.view-title{
+    margin:0 0 14px;
+    padding:0 0 5px;
+    color:#111;
+    font-size:24px;
+    line-height:1.2;
+    font-weight:700;
+    border-bottom:2px solid #111;
+}
+#grid .view-section:first-child{margin-top:0}
+@media(max-width:1100px){
+    .view-menu{width:142px}
+    #grid{padding-left:170px}
+}
+@media(max-width:700px){
+    .view-menu{
+        position:sticky;
+        top:86px;
+        left:auto;
+        transform:none;
+        width:auto;
+        margin:8px 10px 0;
+        border-left:1px solid #bbb;
+        border-radius:5px;
+    }
+    .view-menu-title{display:inline-block;margin-right:6px;border:0}
+    .view-mode{display:inline-block;width:auto;margin:2px;padding:6px 7px}
+    #grid{padding-left:10px}
+}
