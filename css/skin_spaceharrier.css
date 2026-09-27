@@ -205,3 +205,48 @@ body.space-harrier-skin > .view-menu{
     height:100vh !important;
     z-index:1300 !important;
 }
+
+/* SPACE HARRIER — hierarquia e posicionamento finais da interface */
+body.space-harrier-skin > .topbar{
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    height:var(--cm-header-h,108px) !important;
+    min-height:var(--cm-header-h,108px) !important;
+    z-index:5000 !important;
+}
+body.space-harrier-skin > .view-menu{
+    position:fixed !important;
+    top:var(--cm-header-h,108px) !important;
+    bottom:0 !important;
+    left:0 !important;
+    width:60px !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:18px 8px 12px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    z-index:4000 !important;
+}
+body.space-harrier-skin > .space-harrier-floor{
+    top:auto !important;
+    bottom:0 !important;
+    left:0 !important;
+    right:0 !important;
+    height:27vh !important;
+    min-height:190px !important;
+    z-index:2 !important;
+}
+body.space-harrier-skin > .space-harrier-horizon{
+    top:auto !important;
+    bottom:27vh !important;
+    z-index:3 !important;
+}
+body.space-harrier-skin > .space-harrier-stars{
+    inset:0 0 27vh 0 !important;
+    z-index:0 !important;
+}
