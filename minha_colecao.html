@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catmasys — Minha Coleção</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div><h1>CATMASYS</h1><p>Minha Coleção</p></div>
+  <nav class="mode-switch">
+    <a class="mode-btn" href="index.html">CATÁLOGO</a>
+    <a class="mode-btn active" href="minha_colecao.html">MINHA COLEÇÃO</a>
+  </nav>
+  <input id="search" type="search" placeholder="Pesquisar jogo..." autocomplete="off">
+</header>
+<main>
+  <div class="collection-toolbar">
+    <div class="collection-counts">
+      <span id="collection-count"></span>
+      <span id="collection-status"></span>
+    </div>
+    <div id="collection-filters" class="collection-filters">
+      <button class="active" data-status="TODOS">TODOS</button>
+      <button data-status="CIB">CIB</button>
+      <button data-status="BOXED">BOXED</button>
+      <button data-status="LOOSE">LOOSE</button>
+      <button data-status="INCOMPLETO">INCOMPLETO</button>
+      <button data-status="NAO_POSSUO">NÃO POSSUO</button>
+    </div>
+  </div>
+  <section id="collection-grid" class="collection-grid"></section>
+</main>
+<script src="js/games_br.js"></script>
+<script src="js/app_colecao.js"></script>
+</body>
+</html>
