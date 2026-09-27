@@ -851,8 +851,9 @@ main {
 
 
 
+
 /* =========================================================
-   SIDEBAR - MODOS DE EXIBICAO
+   CATMASYS — RAIL DE MODOS DE EXIBIÇÃO
    ========================================================= */
 .view-menu{
     position:fixed;
@@ -860,41 +861,79 @@ main {
     top:82px;
     bottom:0;
     z-index:900;
-    width:54px;
-    padding:34px 6px 10px;
+    width:60px;
+    padding:18px 8px 12px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:7px;
-    background:#fff;
-    border-right:1px solid #bbb;
-    box-shadow:2px 0 8px rgba(0,0,0,.14);
+    background:rgba(255,255,255,.97);
+    border-right:1px solid #d4d4d4;
+    box-shadow:2px 0 12px rgba(0,0,0,.10);
+}
+.view-rail-group{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
 }
 .view-mode{
+    position:relative;
     width:42px;
     height:42px;
-    flex:0 0 42px;
+    padding:0;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin:0;
-    padding:0;
-    border:1px solid #999;
-    border-radius:4px;
-    background:#f7f7f7;
-    color:#222;
+    border:1px solid #c4c4c4;
+    border-radius:5px;
+    background:#fafafa;
+    color:#333;
     cursor:pointer;
-    transition:background .15s ease,transform .15s ease,border-color .15s ease;
+    transition:all .16s ease;
 }
-.view-mode:hover{background:#eee;transform:translateX(1px)}
-.view-mode.active{background:#d71920;color:#fff;border-color:#b51218}
-.view-icon{font-family:Arial,sans-serif;font-size:25px;line-height:1;font-weight:700}
-
-/* espaco da sidebar sem alterar a grade original */
-main,.toolbar{margin-left:54px}
+.view-mode svg{
+    width:21px;
+    height:21px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+.view-mode:hover{
+    background:#f0f0f0;
+    border-color:#999;
+    transform:translateX(1px);
+}
+.view-mode.active{
+    background:#d71920;
+    border-color:#b51218;
+    color:#fff;
+    box-shadow:0 2px 5px rgba(215,25,32,.28);
+}
+.view-mode.active::before{
+    content:"";
+    position:absolute;
+    left:-9px;
+    top:8px;
+    width:3px;
+    height:26px;
+    border-radius:0 2px 2px 0;
+    background:#d71920;
+}
+.view-rail-separator{
+    width:28px;
+    height:1px;
+    margin:12px 0;
+    background:#d7d7d7;
+}
+.mode-placeholder{
+    opacity:.42;
+    cursor:default;
+}
+.mode-placeholder:hover{transform:none;background:#fafafa;border-color:#c4c4c4}
+main,.toolbar{margin-left:60px}
 #grid{padding-left:20px}
-
-/* grade de thumbs compacta em varias colunas */
 .thumbs-grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
@@ -903,12 +942,7 @@ main,.toolbar{margin-left:54px}
     gap:34px 34px;
     width:100%;
 }
-
-/* modo por ano/genero continua agrupado */
-.view-section{
-    width:100%;
-    margin-top:36px;
-}
+.view-section{width:100%;margin-top:36px}
 .view-title{
     margin:0 0 14px;
     padding:0 0 5px;
@@ -919,11 +953,16 @@ main,.toolbar{margin-left:54px}
     border-bottom:2px solid #111;
 }
 #grid .view-section:first-child{margin-top:0}
-
 @media(max-width:700px){
     .view-menu{
-        width:48px;
-        top:0;
-        padding:86px 5px 8px;
-        z-index:900;
+        top:82px;
+        width:50px;
+        padding:14px 5px 10px;
     }
+    .view-mode{width:38px;height:38px}
+    .view-mode.active::before{left:-6px;height:22px;top:8px}
+    .view-mode svg{width:19px;height:19px}
+    main,.toolbar{margin-left:50px}
+    #grid{padding-left:10px}
+    .thumbs-grid{grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:22px 12px}
+}
