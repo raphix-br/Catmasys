@@ -35,7 +35,7 @@ body.space-harrier-skin > .space-harrier-horizon{
     top:auto !important;
     bottom:44vh !important;
     height:3px !important;
-    z-index:4 !important;
+    z-index:1 !important;
     pointer-events:none !important;
     background:#32d34a !important;
     box-shadow:0 0 5px rgba(50,211,74,.45) !important;
