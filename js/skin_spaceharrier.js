@@ -97,9 +97,9 @@
             bottomX.push(512+(i-columns/2)*cell);
         }
 
-        /* Perspectiva: todas as linhas convergem para o ponto de fuga,
-           mas a quantidade de colunas garante que as laterais continuem
-           preenchidas mesmo nas faixas próximas ao horizonte. */
+        /* Cada linha precisa preencher a viewport inteira. Como a
+           perspectiva comprime as colunas perto do horizonte, usamos
+           uma largura mínima de malha calculada para aquela altura. */
         const topX=bottomX.map(x=>512+(x-512)*0.035);
 
         for(let row=0;row<rows.length-1;row++){
@@ -107,10 +107,20 @@
             const t1=y1/440, t2=y2/440;
 
             for(let col=0;col<columns;col++){
-                const a1=topX[col]*(1-t1)+bottomX[col]*t1;
-                const b1=topX[col+1]*(1-t1)+bottomX[col+1]*t1;
-                const a2=topX[col]*(1-t2)+bottomX[col]*t2;
-                const b2=topX[col+1]*(1-t2)+bottomX[col+1]*t2;
+                let a1=topX[col]*(1-t1)+bottomX[col]*t1;
+                let b1=topX[col+1]*(1-t1)+bottomX[col+1]*t1;
+                let a2=topX[col]*(1-t2)+bottomX[col]*t2;
+                let b2=topX[col+1]*(1-t2)+bottomX[col+1]*t2;
+
+                /* Garante que toda faixa visível encoste nos dois cantos.
+                   A borda da tela é estendida apenas quando necessário,
+                   preservando a perspectiva no restante da faixa. */
+                const need1=(512-0);
+                const need2=(1024-512);
+                if(a1>0) a1=0;
+                if(a2>0) a2=0;
+                if(b1<1024) b1=1024;
+                if(b2<1024) b2=1024;
 
                 const poly=document.createElementNS(ns,'polygon');
                 poly.setAttribute('points',
