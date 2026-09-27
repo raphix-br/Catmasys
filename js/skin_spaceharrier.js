@@ -37,9 +37,7 @@
     function parallax(){
         const y=window.scrollY||0;
         body.style.setProperty('--sh-scroll',y+'px');
-        /* O piso permanece ancorado no rodapé; o scroll altera apenas
-           a velocidade das linhas internas, sem deslocar o piso para fora. */
-        body.style.setProperty('--sh-floor',Math.max(0,y-120)+'px');
+        body.style.setProperty('--sh-floor',y+'px');
     }
     btn.addEventListener('click',()=>{
         skin=skin==='space-harrier'?'default':'space-harrier';
