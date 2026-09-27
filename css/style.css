@@ -1248,3 +1248,93 @@ body{
     .card .thumb{width:112px !important;}
     .card .name{width:112px !important;font-size:10px !important;}
 }
+
+
+/* =========================================================
+   REFINAMENTO DE ESPAÇAMENTO — HEADER / RAIL
+   ========================================================= */
+:root{
+    --cm-header-h:108px;
+    --cm-gap:8px;
+}
+.topbar{
+    height:var(--cm-header-h) !important;
+    min-height:var(--cm-header-h) !important;
+    grid-template-rows:32px 38px 32px !important;
+    padding:0 22px !important;
+}
+.topbar .catalog-header-controls{
+    height:38px !important;
+    gap:var(--cm-gap) !important;
+}
+.topbar .catalog-header-controls #search,
+.topbar .catalog-header-controls select{
+    height:32px !important;
+}
+.topbar #catalogs,
+.topbar #editions{
+    height:32px !important;
+    gap:var(--cm-gap) !important;
+    align-items:center !important;
+}
+#catalogs button{height:22px !important;min-width:32px !important;}
+#editions button{height:28px !important;padding:4px 9px !important;}
+.mode-switch{gap:4px !important;}
+.mode-btn{min-width:112px !important;padding:8px 13px !important;}
+
+/* Rail mais discreta, centralizada e com distância constante */
+.view-menu{
+    top:var(--cm-header-h) !important;
+    width:56px !important;
+    padding:18px 0 12px !important;
+}
+.view-rail-group{
+    width:100%;
+    align-items:center !important;
+    gap:var(--cm-gap) !important;
+}
+.view-mode{
+    width:36px !important;
+    height:36px !important;
+}
+.view-mode svg{width:18px !important;height:18px !important;}
+.view-mode.active::before{
+    left:-7px !important;
+    top:7px !important;
+    height:22px !important;
+}
+.view-rail-separator{margin:12px 0 !important;}
+main,.toolbar{margin-left:56px !important;}
+.toolbar{padding-top:12px !important;padding-bottom:8px !important;}
+
+/* Barra de ano: estrutura pronta para a paleta que será definida pela referência */
+.view-section[data-view-key="year"] .view-title{
+    position:relative;
+    min-height:42px;
+    margin-bottom:18px !important;
+    padding:0 16px !important;
+    display:flex;
+    align-items:center;
+    border:2px solid #111 !important;
+    background:var(--cm-year-color,#e7e7e7) !important;
+    color:#111 !important;
+    font-size:19px !important;
+    font-weight:800 !important;
+    letter-spacing:.03em;
+    box-shadow:none;
+}
+.view-section[data-view-key="year"] .view-title::before{display:none !important;}
+.view-section[data-view-key="year"] .view-title::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:-2px;
+    height:2px;
+    background:#111;
+}
+
+@media(max-width:700px){
+    .topbar{min-height:var(--cm-header-h) !important;height:auto !important;grid-template-rows:auto !important;}
+    .view-menu{top:var(--cm-header-h) !important;width:50px !important;}
+    main,.toolbar{margin-left:50px !important;}
+    .collection-toolbar,.collection-grid{margin-left:50px !important;}
+}
