@@ -1338,3 +1338,38 @@ main,.toolbar{margin-left:56px !important;}
     main,.toolbar{margin-left:50px !important;}
     .collection-toolbar,.collection-grid{margin-left:50px !important;}
 }
+
+
+/* =========================================================
+   PALETA MASTER SYSTEM 1997 — BARRAS POR ANO
+   Inspirada diretamente na referência 97-master-system-promo:
+   verde, vermelho, amarelo/laranja, azul e magenta.
+   ========================================================= */
+.view-section[data-view-key="year"] .view-title{
+    background:var(--cm-year-color,#e7e7e7) !important;
+    color:var(--cm-year-text,#111) !important;
+    border:2px solid #111 !important;
+    border-radius:0 !important;
+    min-height:42px !important;
+    margin-bottom:18px !important;
+    padding:0 16px !important;
+    display:flex !important;
+    align-items:center !important;
+    font-size:19px !important;
+    line-height:1 !important;
+    font-weight:800 !important;
+    letter-spacing:.03em !important;
+    box-shadow:none !important;
+}
+.view-section[data-view-key="year"] .view-title::before{
+    display:none !important;
+}
+.view-section[data-view-key="year"] .view-title::after{
+    content:"";
+    position:absolute;
+    left:-2px;
+    right:-2px;
+    bottom:-2px;
+    height:2px;
+    background:#111;
+}
