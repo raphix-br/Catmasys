@@ -1,362 +1,180 @@
-/* CATMASYS — SPACE HARRIER SKIN */
+/* CATMASYS — SPACE HARRIER SKIN
+   IMPORTANTE: esta folha altera somente a aparência da skin.
+   Layout/medidas do header, rail e conteúdo pertencem ao CSS base.
+*/
+
 body.space-harrier-skin{
-    --sh-scroll:0px;
-    --sh-floor:0px;
-    background:
-      radial-gradient(circle at 17% 22%,rgba(255,255,255,.9) 0 1px,transparent 1.6px),
-      radial-gradient(circle at 73% 16%,rgba(255,255,255,.8) 0 1px,transparent 1.7px),
-      radial-gradient(circle at 42% 31%,rgba(255,255,255,.75) 0 1px,transparent 1.5px),
-      radial-gradient(circle at 88% 37%,rgba(255,255,255,.8) 0 1px,transparent 1.6px),
-      radial-gradient(circle at 29% 10%,rgba(120,220,255,.8) 0 1px,transparent 1.7px),
-      radial-gradient(circle at 61% 40%,rgba(255,255,255,.7) 0 1px,transparent 1.5px),
-      radial-gradient(circle at 8% 46%,rgba(255,255,255,.7) 0 1px,transparent 1.5px),
-      linear-gradient(#02040a,#07111d 58%,#081018 59%,#020307 100%) !important;
-    background-size:430px 330px,610px 410px,350px 270px,520px 360px,710px 460px,470px 340px,390px 290px,100% 100% !important;
+    background:#000 !important;
     color:#e9f8ff !important;
     overflow-x:hidden;
 }
-body.space-harrier-skin > .space-harrier-stars,
-body.space-harrier-skin > .space-harrier-floor,
-body.space-harrier-skin > .space-harrier-horizon{
-    position:fixed;
-    left:0;
-    right:0;
-    pointer-events:none;
-}
-body.space-harrier-skin > .space-harrier-stars{
-    inset:0;
-    z-index:0;
-    opacity:.85;
-    background:
-      radial-gradient(circle at 12% 62%,#fff 0 1px,transparent 1.5px),
-      radial-gradient(circle at 24% 70%,#9deaff 0 1px,transparent 1.5px),
-      radial-gradient(circle at 38% 61%,#fff 0 1px,transparent 1.5px),
-      radial-gradient(circle at 55% 74%,#fff 0 1px,transparent 1.5px),
-      radial-gradient(circle at 69% 58%,#c7f4ff 0 1px,transparent 1.5px),
-      radial-gradient(circle at 83% 68%,#fff 0 1px,transparent 1.5px);
-    transform:translate3d(0,calc(var(--sh-scroll) * -.16),0);
-}
-body.space-harrier-skin > .space-harrier-horizon{
-    z-index:1;
-    top:55%;
-    height:2px;
-    background:linear-gradient(90deg,transparent,#31d878 25%,#8effb8 50%,#31d878 75%,transparent);
-    box-shadow:0 0 16px rgba(49,216,120,.7);
-    transform:translateY(calc(var(--sh-scroll) * -.10));
-}
-body.space-harrier-skin > .space-harrier-floor{
-    z-index:1;
-    position:fixed;
-    left:0;
-    right:0;
-    top:74%;
-    bottom:0;
-    overflow:hidden;
-    transform:none !important;
-    opacity:1;
-    background:#006400;
-}
-body.space-harrier-skin > .space-harrier-floor::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      linear-gradient(to bottom,#007b00 0 10%,#00a800 10% 32%,#00b900 32% 55%,#00b900 55% 100%);
-}
-body.space-harrier-skin > .space-harrier-floor::after{
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    top:0;
-    height:3px;
-    background:#00a000;
-}
-body.space-harrier-skin > .topbar,
-body.space-harrier-skin > .view-menu,
-body.space-harrier-skin > main{
-    position:relative;
-    z-index:10;
-}
-body.space-harrier-skin .topbar{
-    background:rgba(2,7,13,.91) !important;
-    color:#f4fbff !important;
-    border-bottom:3px solid #26c66a !important;
-    box-shadow:0 2px 16px rgba(0,0,0,.55) !important;
-    backdrop-filter:blur(3px);
-}
-body.space-harrier-skin .topbar p{color:#8ab4c2 !important}
-body.space-harrier-skin .mode-switch{background:rgba(10,20,28,.9);border-color:#31505b}
-body.space-harrier-skin .mode-btn{color:#9bb5bd !important}
-body.space-harrier-skin .mode-btn:hover{background:#10222b !important;color:#fff !important}
-body.space-harrier-skin .mode-btn.active{background:#158b4a !important;border-color:#26c66a !important}
-body.space-harrier-skin .catalog-header-controls #search,
-body.space-harrier-skin .catalog-header-controls select{
-    background:rgba(4,12,18,.94) !important;color:#eafff4 !important;border-color:#3c6570 !important;
-}
-body.space-harrier-skin #catalogs button,
-body.space-harrier-skin #editions button{background:rgba(4,12,18,.88);color:#b7d2d8;border-color:#31505b}
-body.space-harrier-skin #catalogs button.active,
-body.space-harrier-skin #editions button.active{background:#168c4b;color:#fff;border-color:#26c66a}
-body.space-harrier-skin .view-menu{background:rgba(3,9,15,.90) !important;border-color:#27424d !important;box-shadow:2px 0 14px rgba(0,0,0,.45) !important;backdrop-filter:blur(3px)}
-body.space-harrier-skin .view-mode{background:rgba(8,18,26,.9) !important;color:#a8c4cc !important;border-color:#31505b !important}
-body.space-harrier-skin .view-mode.active{background:#168c4b !important;border-color:#26c66a !important;color:#fff !important}
-body.space-harrier-skin .view-mode.skin-toggle{color:#ffdc58 !important}
-body.space-harrier-skin .toolbar{color:#b9d0d7}
-body.space-harrier-skin #count{background:rgba(2,9,14,.76);border-left-color:#26c66a;color:#bfe6d0}
-body.space-harrier-skin .view-title{background:rgba(2,10,15,.72) !important;color:#d9fff0 !important;border-color:#3b7771 !important;text-shadow:0 1px 2px #000}
-body.space-harrier-skin .card .name{color:#e8f9ff !important;text-shadow:0 1px 3px #000 !important}
-body.space-harrier-skin .card .id{color:#91b0ba}
-body.space-harrier-skin .card .thumb{border-color:rgba(108,255,178,.42);box-shadow:0 8px 18px rgba(0,0,0,.55)}
-body.space-harrier-skin .space-harrier-skin-badge{
-    position:fixed;right:14px;bottom:12px;z-index:1200;padding:5px 8px;
-    border:1px solid rgba(49,216,120,.45);background:rgba(0,8,12,.68);
-    color:#7ef0ae;font:8px "Press Start 2P",monospace;letter-spacing:.05em;
-    pointer-events:none;opacity:.65;
-}
-@media(max-width:700px){
-    body.space-harrier-skin > .space-harrier-floor{
-        transform:perspective(300px) rotateX(57deg) translate3d(0,calc(var(--sh-floor) * -.15),0) scale(1.6);
-    }
-}
-/* Space Harrier: interface remains frozen while the scene scrolls */
-body.space-harrier-skin > .topbar{
-    position:fixed !important;
-    top:0;
-    left:0;
-    right:0;
-    z-index:1000;
-}
-body.space-harrier-skin > .view-menu{
-    position:fixed !important;
-    left:0;
-    top:var(--topbar-height,0px);
-    bottom:0;
-    z-index:999;
-}
-body.space-harrier-skin > main{
-    position:relative;
-    z-index:10;
-}
-body.space-harrier-skin > main{
-    padding-top:var(--topbar-height,0px);
-}
 
-/* Space Harrier: sidebar fixed from top to bottom of viewport */
-body.space-harrier-skin > .view-menu{
-    position:fixed !important;
-    top:0 !important;
-    bottom:0 !important;
-    left:0 !important;
-    height:100vh !important;
-    min-height:100vh !important;
-    z-index:1100 !important;
-    margin:0 !important;
-}
-
-/* SPACE HARRIER — referência pixel art: sem parallax por enquanto */
-body.space-harrier-skin{
-    background:#000 !important;
-}
+/* Céu */
 body.space-harrier-skin > .space-harrier-stars{
     position:fixed !important;
-    inset:0 0 26% 0 !important;
+    inset:0 0 44vh 0 !important;
     z-index:0 !important;
+    pointer-events:none !important;
     opacity:1 !important;
     background:#000 !important;
     transform:none !important;
 }
 body.space-harrier-skin > .space-harrier-stars .space-harrier-star-pixels{
-    display:block;
-    width:100%;
-    height:100%;
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
     image-rendering:pixelated;
+    shape-rendering:crispEdges;
 }
+
+/* Linha do horizonte */
 body.space-harrier-skin > .space-harrier-horizon{
-    top:74% !important;
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    top:auto !important;
+    bottom:44vh !important;
     height:3px !important;
-    z-index:2 !important;
-    background:#008000 !important;
-    box-shadow:none !important;
+    z-index:4 !important;
+    pointer-events:none !important;
+    background:#32d34a !important;
+    box-shadow:0 0 5px rgba(50,211,74,.45) !important;
     transform:none !important;
 }
-body.space-harrier-skin > .space-harrier-floor{
-    top:74% !important;
-    z-index:1 !important;
-}
-body.space-harrier-skin > .space-harrier-floor .space-harrier-floor-pixels{
-    display:block;
-    width:100%;
-    height:100%;
-    image-rendering:pixelated;
-}
-body.space-harrier-skin > .topbar{
-    position:fixed !important;
-    top:0 !important;
-    left:0 !important;
-    right:0 !important;
-    z-index:1200 !important;
-}
-body.space-harrier-skin > .view-menu{
-    position:fixed !important;
-    top:0 !important;
-    bottom:0 !important;
-    left:0 !important;
-    height:100vh !important;
-    z-index:1300 !important;
-}
 
-/* SPACE HARRIER — hierarquia e posicionamento finais da interface */
-body.space-harrier-skin > .topbar{
+/* Piso — a geometria é desenhada pelo SVG no JS */
+body.space-harrier-skin > .space-harrier-floor{
     position:fixed !important;
-    top:0 !important;
     left:0 !important;
     right:0 !important;
-    height:var(--cm-header-h,108px) !important;
-    min-height:var(--cm-header-h,108px) !important;
-    z-index:5000 !important;
-}
-body.space-harrier-skin > .view-menu{
-    position:fixed !important;
-    top:var(--cm-header-h,108px) !important;
-    bottom:0 !important;
-    left:0 !important;
-    width:60px !important;
-    height:auto !important;
-    min-height:0 !important;
-    margin:0 !important;
-    padding:18px 8px 12px !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:center !important;
-    justify-content:center !important;
-    z-index:4000 !important;
-}
-body.space-harrier-skin > .space-harrier-floor{
     top:auto !important;
     bottom:0 !important;
-    left:0 !important;
-    right:0 !important;
-    height:27vh !important;
-    min-height:190px !important;
-    z-index:2 !important;
-}
-body.space-harrier-skin > .space-harrier-horizon{
-    top:auto !important;
-    bottom:27vh !important;
-    z-index:3 !important;
-}
-body.space-harrier-skin > .space-harrier-stars{
-    inset:0 0 27vh 0 !important;
-    z-index:0 !important;
-}
-
-
-/* =========================================================
-   SPACE HARRIER — HEADER SEMPRE ACIMA DO RAIL
-   ========================================================= */
-body.space-harrier-skin > .topbar{
-    position:fixed !important;
-    inset:0 0 auto 0 !important;
-    height:var(--cm-header-h) !important;
-    min-height:var(--cm-header-h) !important;
-    max-height:var(--cm-header-h) !important;
-    z-index:99999 !important;
-}
-
-body.space-harrier-skin > .view-menu{
-    position:fixed !important;
-    top:var(--cm-header-h) !important;
-    left:0 !important;
-    right:auto !important;
-    bottom:0 !important;
-    width:56px !important;
-    height:calc(100vh - var(--cm-header-h)) !important;
-    min-height:0 !important;
-    max-height:none !important;
-    margin:0 !important;
-    padding:18px 0 12px !important;
-    box-sizing:border-box !important;
-    z-index:100 !important;
-}
-
-body.space-harrier-skin > main{
-    padding-top:var(--cm-header-h) !important;
-    margin-left:56px !important;
-    position:relative !important;
-    z-index:10 !important;
-}
-
-
-/* SPACE HARRIER — chão em perspectiva, ocupando o rodapé como na referência arcade */
-body.space-harrier-skin > .space-harrier-floor{
-    top:auto !important;
-    bottom:0 !important;
-    left:0 !important;
-    right:0 !important;
     width:100vw !important;
     height:44vh !important;
     min-height:260px !important;
     max-height:none !important;
     overflow:hidden !important;
-    background:#0a8f18 !important;
-    z-index:2 !important;
-}
-body.space-harrier-skin > .space-harrier-floor .space-harrier-floor-pixels{
-    display:block !important;
-    width:100% !important;
-    height:100% !important;
-    image-rendering:pixelated !important;
-    shape-rendering:crispEdges !important;
-}
-body.space-harrier-skin > .space-harrier-horizon{
-    top:auto !important;
-    bottom:44vh !important;
-    height:3px !important;
-    z-index:3 !important;
-    background:#32d34a !important;
-    box-shadow:0 0 5px rgba(50,211,74,.45) !important;
-    transform:none !important;
-}
-body.space-harrier-skin > .space-harrier-stars{
-    inset:0 0 44vh 0 !important;
-}
-
-
-/* SPACE HARRIER — rail idêntico ao rail estrutural da skin Grid */
-body.space-harrier-skin > .view-menu{
-    top:var(--cm-header-h) !important;
-    bottom:0 !important;
-    left:0 !important;
-    width:56px !important;
-    height:calc(100vh - var(--cm-header-h)) !important;
-    min-height:0 !important;
-    padding:18px 0 12px !important;
-    margin:0 !important;
-    box-sizing:border-box !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:center !important;
-    justify-content:center !important;
-}
-body.space-harrier-skin > .view-menu .view-rail-group{
-    width:100% !important;
-    align-items:center !important;
-    gap:var(--cm-gap,8px) !important;
-}
-body.space-harrier-skin > .view-menu .view-mode{
-    width:36px !important;
-    height:36px !important;
-}
-body.space-harrier-skin > .space-harrier-floor{
-    z-index:5 !important;
+    z-index:1 !important;
+    pointer-events:none !important;
+    background:#178f25 !important;
 }
 body.space-harrier-skin > .space-harrier-floor::before,
 body.space-harrier-skin > .space-harrier-floor::after{
     content:none !important;
     display:none !important;
 }
-body.space-harrier-skin > main{
-    z-index:10 !important;
-    background:transparent !important;
+body.space-harrier-skin > .space-harrier-floor .space-harrier-floor-pixels{
+    position:absolute !important;
+    inset:0 !important;
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    image-rendering:pixelated !important;
+    shape-rendering:crispEdges !important;
+}
+
+/* Interface: somente aparência.
+   Tamanho, posição e hierarquia continuam sendo definidos pela skin base. */
+body.space-harrier-skin > .topbar{
+    background:rgba(2,7,13,.94) !important;
+    color:#f4fbff !important;
+    border-bottom:3px solid #26c66a !important;
+    box-shadow:0 2px 16px rgba(0,0,0,.55) !important;
+    backdrop-filter:blur(3px);
+}
+body.space-harrier-skin .topbar p{color:#8ab4c2 !important}
+
+body.space-harrier-skin .mode-switch{
+    background:rgba(10,20,28,.9);
+    border-color:#31505b;
+}
+body.space-harrier-skin .mode-btn{
+    color:#9bb5bd !important;
+}
+body.space-harrier-skin .mode-btn:hover{
+    background:#10222b !important;
+    color:#fff !important;
+}
+body.space-harrier-skin .mode-btn.active{
+    background:#158b4a !important;
+    border-color:#26c66a !important;
+}
+
+body.space-harrier-skin .catalog-header-controls #search,
+body.space-harrier-skin .catalog-header-controls select{
+    background:rgba(4,12,18,.94) !important;
+    color:#eafff4 !important;
+    border-color:#3c6570 !important;
+}
+body.space-harrier-skin #catalogs button,
+body.space-harrier-skin #editions button{
+    background:rgba(4,12,18,.88);
+    color:#b7d2d8;
+    border-color:#31505b;
+}
+body.space-harrier-skin #catalogs button.active,
+body.space-harrier-skin #editions button.active{
+    background:#168c4b;
+    color:#fff;
+    border-color:#26c66a;
+}
+
+body.space-harrier-skin .view-menu{
+    background:rgba(3,9,15,.94) !important;
+    border-color:#27424d !important;
+    box-shadow:2px 0 14px rgba(0,0,0,.45) !important;
+    backdrop-filter:blur(3px);
+}
+body.space-harrier-skin .view-mode{
+    background:rgba(8,18,26,.9) !important;
+    color:#a8c4cc !important;
+    border-color:#31505b !important;
+}
+body.space-harrier-skin .view-mode:hover{
+    background:#10222b !important;
+}
+body.space-harrier-skin .view-mode.active{
+    background:#168c4b !important;
+    border-color:#26c66a !important;
+    color:#fff !important;
+}
+body.space-harrier-skin .view-mode.skin-toggle{
+    color:#ffdc58 !important;
+}
+
+body.space-harrier-skin .toolbar{color:#b9d0d7}
+body.space-harrier-skin #count{
+    background:rgba(2,9,14,.76);
+    border-left-color:#26c66a;
+    color:#bfe6d0;
+}
+body.space-harrier-skin .view-title{
+    background:rgba(2,10,15,.72) !important;
+    color:#d9fff0 !important;
+    border-color:#3b7771 !important;
+    text-shadow:0 1px 2px #000;
+}
+body.space-harrier-skin .card .name{
+    color:#e8f9ff !important;
+    text-shadow:0 1px 3px #000 !important;
+}
+body.space-harrier-skin .card .id{color:#91b0ba}
+body.space-harrier-skin .card .thumb{
+    border-color:rgba(108,255,178,.42);
+    box-shadow:0 8px 18px rgba(0,0,0,.55);
+}
+
+body.space-harrier-skin .space-harrier-skin-badge{
+    position:fixed;
+    right:14px;
+    bottom:12px;
+    z-index:1200;
+    padding:5px 8px;
+    border:1px solid rgba(49,216,120,.45);
+    background:rgba(0,8,12,.68);
+    color:#7ef0ae;
+    font:8px "Press Start 2P",monospace;
+    letter-spacing:.05em;
+    pointer-events:none;
+    opacity:.65;
 }
