@@ -14,7 +14,25 @@
         <button data-edition="AZ">AZ</button>
         <button data-edition="CU">CU</button>
     </div>
-</div></header><aside id="view-menu" class="view-menu"><button class="view-mode active" data-view="thumbs" title="Visualização em miniaturas" aria-label="Visualização em miniaturas"><span class="view-icon">▦</span></button><button class="view-mode" data-view="year" title="Ordenado por ano" aria-label="Ordenado por ano"><span class="view-icon">▤</span></button><button class="view-mode" data-view="genre" title="Ordenado por gênero" aria-label="Ordenado por gênero"><span class="view-icon">♬</span></button></aside><main><div class="toolbar"><span id="count"></span></div><section id="grid" class="grid"></section></main><script src="js/games_br.js"></script><script src="js/app_catalogo.js"></script></body></html>
+</div></header><aside id="view-menu" class="view-menu" aria-label="Modos de exibição">
+    <div class="view-rail-group">
+        <button class="view-mode active" data-view="thumbs" title="Miniaturas" aria-label="Miniaturas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="view-mode" data-view="year" title="Ordenar por ano" aria-label="Ordenar por ano">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/><path d="M17 14v7M14.5 18.5h5"/></svg>
+        </button>
+        <button class="view-mode" data-view="genre" title="Ordenar por gênero" aria-label="Ordenar por gênero">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><path d="M10 7h4M7 10v4M10 17h8"/></svg>
+        </button>
+    </div>
+    <div class="view-rail-separator"></div>
+    <div class="view-rail-group future-modes" aria-label="Mais modos de exibição">
+        <button class="view-mode mode-placeholder" title="Novos modos em breve" aria-label="Novos modos em breve" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+    </div>
+</aside><main><div class="toolbar"><span id="count"></span></div><section id="grid" class="grid"></section></main><script src="js/games_br.js"></script><script src="js/app_catalogo.js"></script></body></html>
 
 
 
