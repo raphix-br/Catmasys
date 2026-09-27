@@ -80,15 +80,17 @@
         const rows=[0,8,19,33,52,77,109,149,198,259,330,440];
 
         /* Mais colunas e maior largura: o checkerboard ocupa também as laterais. */
-        const columns=12;
+        /* A malha continua além das duas bordas para que o xadrez
+           cubra 100% da largura do piso, inclusive nas laterais. */
+        const columns=24;
         const cell=150;
         const bottomX=[];
         for(let i=0;i<=columns;i++){
             bottomX.push(512+(i-columns/2)*cell);
         }
 
-        /* Compressão forte no horizonte e abertura gradual até o rodapé. */
-        const topX=bottomX.map(x=>512+(x-512)*0.035);
+        /* Todos os raios convergem para um único ponto de fuga. */
+        const topX=bottomX.map(x=>512+(x-512)*0.018);
 
         for(let row=0;row<rows.length-1;row++){
             const y1=rows[row], y2=rows[row+1];
