@@ -2,7 +2,6 @@
     const body=document.body;
     const rail=document.querySelector('.future-modes');
     if(!rail) return;
-
     const btn=rail.querySelector('.mode-placeholder');
     if(!btn) return;
 
@@ -17,13 +16,17 @@
     let skin=localStorage.getItem(key)||'default';
 
     function scene(){
-        if(!body.classList.contains('space-harrier-skin')) return;
-        if(!document.querySelector('.space-harrier-horizon')){
-            const h=document.createElement('div'); h.className='space-harrier-horizon';
-            const s=document.createElement('div'); s.className='space-harrier-stars';
-            const b=document.createElement('div'); b.className='space-harrier-skin-badge'; b.textContent='SPACE HARRIER';
-            body.append(h,s,b);
-        }
+        if(document.querySelector('.space-harrier-floor')) return;
+        const stars=document.createElement('div');
+        stars.className='space-harrier-stars';
+        const floor=document.createElement('div');
+        floor.className='space-harrier-floor';
+        const horizon=document.createElement('div');
+        horizon.className='space-harrier-horizon';
+        const badge=document.createElement('div');
+        badge.className='space-harrier-skin-badge';
+        badge.textContent='SPACE HARRIER';
+        body.append(stars,floor,horizon,badge);
     }
     function apply(){
         body.classList.toggle('space-harrier-skin',skin==='space-harrier');
@@ -43,5 +46,6 @@
         parallax();
     });
     window.addEventListener('scroll',parallax,{passive:true});
-    apply(); parallax();
+    apply();
+    parallax();
 })();
