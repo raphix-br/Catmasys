@@ -966,3 +966,285 @@ main,.toolbar{margin-left:60px}
     #grid{padding-left:10px}
     .thumbs-grid{grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:22px 12px}
 }
+
+
+/* =========================================================
+   CATMASYS DESIGN SYSTEM v1 — RETRO TÉCNICO / COLEÇÃO
+   Base visual consolidada: hierarquia, grid, contraste e
+   navegação lateral sem transformar o catálogo em arcade.
+   ========================================================= */
+:root{
+    --cm-red:#d71920;
+    --cm-red-dark:#b51218;
+    --cm-ink:#151515;
+    --cm-muted:#666;
+    --cm-line:#d8d8d8;
+    --cm-soft:#f4f4f4;
+    --cm-panel:#ffffff;
+    --cm-radius:4px;
+}
+
+body{
+    color:var(--cm-ink);
+}
+
+/* Cabeçalho: três zonas claras — identidade / módulo / ferramentas */
+.topbar{
+    height:82px !important;
+    min-height:82px !important;
+    padding:0 18px !important;
+    border-bottom:3px solid var(--cm-red) !important;
+    box-shadow:0 2px 8px rgba(0,0,0,.10) !important;
+}
+.topbar > div:first-child{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-width:220px;
+}
+.topbar h1{
+    font-size:21px !important;
+    letter-spacing:.10em !important;
+}
+.topbar p{
+    margin-top:6px !important;
+    color:#777 !important;
+    font-size:10px !important;
+    line-height:1 !important;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+/* Navegação principal com aspecto de módulo do sistema */
+.mode-switch{
+    padding:3px;
+    gap:2px !important;
+    background:#f0f0f0;
+    border:1px solid #c8c8c8;
+    border-radius:5px;
+    box-shadow:inset 0 1px 2px rgba(0,0,0,.06);
+}
+.mode-btn{
+    min-width:108px;
+    padding:8px 12px !important;
+    border:1px solid transparent !important;
+    border-radius:3px !important;
+    background:transparent !important;
+    color:#555 !important;
+    font-size:10px !important;
+    letter-spacing:.04em;
+}
+.mode-btn:hover{
+    color:#111 !important;
+    background:#fff !important;
+}
+.mode-btn.active{
+    background:var(--cm-red) !important;
+    border-color:var(--cm-red-dark) !important;
+    color:#fff !important;
+    box-shadow:0 1px 3px rgba(0,0,0,.16);
+}
+
+/* Ferramentas: um único instrumento, em vez de controles soltos */
+.catalog-header-controls{
+    height:30px !important;
+    padding:0 !important;
+    gap:4px !important;
+}
+.catalog-header-controls #search{
+    width:230px !important;
+    height:30px !important;
+    padding:0 10px !important;
+    border:1px solid #aaa !important;
+    border-radius:3px !important;
+    font-size:12px !important;
+    color:#222;
+    background:#fff;
+}
+.catalog-header-controls #search::placeholder{
+    color:#888;
+}
+.catalog-header-controls select{
+    height:30px !important;
+    border:1px solid #aaa !important;
+    border-radius:3px !important;
+    background:#fff !important;
+    color:#333 !important;
+    font-size:10px !important;
+    font-weight:700 !important;
+}
+.catalog-header-controls select:focus,
+.catalog-header-controls #search:focus{
+    outline:none !important;
+    border-color:var(--cm-red) !important;
+    box-shadow:0 0 0 1px var(--cm-red) !important;
+}
+
+/* Faixa superior/inferior do catálogo: linguagem técnica */
+#catalogs,
+#editions{
+    gap:3px !important;
+}
+#catalogs button,
+#editions button{
+    transition:background .14s ease,border-color .14s ease,color .14s ease,transform .14s ease;
+}
+#catalogs button:hover:not(:disabled),
+#editions button:hover:not(:disabled){
+    transform:translateY(-1px);
+}
+#editions button.active{
+    box-shadow:0 1px 3px rgba(215,25,32,.22);
+}
+
+/* Contador como indicador de sistema, sem competir com as capas */
+.toolbar{
+    max-width:none !important;
+    margin-left:60px !important;
+    padding:13px 24px 8px !important;
+    min-height:42px;
+}
+#count{
+    display:inline-flex;
+    align-items:center;
+    min-height:24px;
+    padding:0 8px;
+    border-left:3px solid var(--cm-red);
+    color:#555;
+    background:rgba(255,255,255,.78);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+}
+
+/* Rail: mais próxima de uma ferramenta profissional do que de um menu arcade */
+.view-menu{
+    width:58px !important;
+    top:82px !important;
+    padding:20px 7px 12px !important;
+    background:rgba(250,250,250,.97) !important;
+    border-right:1px solid #cfcfcf !important;
+    box-shadow:2px 0 10px rgba(0,0,0,.07) !important;
+}
+.view-rail-group{gap:7px !important;}
+.view-mode{
+    width:40px !important;
+    height:40px !important;
+    border:1px solid #bdbdbd !important;
+    border-radius:4px !important;
+    background:#fff !important;
+    color:#444 !important;
+    box-shadow:0 1px 2px rgba(0,0,0,.05);
+}
+.view-mode svg{width:20px !important;height:20px !important;}
+.view-mode:hover:not(:disabled){
+    background:#f1f1f1 !important;
+    border-color:#888 !important;
+    transform:none !important;
+}
+.view-mode.active{
+    background:var(--cm-red) !important;
+    border-color:var(--cm-red-dark) !important;
+    color:#fff !important;
+    box-shadow:0 2px 5px rgba(215,25,32,.22) !important;
+}
+.view-mode.active::before{
+    left:-8px !important;
+    width:3px !important;
+    height:24px !important;
+    top:8px !important;
+    background:var(--cm-red) !important;
+}
+.view-rail-separator{
+    width:26px !important;
+    margin:14px 0 !important;
+    background:#ccc !important;
+}
+
+/* Área de conteúdo: grid mais respirado e alinhado */
+#grid{
+    margin-left:0 !important;
+    padding:0 24px 50px 20px !important;
+}
+.thumbs-grid{
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr)) !important;
+    gap:38px 30px !important;
+}
+.card{
+    width:150px !important;
+}
+.card .thumb{
+    width:128px !important;
+    border-radius:3px !important;
+}
+.card .name{
+    width:138px !important;
+    margin-top:9px !important;
+    font-size:11px !important;
+    line-height:15px !important;
+    font-weight:650 !important;
+    letter-spacing:.15px !important;
+}
+.card:hover .name{text-shadow:none !important;}
+
+/* Separadores de ano/gênero: menos "título de página", mais índice de catálogo */
+.view-section{margin-top:40px !important;}
+.view-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px !important;
+    padding:0 0 7px !important;
+    color:#222 !important;
+    font-size:17px !important;
+    line-height:1 !important;
+    font-weight:800 !important;
+    letter-spacing:.02em;
+    border-bottom:1px solid #aaa !important;
+}
+.view-title::before{
+    content:"";
+    width:6px;
+    height:17px;
+    background:var(--cm-red);
+    display:inline-block;
+}
+
+/* Coleção compartilha a mesma linguagem visual */
+.collection-toolbar{
+    margin-left:60px !important;
+    max-width:none !important;
+    padding:16px 24px 12px !important;
+}
+.collection-counts{
+    margin-bottom:10px !important;
+    font-size:11px !important;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+}
+.collection-grid{
+    margin-left:60px !important;
+    max-width:none !important;
+    padding:4px 24px 50px !important;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr)) !important;
+    gap:36px 26px !important;
+}
+
+@media(max-width:900px){
+    .topbar{height:auto !important;min-height:82px !important;}
+    .topbar > div:first-child{align-items:flex-start;}
+    .mode-switch{margin:2px auto !important;}
+    .catalog-header-controls{width:100%;}
+    .catalog-header-controls #search{width:min(230px,45vw) !important;}
+}
+@media(max-width:700px){
+    .view-menu{width:50px !important;}
+    main,.toolbar{margin-left:50px !important;}
+    .collection-toolbar,.collection-grid{margin-left:50px !important;}
+    #grid{padding-left:12px !important;padding-right:12px !important;}
+    .thumbs-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr)) !important;gap:28px 10px !important;}
+    .card{width:120px !important;}
+    .card .thumb{width:112px !important;}
+    .card .name{width:112px !important;font-size:10px !important;}
+}
