@@ -35,7 +35,7 @@ body.space-harrier-skin > .space-harrier-horizon{
     top:auto !important;
     bottom:44vh !important;
     height:3px !important;
-    z-index:1 !important;
+    z-index:0 !important;
     pointer-events:none !important;
     background:#32d34a !important;
     box-shadow:0 0 5px rgba(50,211,74,.45) !important;
@@ -184,7 +184,9 @@ body.space-harrier-skin .space-harrier-skin-badge{
 body.space-harrier-skin > main,
 body.space-harrier-skin > .toolbar,
 body.space-harrier-skin > .collection-toolbar,
-body.space-harrier-skin > .collection-grid{
+body.space-harrier-skin > .collection-grid,
+body.space-harrier-skin .card,
+body.space-harrier-skin .card .thumb{
     position:relative;
     z-index:2;
 }
