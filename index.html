@@ -1,4 +1,4 @@
-﻿<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catmasys â€” Master System</title><link rel="stylesheet" href="css/style.css"></head><body><header class="topbar"><div><h1>CATMASYS</h1><p>Catalogo Master System</p></div><nav class="mode-switch"><a class="mode-btn active" href="index.html">CATÁLOGO</a><a class="mode-btn" href="minha_colecao.html">MINHA COLEÇÃO</a></nav><input id="search" type="search" placeholder="Pesquisar jogo..." autocomplete="off"><div id="catalog-filters" class="catalog-filters">
+﻿<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catmasys â€” Master System</title><link rel="stylesheet" href="css/style.css"></head><body><header class="topbar"><div><h1>CATMASYS</h1><p>Catalogo Master System</p></div><nav class="mode-switch"><a class="mode-btn active" href="index.html">CATÁLOGO</a><a class="mode-btn" href="minha_colecao.html">MINHA COLEÇÃO</a></nav><div class="catalog-header-controls"><input id="search" type="search" placeholder="Pesquisar jogo..." autocomplete="off"><select id="genre-filter"><option value="">GÊNERO</option></select><select id="year-filter"><option value="">ANO</option></select><select id="sort-filter"><option value="default">ORDEM</option><option value="az">A-Z</option><option value="za">Z-A</option></select></div><div id="catalog-filters" class="catalog-filters">
     <div id="catalogs">
         <button class="active" data-cat="BR">BR</button>
         <button disabled data-cat="USA">USA</button>
@@ -14,63 +14,7 @@
         <button data-edition="AZ">AZ</button>
         <button data-edition="CU">CU</button>
     </div>
-</div></header><main><div class="toolbar"><span id="count"></span></div><section id="grid" class="grid"></section></main><script src="js/games_br.js"></script><script src="js/app_catalogo.js"></script><script>
-document.querySelectorAll("#filters button").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-        const cat = this.dataset.cat;
-
-        document.querySelectorAll("#grid .card").forEach(function(card) {
-            if (cat === "TODOS") {
-                card.style.display = "";
-                return;
-            }
-
-            const href = card.getAttribute("href") || "";
-            const id = new URLSearchParams(href.split("?")[1] || "").get("id") || "";
-            const categoria = id.split("-").pop().toUpperCase();
-
-            card.style.display = categoria === cat ? "" : "none";
-        });
-
-        document.querySelectorAll("#filters button").forEach(function(b) {
-            b.classList.remove("active");
-        });
-
-        this.classList.add("active");
-    });
-});
-</script>
-<script>
-(function () {
-    const buttons = document.querySelectorAll("#editions button");
-    const grid = document.getElementById("grid");
-
-    function aplicarFiltro() {
-        const ativos = Array.from(document.querySelectorAll("#editions button.active"))
-            .map(b => b.dataset.edition);
-
-        document.querySelectorAll("#grid .card").forEach(card => {
-            if (ativos.length === 0) {
-                card.style.display = "";
-                return;
-            }
-
-            const id = new URL(card.href).searchParams.get("id") || "";
-            const edicao = id.split("-").pop().toUpperCase();
-
-            card.style.display = ativos.includes(edicao) ? "" : "none";
-        });
-    }
-
-    buttons.forEach(button => {
-        button.addEventListener("click", function () {
-            this.classList.toggle("active");
-            aplicarFiltro();
-        });
-    });
-})();
-</script>
-</body></html>
+</div></header><main><div class="toolbar"><span id="count"></span></div><section id="grid" class="grid"></section></main><script src="js/games_br.js"></script><script src="js/app_catalogo.js"></script></body></html>
 
 
 
