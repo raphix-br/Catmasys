@@ -850,6 +850,7 @@ main {
 .topbar #editions{grid-column:3!important;grid-row:3!important;height:26px!important;align-items:center!important;}
 
 
+
 /* =========================================================
    SIDEBAR - MODOS DE EXIBICAO
    ========================================================= */
@@ -858,16 +859,16 @@ main {
     left:0;
     top:0;
     bottom:0;
-    z-index:1100;
+    z-index:2000;
     width:54px;
-    padding:10px 6px;
+    padding:88px 6px 10px;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:7px;
     background:#fff;
     border-right:1px solid #bbb;
-    box-shadow:2px 0 8px rgba(0,0,0,.12);
+    box-shadow:2px 0 8px rgba(0,0,0,.14);
 }
 .view-mode{
     width:42px;
@@ -885,34 +886,48 @@ main {
     cursor:pointer;
     transition:background .15s ease,transform .15s ease,border-color .15s ease;
 }
-.view-mode:hover{
-    background:#eee;
-    transform:translateX(1px);
+.view-mode:hover{background:#eee;transform:translateX(1px)}
+.view-mode.active{background:#d71920;color:#fff;border-color:#b51218}
+.view-icon{font-family:Arial,sans-serif;font-size:25px;line-height:1;font-weight:700}
+
+/* espaco da sidebar sem alterar a grade original */
+main,.toolbar{margin-left:54px}
+#grid{padding-left:20px}
+
+/* grade de thumbs compacta em varias colunas */
+.thumbs-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+    justify-items:center;
+    align-items:start;
+    gap:34px 34px;
+    width:100%;
 }
-.view-mode.active{
-    background:#d71920;
-    color:#fff;
-    border-color:#b51218;
+
+/* modo por ano/genero continua agrupado */
+.view-section{
+    width:100%;
+    margin-top:36px;
 }
-.view-icon{
-    font-family:Arial,sans-serif;
-    font-size:25px;
-    line-height:1;
+.view-title{
+    margin:0 0 14px;
+    padding:0 0 5px;
+    color:#111;
+    font-size:24px;
+    line-height:1.2;
     font-weight:700;
+    border-bottom:2px solid #111;
 }
-#grid{
-    padding-left:74px;
-}
+#grid .view-section:first-child{margin-top:0}
+
 @media(max-width:700px){
     .view-menu{
         width:48px;
-        padding:8px 5px;
+        padding:76px 5px 8px;
     }
-    .view-mode{
-        width:38px;
-        height:38px;
-        flex-basis:38px;
-    }
+    .view-mode{width:38px;height:38px;flex-basis:38px}
     .view-icon{font-size:22px}
-    #grid{padding-left:58px}
+    main,.toolbar{margin-left:48px}
+    #grid{padding-left:10px}
+    .thumbs-grid{grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:22px 12px}
 }
