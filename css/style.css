@@ -636,3 +636,133 @@ main {
     text-shadow:
         0 1px 2px rgba(0,0,0,0.18);
 }
+
+/* =========================================================
+   ALTERNANCIA CATALOGO / MINHA COLECAO
+   ========================================================= */
+.mode-switch {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    justify-self: center;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+.mode-btn {
+    display: inline-block;
+    padding: 7px 10px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    background: #fff;
+    color: #222;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.mode-btn.active {
+    background: #d71920;
+    color: #fff;
+    border-color: #b51218;
+}
+
+/* =========================================================
+   MINHA COLECAO
+   ========================================================= */
+.collection-toolbar {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 16px 24px;
+}
+.collection-counts {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+.collection-filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.collection-filters button {
+    border: 1px solid #999;
+    background: #fff;
+    color: #222;
+    padding: 6px 9px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.collection-filters button.active {
+    background: #d71920;
+    color: #fff;
+    border-color: #b51218;
+}
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 28px 18px;
+    padding: 0 24px 50px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+.collection-card {
+    min-width: 0;
+    text-align: center;
+}
+.collection-cover-link {
+    display: block;
+    text-decoration: none;
+}
+.collection-card .thumb {
+    width: 128px;
+    max-width: 100%;
+    border: 1px solid rgba(0,0,0,.45);
+    border-radius: 4px;
+    filter: drop-shadow(0 5px 7px rgba(0,0,0,.2));
+    transition: transform .18s ease;
+}
+.collection-card:hover .thumb {
+    transform: translateY(-4px);
+}
+.collection-name {
+    margin: 9px auto 0;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    max-width: 145px;
+}
+.collection-id {
+    color: #777;
+    font-size: 10px;
+    margin-top: 3px;
+}
+.collection-status-select {
+    width: 130px;
+    margin-top: 7px;
+    padding: 5px 4px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 11px;
+}
+@media (max-width: 700px) {
+    .mode-switch {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: start;
+    }
+    .collection-toolbar {
+        padding: 12px;
+    }
+    .collection-grid {
+        padding-left: 12px;
+        padding-right: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+        gap: 22px 8px;
+    }
+}
