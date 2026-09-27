@@ -85,15 +85,17 @@
         /* Quadrados bem mais largos: menos colunas e maior distância
            lateral. A malha ultrapassa as duas bordas para preencher 100%
            da tela também nas linhas que seguem ao horizonte. */
-        const columns=12;
+        /* Quadrados realmente largos (~2x): cada faixa tem 300 px
+           no rodapé. A grade é contínua além das duas bordas. */
+        const columns=16;
+        const cell=300;
         const bottomX=[];
-        const edge=1500;
         for(let i=0;i<=columns;i++){
-            bottomX.push(-edge+(i*(edge*2/columns)));
+            bottomX.push(512+(i-columns/2)*cell);
         }
 
-        /* Ponto de fuga central, com abertura contínua até o rodapé. */
-        const topX=bottomX.map(x=>512+(x-512)*0.012);
+        /* Convergência gradual ao ponto de fuga, sem cortar as laterais. */
+        const topX=bottomX.map(x=>512+(x-512)*0.035);
 
         for(let row=0;row<rows.length-1;row++){
             const y1=rows[row], y2=rows[row+1];
