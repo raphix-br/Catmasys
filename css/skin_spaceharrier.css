@@ -162,3 +162,15 @@ body.space-harrier-skin > main{
 body.space-harrier-skin > main{
     padding-top:var(--topbar-height,0px);
 }
+
+/* Space Harrier: sidebar fixed from top to bottom of viewport */
+body.space-harrier-skin > .view-menu{
+    position:fixed !important;
+    top:0 !important;
+    bottom:0 !important;
+    left:0 !important;
+    height:100vh !important;
+    min-height:100vh !important;
+    z-index:1100 !important;
+    margin:0 !important;
+}
