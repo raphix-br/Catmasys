@@ -1,0 +1,16 @@
+CATMASYS — primeiro protótipo local
+
+1) Extraia este pacote para D:\Raphael\Catmasys\
+2) A pasta CAPAS_MASTER_SYSTEM deve ficar ao lado de index.html, assim:
+D:\Raphael\Catmasys\
+  CAPAS_MASTER_SYSTEM\
+  site\ (conteúdo deste pacote)
+  thumbs\
+  dados\
+
+3) Copie o conteúdo desta pasta para D:\Raphael\Catmasys\ (mantendo css e js).
+4) Abra PowerShell em D:\Raphael\Catmasys e rode:
+   powershell -ExecutionPolicy Bypass -File .\gerar_catalogo.ps1
+5) Depois abra index.html no Opera.
+
+O gerador lê as capas existentes e cria js\games.js automaticamente. Não renomeie as capas.

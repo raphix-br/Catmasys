@@ -1,0 +1,470 @@
+*{box-sizing:border-box}html{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f4f4f4;color:#171717}body{margin:0}.topbar{position:sticky;top:0;z-index:10;display:flex;gap:24px;align-items:center;justify-content:space-between;padding:16px 24px;background:#fff;border-bottom:1px solid #ddd}.topbar h1{margin:0;font-size:22px;letter-spacing:.08em}.topbar p{margin:3px 0 0;color:#666;font-size:13px}.topbar input{width:min(360px,45vw);padding:11px 14px;border:1px solid #ccc;border-radius:8px;font-size:15px}.toolbar{max-width:1500px;margin:auto;padding:16px 24px;color:#666;font-size:14px}.grid{max-width:1500px;margin:auto;padding:0 24px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px}.card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #ddd;border-radius:10px;padding:10px;transition:transform .12s,box-shadow .12s}.card:hover{transform:translateY(-2px);box-shadow:0 5px 18px #0001}.thumb{width:100%;aspect-ratio:3/4;object-fit:contain;background:#eee;border-radius:6px;display:block}.name{margin:9px 2px 2px;font-size:14px;font-weight:600;line-height:1.25}.id{margin:0 2px;color:#777;font-size:12px}.detail{max-width:1100px;margin:30px auto;padding:0 24px 50px}.detail-card{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:40px;background:#fff;border:1px solid #ddd;border-radius:12px;padding:24px}.cover{width:100%;max-height:650px;object-fit:contain;background:#eee;border-radius:8px}.info h2{margin-top:0}.info-row{padding:9px 0;border-bottom:1px solid #eee}.label{color:#777;display:inline-block;min-width:140px}.back{color:inherit;text-decoration:none;font-weight:600}@media(max-width:650px){.topbar{align-items:stretch;flex-direction:column;padding:14px}.topbar input{width:100%}.grid{padding:0 12px 30px;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.detail{padding:0 12px}.detail-card{grid-template-columns:1fr;gap:20px;padding:16px}}
+
+/* FILTROS DO CATÁLOGO */
+
+.filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 0 0 20px 0;
+}
+
+.filter {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filter:hover {
+    background: #f0f0f0;
+}
+
+.filter.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+
+/* BARRA DE FILTROS FIXA */
+#filters {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#filters button {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 8px 14px;
+    margin-right: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#filters button:hover,
+#filters button.active {
+    background: #222;
+    color: #fff;
+}
+
+
+#filters button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topbar > div:first-child {
+    flex-shrink: 0;
+}
+
+#search {
+    margin-left: auto;
+}
+
+#filters {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+#filters button {
+    padding: 7px 10px;
+    margin: 0;
+}
+
+#filters button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+#filters {
+    display: flex;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+#filters button {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 3px 7px;
+    margin: 0;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+#filters button.active {
+    background: #222;
+    color: #fff;
+}
+
+#filters button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+/* CATALOGOS - BARRA COMPACTA */
+#filters {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 2px 3px;
+    flex-shrink: 0;
+    width: max-content;
+}
+
+#filters button {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #777;
+    padding: 2px 6px;
+    margin: 0;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 1.1;
+    height: 20px;
+    min-width: 32px;
+    cursor: pointer;
+}
+
+#filters button.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+#filters button:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+@media (max-width: 700px) {
+    #filters {
+        grid-template-columns: repeat(3, auto);
+    }
+
+    #filters button {
+        font-size: 9px;
+        padding: 2px 5px;
+        min-width: 28px;
+    }
+}
+
+/* BARRA DE CATALOGOS E EDICOES */
+#catalog-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+#catalogs,
+#editions {
+    display: flex;
+    gap: 3px;
+    justify-content: flex-end;
+}
+
+#catalog-filters button {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #777;
+    padding: 2px 6px;
+    margin: 0;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 1.1;
+    height: 20px;
+    min-width: 30px;
+    cursor: pointer;
+}
+
+#catalog-filters button.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+#catalog-filters button:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+/* POSICIONAMENTO DOS FILTROS */
+.topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 20px;
+}
+
+#search {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#catalog-filters {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+#catalogs,
+#editions {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+}
+
+#editions button {
+    padding: 5px 9px;
+    font-size: 12px;
+    height: 26px;
+}
+
+#catalogs button {
+    padding: 2px 6px;
+    font-size: 9px;
+    height: 18px;
+}
+
+#catalog-filters {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#catalogs {
+    order: 1;
+}
+
+#editions {
+    order: 3;
+}
+
+#search {
+    order: 2;
+}
+
+/* ORGANIZACAO FINAL DO CABECALHO */
+.topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.topbar > div:first-child {
+    grid-column: 1;
+    grid-row: 1 / 4;
+}
+
+#catalog-filters {
+    display: contents;
+}
+
+#catalogs {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    gap: 3px;
+    justify-content: flex-end;
+}
+
+#search {
+    grid-column: 2;
+    grid-row: 2;
+    width: 280px;
+}
+
+#editions {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+}
+
+#editions button {
+    padding: 5px 9px;
+    font-size: 12px;
+    height: 26px;
+}
+
+/* GRID RETRO DO CATALOGO */
+body {
+    background-color: #fafafa;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px);
+    background-size: 80px 80px;
+}
+
+main {
+    position: relative;
+}
+
+#grid {
+    position: relative;
+}
+
+.year-section {
+    position: relative;
+}
+
+.year-grid {
+    position: relative;
+}
+/* GRID RETRO - MAIS VISIVEL */
+body {
+    background-color: #f7f7f7;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.16) 1px, transparent 1px);
+    background-size: 120px 120px;
+}
+/* GRID RETRO - QUADRADOS MENORES */
+body {
+    background-color: #f7f7f7;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.18) 1px, transparent 1px);
+    background-size: 45px 45px;
+}
+/* CAPAS - MAIS COMPACTAS */
+.card {
+    padding: 4px;
+}
+
+.card .thumb {
+    width: 100%;
+    max-width: 110px;
+    margin: 0 auto;
+}
+/* CAPAS - REDUZIR BORDAS */
+.card {
+    padding: 2px;
+}
+
+.card .thumb {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+/* CAPAS - AJUSTE FINAL */
+.card .thumb {
+    width: 120px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+/* CARTAS - BORDA MAIS COMPACTA */
+.card {
+    padding: 1px;
+}
+/* CARTAS - MENOS LARGURA */
+.card {
+    width: 125px;
+}
+/* SEPARADOR DE ANO */
+.year-title {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 28px 0 14px;
+    padding: 7px 14px;
+    background: #111;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-left: 6px solid #777;
+}
+/* SEPARADOR DE ANO - FORCAR VISUAL */
+.year-title {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 28px 0 14px !important;
+    padding: 8px 14px !important;
+    background: #111 !important;
+    color: #fff !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+    border-left: 6px solid #777 !important;
+}
+/* ANO - FAIXA DE CATALOGACAO */
+.year-section {
+    margin-top: 35px !important;
+}
+
+.year-title {
+    display: block !important;
+    width: 100% !important;
+    height: 38px !important;
+    line-height: 38px !important;
+    box-sizing: border-box !important;
+    margin: 0 0 15px 0 !important;
+    padding: 0 12px !important;
+    background: #111 !important;
+    color: #fff !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+    border: none !important;
+}
+/* BARRA DE ANO */
+.year-section {
+    margin-top: 35px !important;
+}
+
+.year-title {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 0 15px 0 !important;
+    padding: 7px 14px !important;
+    background: #111 !important;
+    color: #fff !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+    border: none !important;
+}
+/* CABECALHO DE ANO - ESTILO CATALOGO */
+.year-section {
+    margin-top: 32px !important;
+}
+
+.year-title {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 0 6px 0 !important;
+    background: transparent !important;
+    color: #111 !important;
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    text-align: left !important;
+    border: none !important;
+    border-bottom: 2px solid #111 !important;
+}
