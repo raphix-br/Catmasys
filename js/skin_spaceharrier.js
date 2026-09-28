@@ -91,7 +91,7 @@
            mantém quadrados visíveis até as duas bordas da tela.
            A largura real de cada quadrado no rodapé continua grande. */
         const columns=100;
-        const cell=600;
+        const cell=300;
         const bottomX=[];
         for(let i=0;i<=columns;i++){
             bottomX.push(512+(i-columns/2)*cell);
@@ -112,15 +112,10 @@
                 let a2=topX[col]*(1-t2)+bottomX[col]*t2;
                 let b2=topX[col+1]*(1-t2)+bottomX[col+1]*t2;
 
-                /* Garante que toda faixa visível encoste nos dois cantos.
-                   A borda da tela é estendida apenas quando necessário,
-                   preservando a perspectiva no restante da faixa. */
-                const need1=(512-0);
-                const need2=(1024-512);
-                if(a1>0) a1=0;
-                if(a2>0) a2=0;
-                if(b1<1024) b1=1024;
-                if(b2<1024) b2=1024;
+                /* Mantém a perspectiva real dos quadrados. As colunas
+                   já atravessam toda a viewport; não deformamos cada célula
+                   para tocar artificialmente os dois cantos. */
+                
 
                 const poly=document.createElementNS(ns,'polygon');
                 poly.setAttribute('points',
