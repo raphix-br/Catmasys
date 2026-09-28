@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 0.010
+- Corrigida a versão exibida no cabeçalho para ficar sincronizada com a versão oficial do projeto.
+- Atualizado `index.html` de `VERSION 0.008` para `VERSION 0.010`.
+- Atualizado `minha_colecao.html` de `VERSION 0.007` para `VERSION 0.010`.
+- Reforçada em `README.md` e `CONTRIBUTING.md` a regra de que toda alteração de versão deve atualizar também as versões visíveis nas páginas HTML.
+- Nenhuma funcionalidade ou layout foi alterado nesta correção.
+
 ## Version 0.009
 - Refinada a Linha do Tempo sem alterar os demais modos do catálogo.
 - Adicionado zoom progressivo pelo scroll do mouse: zoom out mostra mais jogos e zoom in aproxima a linha.
