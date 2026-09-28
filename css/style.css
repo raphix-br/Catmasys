@@ -1410,3 +1410,57 @@ main,.toolbar{margin-left:56px !important;}
         padding:24px 14px 48px;
     }
 }
+
+
+/* =========================================================
+   VERSION 0.005 — REFINAMENTO DE HEADER, BARRA E REGIÕES
+   ========================================================= */
+:root{
+    --cm-header-h:124px;
+}
+
+/* A barra de ferramentas ocupa toda a área útil do conteúdo,
+   da direita da rail até a borda direita da viewport. */
+.toolbar{
+    width:calc(100vw - 56px) !important;
+    max-width:none !important;
+    box-sizing:border-box !important;
+    margin-left:56px !important;
+    margin-right:0 !important;
+    padding:10px 24px !important;
+    min-height:40px !important;
+    border-bottom:1px solid #c8c8c8 !important;
+    background:rgba(248,248,248,.96) !important;
+    box-shadow:0 1px 4px rgba(0,0,0,.06) !important;
+}
+
+/* Bandeiras compactas no seletor de catálogos. */
+#catalogs button{
+    width:25px !important;
+    min-width:25px !important;
+    height:19px !important;
+    padding:0 !important;
+    font-size:0 !important;
+    line-height:1 !important;
+    border-radius:2px !important;
+    overflow:hidden !important;
+}
+#catalogs button::before{
+    display:block;
+    font-size:15px;
+    line-height:17px;
+}
+#catalogs button[data-cat="BR"]::before{content:"🇧🇷";}
+#catalogs button[data-cat="USA"]::before{content:"🇺🇸";}
+#catalogs button[data-cat="EUR"]::before{content:"🇪🇺";}
+#catalogs button[data-cat="JP"]::before{content:"🇯🇵";}
+#catalogs button[data-cat="KR"]::before{content:"🇰🇷";}
+
+@media(max-width:700px){
+    .toolbar{
+        width:calc(100vw - 50px) !important;
+        margin-left:50px !important;
+        padding-left:12px !important;
+        padding-right:12px !important;
+    }
+}
