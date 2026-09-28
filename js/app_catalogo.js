@@ -6,6 +6,7 @@ const editions=document.querySelectorAll("#editions button");
 const modes=document.querySelectorAll(".view-mode");
 let viewMode="thumbs";
 let timelineIndex=0;
+let timelinePosition=0;
 let timelineList=[];
 let timelineZoom=1;
 let timelineDrag=null;
@@ -46,6 +47,7 @@ function renderTimeline(list){
     timelineList=[...list].sort((a,b)=>(Number(a.year)||0)-(Number(b.year)||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));
     if(!timelineList.length){grid.innerHTML='<div class="timeline-empty">Nenhum jogo encontrado.</div>';return;}
     timelineIndex=Math.max(0,Math.min(timelineIndex,timelineList.length-1));
+    timelinePosition=timelineIndex;
     const groups=[];
     let lastYear=null;
     timelineList.forEach((g,i)=>{
@@ -64,27 +66,36 @@ function updateTimeline(animate=true){
     const wrap=grid.querySelector(".timeline-wrap"),row=grid.querySelector(".timeline-row");
     if(!wrap||!row||!timelineList.length)return;
     row.style.setProperty("--timeline-zoom",String(timelineZoom));
-    const cards=row.querySelectorAll(".timeline-card");
+
+    const cards=[...row.querySelectorAll(".timeline-card")];
+    if(!cards.length)return;
+
+    const selectedIndex=Math.max(0,Math.min(Math.round(timelinePosition),timelineList.length-1));
     cards.forEach((card,i)=>{
-        const d=i-timelineIndex;
+        const d=i-timelinePosition;
         const ad=Math.abs(d);
-        card.classList.toggle("selected",i===timelineIndex);
+        card.classList.toggle("selected",i===selectedIndex);
         card.style.setProperty("--timeline-distance",String(d));
-        card.style.zIndex=String(100-ad);
-        card.setAttribute("aria-current",i===timelineIndex?"true":"false");
+        card.style.zIndex=String(100-Math.round(ad));
+        card.setAttribute("aria-current",i===selectedIndex?"true":"false");
     });
-    const selected=row.querySelector(".timeline-card.selected");
-    if(selected){
-        const center=selected.offsetLeft+selected.offsetWidth/2;
-        const target=wrap.clientWidth/2;
-        row.style.transition=animate?"transform .24s cubic-bezier(.22,.7,.2,1)":"none";
-        row.style.transform="translate3d("+(target-center)+"px,0,0)";
-    }
+
+    const lo=Math.max(0,Math.min(Math.floor(timelinePosition),cards.length-1));
+    const hi=Math.max(0,Math.min(lo+1,cards.length-1));
+    const t=Math.max(0,Math.min(1,timelinePosition-lo));
+    const loCenter=cards[lo].offsetLeft+cards[lo].offsetWidth/2;
+    const hiCenter=cards[hi].offsetLeft+cards[hi].offsetWidth/2;
+    const center=loCenter+(hiCenter-loCenter)*t;
+    const target=wrap.clientWidth/2;
+
+    row.style.transition=animate?"transform .18s cubic-bezier(.22,.7,.2,1)":"none";
+    row.style.transform="translate3d("+(target-center)+"px,0,0)";
 }
 
 function setTimelineIndex(index,animate=true){
     if(!timelineList.length)return;
     timelineIndex=Math.max(0,Math.min(Math.round(index),timelineList.length-1));
+    timelinePosition=timelineIndex;
     updateTimeline(animate);
 }
 
@@ -112,7 +123,7 @@ grid.addEventListener("pointerdown",e=>{
     if(viewMode!=="timeline"||e.button!==0)return;
     const wrap=e.target.closest(".timeline-wrap");
     if(!wrap)return;
-    timelineDrag={x:e.clientX,base:timelineIndex,moved:false};
+    timelineDrag={x:e.clientX,base:timelinePosition,moved:false};
     wrap.classList.add("dragging");
     wrap.setPointerCapture?.(e.pointerId);
 });
@@ -122,9 +133,8 @@ grid.addEventListener("pointermove",e=>{
     const dx=e.clientX-timelineDrag.x;
     if(Math.abs(dx)>5)timelineDrag.moved=true;
     const step=Math.max(75,125*timelineZoom);
-    const next=timelineDrag.base-dx/step;
-    const clamped=Math.max(0,Math.min(timelineList.length-1,next));
-    timelineIndex=clamped;
+    timelinePosition=Math.max(0,Math.min(timelineList.length-1,timelineDrag.base-dx/step));
+    timelineIndex=Math.round(timelinePosition);
     updateTimeline(false);
 });
 
@@ -134,7 +144,7 @@ grid.addEventListener("pointerup",e=>{
     if(wrap)wrap.classList.remove("dragging");
     const moved=timelineDrag.moved;
     timelineDrag=null;
-    if(viewMode==="timeline")setTimelineIndex(timelineIndex,true);
+    if(viewMode==="timeline")setTimelineIndex(Math.round(timelinePosition),true);
     if(moved)e.preventDefault();
 });
 
