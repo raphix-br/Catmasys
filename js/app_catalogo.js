@@ -33,9 +33,7 @@ function renderGroups(list,key,label){
 
     grid.innerHTML=keys.map((k,index)=>{
         let palette=yearPalette[index%yearPalette.length];
-        let colorAttrs=viewMode==="year"
-            ? ' style="--cm-year-color:'+palette.bg+';--cm-year-text:'+palette.fg+'"'
-            : '';
+        let colorAttrs=' style="--cm-year-color:'+palette.bg+';--cm-year-text:'+palette.fg+'"';
         return '<section class="view-section" data-view-key="'+(viewMode==="year"?"year":"genre")+'"'+colorAttrs+'><div class="view-title">'+esc(k)+'</div><div class="thumbs-grid">'+cards(groups[k])+'</div></section>';
     }).join("");
 }
