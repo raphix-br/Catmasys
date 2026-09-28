@@ -18,6 +18,7 @@ Nunca reutilize números.
 Toda alteração relevante precisa atualizar:
 
 - `VERSION`
+- a versão visível (`.site-version`) em todas as páginas HTML que a exibem
 - `CHANGELOG.md`
 - mensagem do commit
 
