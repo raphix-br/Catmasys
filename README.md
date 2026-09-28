@@ -17,12 +17,13 @@ Toda alteração relevante feita no projeto, por uma pessoa ou por uma IA, deve:
 1. Ler primeiro `VERSION` e `CHANGELOG.md`.
 2. Incrementar o número da versão antes de concluir a alteração.
 3. Atualizar o arquivo `VERSION`.
-4. Registrar no `CHANGELOG.md` exatamente o que foi alterado, quais arquivos foram modificados e, quando relevante, o motivo.
-5. Usar a versão no início da mensagem do commit, no formato:
+4. Atualizar também a versão visível no `.site-version` de todas as páginas HTML que exibem a versão.
+5. Registrar no `CHANGELOG.md` exatamente o que foi alterado, quais arquivos foram modificados e, quando relevante, o motivo.
+6. Usar a versão no início da mensagem do commit, no formato:
    `Version 0.XXX — descrição objetiva`.
-6. Nunca reutilizar uma versão já existente.
-7. Não apagar ou reescrever o histórico anterior sem autorização explícita.
-8. Se uma alteração for desfeita, registrar uma nova versão explicando o rollback; não apagar a versão anterior do histórico.
+7. Nunca reutilizar uma versão já existente.
+8. Não apagar ou reescrever o histórico anterior sem autorização explícita.
+9. Se uma alteração for desfeita, registrar uma nova versão explicando o rollback; não apagar a versão anterior do histórico.
 
 ### Pontos de retorno
 
