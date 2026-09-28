@@ -91,7 +91,7 @@
            mantém quadrados visíveis até as duas bordas da tela.
            A largura real de cada quadrado no rodapé continua grande. */
         const columns=100;
-        const cell=300;
+        const cell=600;
         const bottomX=[];
         for(let i=0;i<=columns;i++){
             bottomX.push(512+(i-columns/2)*cell);
