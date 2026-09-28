@@ -1752,3 +1752,10 @@ main,.toolbar{margin-left:56px !important;}
     .timeline-marker span{font-size:7px !important;left:5px !important;}
     .timeline-hint{right:8px;bottom:10px;font-size:7px;}
 }
+
+
+/* =========================================================
+   VERSION 0.011 — LINHA DO TEMPO: ARRASTE CONTÍNUO
+   ========================================================= */
+.timeline-wrap{background:transparent !important;}
+.timeline-row{will-change:transform;}
