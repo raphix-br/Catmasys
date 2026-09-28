@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version 0.004
+- Alterado o título exibido na aba do navegador para `Catmasys`.
+- Adicionado favicon próprio do projeto em SVG, com gato pixelado e paleta vermelha, azul e preta.
+- O mesmo ícone foi aplicado ao Catálogo e à página Minha Coleção.
+
 ## Version 0.003
 - Aumentado o respiro vertical entre o header e o início dos grids de miniaturas.
 - Criada uma área inferior ampla e reservada para futuro rodapé do site, incluindo créditos e outras informações.
