@@ -1291,13 +1291,15 @@ body{
 .view-rail-group{
     width:100%;
     align-items:center !important;
+    justify-content:center !important;
     gap:var(--cm-gap) !important;
+    flex:1 !important;
 }
 .view-mode{
-    width:36px !important;
-    height:36px !important;
+    width:32px !important;
+    height:32px !important;
 }
-.view-mode svg{width:18px !important;height:18px !important;}
+.view-mode svg{width:16px !important;height:16px !important;}
 .view-mode.active::before{
     left:-7px !important;
     top:7px !important;
