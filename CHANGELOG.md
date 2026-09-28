@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.007
+- Removida a aparência de barra branca do contador no topo da área de conteúdo.
+- Contador de jogos aumentado e destacado, mantendo a informação sem criar uma faixa visual desnecessária.
+- Adicionada a versão atual (`VERSION 0.007`) abaixo da identidade CATMASYS no header, no Catálogo e em Minha Coleção.
+- A versão exibida no projeto passa a acompanhar o número oficial de `VERSION` a cada alteração relevante.
+
 ## Version 0.006
 - Bordas das barras de ano e gênero reduzidas de 2 px para 1 px.
 - Tipografia das barras ajustada para reduzir o aspecto borrado e ficar mais nítida.
