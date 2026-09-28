@@ -1,3 +1,11 @@
+# CHANGELOG
+
+## Version 0.003
+- Aumentado o respiro vertical entre o header e o início dos grids de miniaturas.
+- Criada uma área inferior ampla e reservada para futuro rodapé do site, incluindo créditos e outras informações.
+- A área de rodapé foi adicionada tanto ao catálogo quanto à página Minha Coleção.
+- O espaço foi implementado no CSS base, preservando a regra de que skins não alteram a estrutura do layout.
+
 # CATMASYS — CHANGELOG
 
 ## Version 0.002
