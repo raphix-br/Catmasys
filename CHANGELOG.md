@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version 0.012
+- Corrigida a versão visível no cabeçalho de `index.html` e `minha_colecao.html`, que ainda estava em `VERSION 0.010` apesar de a versão oficial do repositório já estar em `0.011`.
+- A versão oficial e as versões visíveis nas duas páginas passam a estar sincronizadas em `0.012`.
+- Nenhuma funcionalidade, layout ou skin foi alterada nesta correção.
+
 ## Version 0.011
 - Tornado o arraste da Linha do Tempo contínuo, permitindo atravessar vários jogos em um único movimento.
 - O posicionamento durante o arraste agora aceita valores intermediários entre jogos e só faz o encaixe no jogo mais próximo ao soltar.
