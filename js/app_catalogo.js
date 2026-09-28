@@ -7,6 +7,8 @@ const modes=document.querySelectorAll(".view-mode");
 let viewMode="thumbs";
 let timelineIndex=0;
 let timelineList=[];
+let timelineZoom=1;
+let timelineDrag=null;
 
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -48,16 +50,20 @@ function renderTimeline(list){
     let lastYear=null;
     timelineList.forEach((g,i)=>{
         const y=String(g.year||"Sem ano");
-        if(y!==lastYear){groups.push('<div class="timeline-marker" data-year="'+esc(y)+'"><span>'+esc(y)+'</span></div>');lastYear=y;}
+        if(y!==lastYear){
+            groups.push('<div class="timeline-marker" data-year="'+esc(y)+'"><span>'+esc(y)+'</span></div>');
+            lastYear=y;
+        }
         groups.push('<a class="timeline-card'+(i===timelineIndex?" selected":"")+'" data-index="'+i+'" href="jogo.html?id='+encodeURIComponent(g.id)+'"><img class="thumb" src="'+esc(g.thumb||g.image)+'" alt="'+esc(g.name)+'" loading="lazy"><div class="name">'+esc(g.name)+'</div></a>');
     });
-    grid.innerHTML='<div class="timeline-wrap"><div class="timeline-track"></div><div class="timeline-row">'+groups.join("")+'</div></div>';
-    updateTimeline();
+    grid.innerHTML='<div class="timeline-wrap"><div class="timeline-track"></div><div class="timeline-row">'+groups.join("")+'</div><div class="timeline-hint">ARRASTE PARA NAVEGAR · SCROLL PARA ZOOM</div></div>';
+    updateTimeline(false);
 }
 
-function updateTimeline(){
-    const row=grid.querySelector(".timeline-row");
-    if(!row||!timelineList.length)return;
+function updateTimeline(animate=true){
+    const wrap=grid.querySelector(".timeline-wrap"),row=grid.querySelector(".timeline-row");
+    if(!wrap||!row||!timelineList.length)return;
+    row.style.setProperty("--timeline-zoom",String(timelineZoom));
     const cards=row.querySelectorAll(".timeline-card");
     cards.forEach((card,i)=>{
         const d=i-timelineIndex;
@@ -70,17 +76,19 @@ function updateTimeline(){
     const selected=row.querySelector(".timeline-card.selected");
     if(selected){
         const center=selected.offsetLeft+selected.offsetWidth/2;
-        const target=row.parentElement.clientWidth/2;
-        row.style.transform="translateX("+(target-center)+"px)";
+        const target=wrap.clientWidth/2;
+        row.style.transition=animate?"transform .24s cubic-bezier(.22,.7,.2,1)":"none";
+        row.style.transform="translate3d("+(target-center)+"px,0,0)";
     }
 }
 
-function setTimelineIndex(index){
+function setTimelineIndex(index,animate=true){
     if(!timelineList.length)return;
     timelineIndex=Math.max(0,Math.min(Math.round(index),timelineList.length-1));
-    updateTimeline();
+    updateTimeline(animate);
 }
 
+function render(list){if(viewMode==="thumbs")renderThumbs(list);else if(viewMode==="year")renderGroups(list,"year","ano");else if(viewMode==="genre")renderGroups(list,"genero","gênero");else renderTimeline(list)}
 function render(list){if(viewMode==="thumbs")renderThumbs(list);else if(viewMode==="year")renderGroups(list,"year","ano");else if(viewMode==="genre")renderGroups(list,"genero","gênero");else renderTimeline(list)}
 
 function apply(){let q=search.value.trim().toLowerCase(),gs=[...editions].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);let list=games.filter(g=>(!q||String(g.name).toLowerCase().includes(q))&&(!genre.value||String(g.genero||"").trim()===genre.value)&&(!year.value||String(g.year||"").trim()===year.value)&&(!gs.length||gs.includes(String(g.edition||"").toUpperCase())));if(sort.value==="az")list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(sort.value==="za")list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR"));render(list);count.textContent=list.length+" jogos"}
@@ -95,11 +103,46 @@ document.addEventListener("keydown",e=>{
 
 grid.addEventListener("wheel",e=>{
     if(viewMode!=="timeline")return;
-    const row=grid.querySelector(".timeline-row");
-    if(!row)return;
     e.preventDefault();
-    setTimelineIndex(timelineIndex+(e.deltaY>0?1:-1));
+    timelineZoom=Math.max(.58,Math.min(1.65,timelineZoom+(e.deltaY>0?-0.10:0.10)));
+    updateTimeline(false);
 },{passive:false});
+
+grid.addEventListener("pointerdown",e=>{
+    if(viewMode!=="timeline"||e.button!==0)return;
+    const wrap=e.target.closest(".timeline-wrap");
+    if(!wrap)return;
+    timelineDrag={x:e.clientX,base:timelineIndex,moved:false};
+    wrap.classList.add("dragging");
+    wrap.setPointerCapture?.(e.pointerId);
+});
+
+grid.addEventListener("pointermove",e=>{
+    if(!timelineDrag||viewMode!=="timeline")return;
+    const dx=e.clientX-timelineDrag.x;
+    if(Math.abs(dx)>5)timelineDrag.moved=true;
+    const step=Math.max(75,125*timelineZoom);
+    const next=timelineDrag.base-dx/step;
+    const clamped=Math.max(0,Math.min(timelineList.length-1,next));
+    timelineIndex=clamped;
+    updateTimeline(false);
+});
+
+grid.addEventListener("pointerup",e=>{
+    if(!timelineDrag)return;
+    const wrap=e.target.closest(".timeline-wrap");
+    if(wrap)wrap.classList.remove("dragging");
+    const moved=timelineDrag.moved;
+    timelineDrag=null;
+    if(viewMode==="timeline")setTimelineIndex(timelineIndex,true);
+    if(moved)e.preventDefault();
+});
+
+grid.addEventListener("pointercancel",()=>{
+    if(!timelineDrag)return;
+    timelineDrag=null;
+    grid.querySelector(".timeline-wrap")?.classList.remove("dragging");
+});
 
 grid.addEventListener("click",e=>{
     if(viewMode!=="timeline")return;
@@ -108,6 +151,7 @@ grid.addEventListener("click",e=>{
     const i=Number(card.dataset.index);
     if(i!==timelineIndex){e.preventDefault();setTimelineIndex(i);}
 });
+
 [search,genre,year,sort].forEach(x=>x.addEventListener(x===search?"input":"change",apply));
 editions.forEach(b=>b.addEventListener("click",()=>{b.classList.toggle("active");apply()}));
 fill();apply();addEventListener("resize",apply);
