@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 0.006
+- Bordas das barras de ano e gênero reduzidas de 2 px para 1 px.
+- Tipografia das barras ajustada para reduzir o aspecto borrado e ficar mais nítida.
+- Barras de ano e gênero agora usam a mesma paleta de cores.
+- Barras estendidas até os limites laterais da área útil do conteúdo, da direita da sidebar até a borda da viewport.
+- Mantido o espaçamento interno dos thumbnails, sem alterar a estrutura do layout base.
+
 ## Version 0.005
 - Header aumentado de 108 px para 124 px.
 - Barra de ferramentas estendida por toda a área útil visível, da direita da sidebar até a borda direita da viewport.
