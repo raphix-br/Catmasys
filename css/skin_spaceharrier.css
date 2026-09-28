@@ -190,3 +190,17 @@ body.space-harrier-skin .card .thumb{
     position:relative;
     z-index:2;
 }
+
+
+/* VERSION 0.011 — cenário fixo durante a Linha do Tempo */
+body.space-harrier-skin > .space-harrier-floor,
+body.space-harrier-skin > .space-harrier-horizon,
+body.space-harrier-skin > .space-harrier-stars{
+    transform:none !important;
+}
+body.space-harrier-skin .timeline-wrap,
+body.space-harrier-skin .timeline-row,
+body.space-harrier-skin .timeline-card{
+    position:relative;
+    z-index:2;
+}
