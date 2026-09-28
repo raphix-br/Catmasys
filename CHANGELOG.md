@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version 0.009
+- Refinada a Linha do Tempo sem alterar os demais modos do catálogo.
+- Adicionado zoom progressivo pelo scroll do mouse: zoom out mostra mais jogos e zoom in aproxima a linha.
+- Adicionada navegação horizontal por arraste, com encaixe automático do jogo mais próximo ao centro.
+- Mantido o jogo selecionado centralizado e visualmente destacado.
+- Marcadores de ano receberam linha, ponto de referência e identificação discreta.
+- Adicionada indicação discreta dos controles da linha.
+
 ## Version 0.008
 - Adicionado novo modo de visualização "Linha do Tempo" na sidebar.
 - A Linha do Tempo usa uma única linha horizontal e organiza os jogos por ano, do mais antigo à esquerda para o mais recente à direita.
