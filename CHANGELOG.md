@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version 0.011
+- Tornado o arraste da Linha do Tempo contínuo, permitindo atravessar vários jogos em um único movimento.
+- O posicionamento durante o arraste agora aceita valores intermediários entre jogos e só faz o encaixe no jogo mais próximo ao soltar.
+- Mantido o jogo mais próximo do centro como selecionado durante a navegação.
+- Refinada a transição da linha para acompanhar melhor o movimento do ponteiro.
+- Garantido que, na skin Space Harrier, estrelas, horizonte e piso permaneçam fixos enquanto somente os tiles da Linha do Tempo se deslocam.
+- Alterados: `js/app_catalogo.js`, `css/style.css` e `css/skin_spaceharrier.css`.
+
 ## Version 0.010
 - Corrigida a versão exibida no cabeçalho para ficar sincronizada com a versão oficial do projeto.
 - Atualizado `index.html` de `VERSION 0.008` para `VERSION 0.010`.
