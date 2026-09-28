@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 0.005
+- Header aumentado de 108 px para 124 px.
+- Barra de ferramentas estendida por toda a área útil visível, da direita da sidebar até a borda direita da viewport.
+- Botão de edição `CU` removido enquanto não utilizado.
+- Botões de catálogo reduzidos e substituídos visualmente por bandeiras compactas de Brasil, EUA, Europa, Japão e Coreia.
+- Mantida a estrutura base para que as skins não alterem o layout.
+
 ## Version 0.004
 - Alterado o título exibido na aba do navegador para `Catmasys`.
 - Adicionado favicon próprio do projeto em SVG, com gato pixelado e paleta vermelha, azul e preta.
