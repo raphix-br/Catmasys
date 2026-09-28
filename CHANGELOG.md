@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version 0.008
+- Adicionado novo modo de visualização "Linha do Tempo" na sidebar.
+- A Linha do Tempo usa uma única linha horizontal e organiza os jogos por ano, do mais antigo à esquerda para o mais recente à direita.
+- O jogo selecionado permanece centralizado e recebe destaque visual.
+- Os anos recebem marcadores verticais para separar os grupos cronológicos.
+- O modo foi implementado de forma isolada, sem alterar o comportamento dos modos Miniaturas, Ano e Gênero.
+- Navegação inicial da linha por clique e pelas setas do teclado; o scroll do mouse navega entre os jogos enquanto este modo está ativo.
+
 ## Version 0.007
 - Removida a aparência de barra branca do contador no topo da área de conteúdo.
 - Contador de jogos aumentado e destacado, mantendo a informação sem criar uma faixa visual desnecessária.
