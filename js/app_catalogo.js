@@ -100,7 +100,6 @@ function setTimelineIndex(index,animate=true){
 }
 
 function render(list){if(viewMode==="thumbs")renderThumbs(list);else if(viewMode==="year")renderGroups(list,"year","ano");else if(viewMode==="genre")renderGroups(list,"genero","gênero");else renderTimeline(list)}
-function render(list){if(viewMode==="thumbs")renderThumbs(list);else if(viewMode==="year")renderGroups(list,"year","ano");else if(viewMode==="genre")renderGroups(list,"genero","gênero");else renderTimeline(list)}
 
 function apply(){let q=search.value.trim().toLowerCase(),gs=[...editions].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);let list=games.filter(g=>(!q||String(g.name).toLowerCase().includes(q))&&(!genre.value||String(g.genero||"").trim()===genre.value)&&(!year.value||String(g.year||"").trim()===year.value)&&(!gs.length||(Array.isArray(g.editions)?g.editions.some(e=>gs.includes(String(e.edition||"").toUpperCase())):gs.includes(String(g.edition||"").toUpperCase()))));if(sort.value==="az")list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(sort.value==="za")list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR"));render(list);count.textContent=list.length+" títulos"}
 
@@ -163,6 +162,7 @@ grid.addEventListener("click",e=>{
 });
 
 [search,genre,year,sort].forEach(x=>x.addEventListener(x===search?"input":"change",apply));
+document.querySelectorAll("#catalogs button").forEach(b=>b.addEventListener("click",()=>{if(b.disabled)return;document.querySelectorAll("#catalogs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");apply()}));
 editions.forEach(b=>b.addEventListener("click",()=>{b.classList.toggle("active");apply()}));
 fill();apply();addEventListener("resize",apply);
 })();
