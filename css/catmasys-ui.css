@@ -198,3 +198,5 @@ body:not(.space-harrier-skin) .site-footer{
 .home-footer .footer-brand{color:#b9c8d7;font-size:11px;font-weight:850;letter-spacing:.12em}
 .profile-footer{margin-top:0!important}
 @media(max-width:700px){.home-footer .footer-meta{margin-left:0}.home-footer{align-items:flex-start!important}}
+
+.collection-footer,.profile-footer,.detail-footer{margin-left:0!important}
