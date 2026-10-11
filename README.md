@@ -70,7 +70,7 @@ Antes de modificar o Catmasys:
 
 - `js/games_br.js` preserva os registros individuais de edições em `window.GAMES`.
 - O mesmo arquivo constrói `window.CATALOG_GAMES`, com um registro por título para o catálogo principal.
-- O catálogo padrão tem 243 títulos: os dois itens de pacote sem caixa (`20 em 1` e `Hang On & Safari Hunt`) continuam acessíveis em Minha Coleção, mas não entram nessa contagem.
+- O catálogo padrão tem 243 títulos únicos. A visualização Miniaturas, Gênero e Linha do Tempo mantém os títulos agrupados; somente a visualização **Agrupar por ano** exibe os registros individuais de edições. Os dois itens de pacote sem caixa (`20 em 1` e `Hang On & Safari Hunt`) continuam acessíveis em Minha Coleção, mas não entram na contagem padrão.
 - Ao abrir um título, as edições encontradas são apresentadas em tags selecionáveis.
 - A referência editorial de conferência é [Colecionando.Games — lista de jogos Master System TecToy](https://blog.colecionando.games/lista-completa-master-system-tectoy/).
 
@@ -81,3 +81,10 @@ O perfil desta versão é **local ao navegador**. Não existe backend de autenti
 ## Imagens
 
 Bandeiras e ícones de interface ficam em `assets/flags/` e `assets/ui/`; fundos em `assets/backgrounds/`. As capas existentes continuam em `CAPAS_MASTER_SYSTEM/` e as miniaturas em `thumbs/`.
+
+
+## Identidade e rodapé — Version 0.014
+
+- O título de todas as páginas é `Catmasys`; o favicon é `assets/catmasys-icon.svg`.
+- A barra lateral usa o termo **Agrupar por ano** para a visualização cronológica com edições separadas.
+- O rodapé de catálogo/coleção contém créditos, aviso de marcas e versão atual.
