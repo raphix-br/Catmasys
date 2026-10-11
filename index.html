@@ -1,47 +1,43 @@
-﻿<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catmasys</title><link rel="icon" type="image/svg+xml" href="assets/catmasys-icon.svg"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/skin_spaceharrier.css"></head><body><header class="topbar"><div><h1>CATMASYS</h1><p>Catalogo Master System</p><span class="site-version">VERSION 0.012</span></div><nav class="mode-switch"><a class="mode-btn active" href="index.html">CATÁLOGO</a><a class="mode-btn" href="minha_colecao.html">MINHA COLEÇÃO</a></nav><div class="catalog-header-controls"><input id="search" type="search" placeholder="Pesquisar jogo..." autocomplete="off"><select id="genre-filter"><option value="">GÊNERO</option></select><select id="year-filter"><option value="">ANO</option></select><select id="sort-filter"><option value="default">ORDEM</option><option value="az">A-Z</option><option value="za">Z-A</option></select></div><div id="catalog-filters" class="catalog-filters">
-    <div id="catalogs">
-        <button class="active" data-cat="BR">BR</button>
-        <button disabled data-cat="USA">USA</button>
-        <button disabled data-cat="EUR">EUR</button>
-        <button disabled data-cat="JP">JP</button>
-        <button disabled data-cat="KR">KR</button>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catmasys — sua coleção Master System</title>
+<link rel="icon" type="image/svg+xml" href="assets/catmasys-icon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home-page">
+<header class="topbar home-topbar">
+  <a class="brand-home" href="index.html" aria-label="Catmasys — início"><span class="brand-mark">C</span><span><strong>CATMASYS</strong><small>CATÁLOGO MASTER SYSTEM</small><em class="site-version">VERSION 0.013</em></span></a>
+  <nav class="home-nav"><a href="catalogo.html">Explorar catálogo</a><a href="minha_colecao.html">Minha coleção</a><a class="user-btn" href="perfil.html" id="user-button"><span aria-hidden="true">♙</span><span class="user-button-label">Usuário</span></a></nav>
+</header>
+<main class="landing-main">
+  <section class="landing-hero">
+    <div class="landing-copy">
+      <span class="eyebrow">SEGA MASTER SYSTEM · TEC TOY BRASIL</span>
+      <h1>Seu acervo.<br><span>Sua história.</span></h1>
+      <p>Explore o catálogo brasileiro, descubra as diferentes edições de cada jogo e organize sua coleção em um só lugar.</p>
+      <div class="landing-actions"><a class="primary-action" href="catalogo.html">Explorar os jogos <span aria-hidden="true">→</span></a><a class="secondary-action" href="minha_colecao.html">Abrir minha coleção</a></div>
+      <div class="landing-stats"><div><strong>243</strong><span>títulos no catálogo padrão</span></div><div><strong>Várias</strong><span>edições e formatos</span></div><div><strong>Seu perfil</strong><span>neste navegador</span></div></div>
     </div>
-    <div id="editions">
-        <button data-edition="CP">CP</button>
-        <button data-edition="GG">GG</button>
-        <button data-edition="GP">GP</button>
-        <button data-edition="AB">AB</button>
-        <button data-edition="AZ">AZ</button>
-        
+    <div class="landing-console-art" aria-hidden="true">
+      <div class="art-stars"></div><div class="art-sun"></div>
+      <div class="art-console"><div class="console-logo">SEGA</div><div class="console-slot"></div><div class="console-pad"><i></i><b></b><b></b></div><div class="console-line"></div></div>
+      <div class="art-cartridge"><div class="cart-label"><span>MASTER</span><strong>SYSTEM</strong><i>8-BIT</i></div></div>
+      <span class="art-caption">MEMÓRIA EM 8 BITS</span>
     </div>
-</div></header><aside id="view-menu" class="view-menu" aria-label="Modos de exibição">
-    <div class="view-rail-group">
-        <button class="view-mode active" data-view="thumbs" title="Miniaturas" aria-label="Miniaturas">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        </button>
-        <button class="view-mode" data-view="year" title="Ordenar por ano" aria-label="Ordenar por ano">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/><path d="M17 14v7M14.5 18.5h5"/></svg>
-        </button>
-        <button class="view-mode" data-view="genre" title="Ordenar por gênero" aria-label="Ordenar por gênero">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><path d="M10 7h4M7 10v4M10 17h8"/></svg>
-        </button>
-        <button class="view-mode" data-view="timeline" title="Linha do tempo" aria-label="Linha do tempo">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18"/><path d="M6 8v8M12 5v14M18 8v8"/></svg>
-        </button>
+  </section>
+  <section class="landing-access">
+    <div class="access-intro"><span class="eyebrow">ÁREA DO COLECIONADOR</span><h2>Entre no seu Catmasys</h2><p>Crie um perfil local para organizar sua coleção ou entre com o perfil que já cadastrou neste navegador.</p></div>
+    <div class="access-cards">
+      <a class="access-card" href="perfil.html?mode=login"><span class="access-icon">↗</span><strong>Fazer login</strong><span>Continuar com seu perfil</span><span class="access-arrow">→</span></a>
+      <a class="access-card access-card-primary" href="perfil.html?mode=create"><span class="access-icon">＋</span><strong>Criar perfil</strong><span>Começar a organizar seu acervo</span><span class="access-arrow">→</span></a>
     </div>
-    <div class="view-rail-separator"></div>
-    <div class="view-rail-group future-modes" aria-label="Mais modos de exibição">
-        <button class="view-mode mode-placeholder" title="Novos modos em breve" aria-label="Novos modos em breve" disabled>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-    </div>
-</aside><main><div class="toolbar"><span id="count"></span></div><section id="grid" class="grid"></section></main><footer class="site-footer" aria-label="Informações do site"></footer><script src="js/games_br.js"></script><script src="js/app_catalogo.js"></script><script src="js/skin_spaceharrier.js"></script></body></html>
-
-
-
-
-
-
-
-
-
+    <p class="local-note"><span aria-hidden="true">ⓘ</span> Nesta versão, o perfil e a coleção ficam salvos somente neste navegador. Não é uma conta online nem sincroniza entre dispositivos.</p>
+  </section>
+</main>
+<footer class="home-footer"><span>CATMASYS</span><span>Feito para quem coleciona Master System.</span><span>VERSION 0.013</span></footer>
+<script src="js/perfil.js"></script>
+</body>
+</html>
