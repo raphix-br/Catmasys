@@ -52,7 +52,13 @@
     try{
       const result=await hashPassword(password);
       const user={id:"u_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8),name,email,salt:result.salt,passwordHash:result.hash,createdAt:new Date().toISOString()};
-      users.push(user);localStorage.setItem(USERS_KEY,JSON.stringify(users));localStorage.setItem(ACTIVE_KEY,JSON.stringify({id:user.id,name:user.name,email:user.email}));
+      const firstProfile = users.length === 0;
+      users.push(user);localStorage.setItem(USERS_KEY,JSON.stringify(users));
+      if(firstProfile){
+        const guestCollection=localStorage.getItem("catmasys_minha_colecao_v1");
+        if(guestCollection && !localStorage.getItem("catmasys_minha_colecao_v1_"+user.id)) localStorage.setItem("catmasys_minha_colecao_v1_"+user.id,guestCollection);
+      }
+      localStorage.setItem(ACTIVE_KEY,JSON.stringify({id:user.id,name:user.name,email:user.email}));
       setMessage("Perfil criado e ativado neste navegador.","success");updateUserButton();
       window.setTimeout(()=>{location.href="minha_colecao.html";},450);
     }catch(error){setMessage(error.message||"Não foi possível criar o perfil.","error");}
