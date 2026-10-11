@@ -8,7 +8,7 @@
 - Minha Coleção mantém os registros por edição e substitui o menu suspenso repetido em cada jogo por um selo de status e um único diálogo de edição reutilizável.
 - Aplicada paleta padrão escura para aumentar contraste dos cartuchos/capas claras; a skin Space Harrier permanece isolada.
 - Adicionadas bandeiras SVG para BR, USA, Europa, Japão e Coreia em `assets/flags/`; as regiões sem catálogo próprio continuam desabilitadas.
-- Criado `assets/README.md` com a organização recomendada para novas imagens.
+- Criados `assets/README.md`, `assets/ui/README.md` e `assets/backgrounds/README.md` com a organização recomendada para novas imagens.
 - Arquivos principais alterados: `index.html`, `catalogo.html`, `perfil.html`, `minha_colecao.html`, `jogo.html`, `css/catmasys-ui.css`, `js/games_br.js`, `js/app_catalogo.js`, `js/app_colecao.js`, `js/app.js`, `js/perfil.js`, `assets/flags/*.svg`.
 
 ## Version 0.012
