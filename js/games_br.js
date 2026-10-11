@@ -5796,3 +5796,37 @@ window.GAMES = [
     "exclusivo_br": ""
   }
 ];
+
+
+/*
+ * Catálogo principal: um item por título.
+ * Os dois jogos de pacote sem caixa ficam fora da contagem padrão de 243.
+ * Todas as edições originais permanecem em window.GAMES para Minha Coleção.
+ */
+window.GAME_EDITIONS = window.GAMES;
+(function () {
+    const excludedFromStandardCatalog = new Set(["20 em 1", "Hang On & Safari Hunt"]);
+    const byTitle = new Map();
+    window.GAMES.forEach(function (game) {
+        const key = String(game.name || "").trim().toLocaleLowerCase("pt-BR").replace(/\s+/g, " ");
+        if (!key) return;
+        if (!byTitle.has(key)) byTitle.set(key, []);
+        byTitle.get(key).push(game);
+    });
+    window.CATALOG_GAMES = Array.from(byTitle.values())
+        .filter(function (editions) {
+            return !excludedFromStandardCatalog.has(String(editions[0].name || "").trim());
+        })
+        .map(function (editions) {
+            editions.sort(function (a, b) {
+                return String(a.edition || "").localeCompare(String(b.edition || ""), "pt-BR");
+            });
+            return Object.assign({}, editions[0], {
+                editions: editions.slice(),
+                editionCount: editions.length
+            });
+        })
+        .sort(function (a, b) {
+            return String(a.name || "").localeCompare(String(b.name || ""), "pt-BR");
+        });
+})();
