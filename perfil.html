@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catmasys — Perfil</title><link rel="icon" type="image/svg+xml" href="assets/catmasys-icon.svg"><link rel="stylesheet" href="css/style.css"></head>
+<body class="profile-page">
+<header class="topbar home-topbar"><a class="brand-home" href="index.html"><span class="brand-mark">C</span><span><strong>CATMASYS</strong><small>PERFIL DO COLECIONADOR</small><em class="site-version">VERSION 0.013</em></span></a><nav class="home-nav"><a href="catalogo.html">Catálogo</a><a href="minha_colecao.html">Minha coleção</a></nav></header>
+<main class="profile-main">
+  <a class="back-home" href="index.html">← Início</a>
+  <section class="profile-heading"><span class="eyebrow">ÁREA DO COLECIONADOR</span><h1>Seu espaço no <span>Catmasys.</span></h1><p>Crie um perfil local ou entre para acessar sua coleção neste navegador.</p></section>
+  <section id="session-panel" class="session-panel" hidden><div><span class="session-kicker">SESSÃO ATIVA</span><h2>Olá, <span id="active-user-name"></span></h2><p>Seu perfil está ativo neste navegador.</p></div><button id="logout-btn" class="secondary-action" type="button">Sair do perfil</button><a class="primary-action" href="minha_colecao.html">Ir para minha coleção →</a></section>
+  <section id="auth-panels" class="auth-panels">
+    <form id="login-form" class="auth-card">
+      <span class="auth-symbol">↗</span><h2>Fazer login</h2><p>Entre com o e-mail usado no cadastro deste navegador.</p>
+      <label for="login-email">E-mail</label><input id="login-email" name="email" type="email" autocomplete="username" required placeholder="voce@exemplo.com">
+      <label for="login-password">Senha</label><input id="login-password" name="password" type="password" autocomplete="current-password" required minlength="8" placeholder="Mínimo de 8 caracteres">
+      <button class="primary-action" type="submit">Entrar <span aria-hidden="true">→</span></button>
+    </form>
+    <form id="create-form" class="auth-card auth-card-highlight">
+      <span class="auth-symbol">＋</span><h2>Criar perfil</h2><p>Cadastre seu perfil para separar os dados de coleção de outros usuários deste navegador.</p>
+      <label for="create-name">Nome de exibição</label><input id="create-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="40" placeholder="Como quer aparecer">
+      <label for="create-email">E-mail</label><input id="create-email" name="email" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+      <label for="create-password">Criar senha</label><input id="create-password" name="password" type="password" autocomplete="new-password" required minlength="8" placeholder="Mínimo de 8 caracteres">
+      <label for="create-password-confirm">Confirmar senha</label><input id="create-password-confirm" name="password-confirm" type="password" autocomplete="new-password" required minlength="8" placeholder="Digite a senha novamente">
+      <button class="primary-action" type="submit">Criar meu perfil <span aria-hidden="true">→</span></button>
+    </form>
+  </section>
+  <p id="auth-message" class="auth-message" role="status" aria-live="polite"></p>
+  <p class="local-note profile-note"><span aria-hidden="true">ⓘ</span> Importante: este site estático não possui servidor de autenticação. O perfil é armazenado localmente neste navegador e não é recuperável em outro dispositivo. Não use uma senha que você utiliza em outros serviços.</p>
+</main>
+<script src="js/perfil.js"></script>
+</body></html>
