@@ -9,7 +9,7 @@
 - Renomeada a opção da barra lateral para explicar que o agrupamento por ano exibe as edições separadamente.
 - O catálogo principal, gênero, miniaturas e linha do tempo usam títulos únicos; somente a visualização/agrupamento por ano mostra os registros de edições separadas.
 - Aumentado o espaço visual no rodapé e adicionados créditos, copyright, aviso de marcas e versão do projeto.
-- Arquivos alterados: `VERSION`, `assets/catmasys-icon.svg`, `css/catmasys-ui.css`, `js/app_catalogo.js`, `index.html`, `catalogo.html`, `minha_colecao.html`, `jogo.html`, `perfil.html`, `CHANGELOG.md`, `README.md`.
+- Arquivos alterados: `VERSION`, `assets/catmasys-icon.svg`, `css/catmasys-ui.css`, `js/app_catalogo.js`, `index.html`, `catalogo.html`, `minha_colecao.html`, `jogo.html`, `perfil.html`, `js/app.js`, `CHANGELOG.md`, `README.md`.
 
 ## Version 0.013
 - Criada uma página inicial para o Catmasys com identidade visual própria, acesso ao catálogo e atalhos para login/criação de perfil.
