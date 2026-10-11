@@ -6,7 +6,8 @@
     const search = document.getElementById("search");
     const genreFilter=document.getElementById("genre-filter"), yearFilter=document.getElementById("year-filter"), sortFilter=document.getElementById("sort-filter"), statusFilter=document.getElementById("status-filter"), editionButtons=document.querySelectorAll("#editions button");
     const filters = document.querySelectorAll("#collection-filters button");
-    const STORAGE_KEY = "catmasys_minha_colecao_v1";
+    const activeUser = (() => { try { return JSON.parse(localStorage.getItem("catmasys_active_user_v1") || "null"); } catch (_) { return null; } })();
+    const STORAGE_KEY = activeUser && activeUser.id ? "catmasys_minha_colecao_v1_" + activeUser.id : "catmasys_minha_colecao_v1";
 
     let collection = {};
     try {
@@ -48,23 +49,23 @@
                         <img class="thumb" src="${esc(g.thumb || g.image)}" alt="${esc(g.name)}" loading="lazy">
                     </a>
                     <div class="collection-name">${esc(g.name)}</div>
-                    <div class="collection-id">${esc(g.id)}</div>
-                    <select class="collection-status-select" aria-label="Status de ${esc(g.name)}">
-                        ${Object.entries(statuses).map(([value,label]) =>
-                            `<option value="${value}" ${status === value ? "selected" : ""}>${label}</option>`
-                        ).join("")}
-                    </select>
+                    <div class="collection-id">${esc(g.id)}${g.edition ? " · " + esc(g.edition) : ""}</div>
+                    <div class="collection-card-actions">
+                        <span class="collection-status-badge status-${esc(status.toLowerCase())}">${esc(statuses[status] || "Não possuo")}</span>
+                        <button type="button" class="collection-edit-status" data-id="${esc(g.id)}" aria-label="Editar status de ${esc(g.name)}" title="Editar status">✎</button>
+                    </div>
                 </article>
             `;
         }).join("");
 
-        grid.querySelectorAll(".collection-status-select").forEach(select => {
-            select.addEventListener("change", function () {
-                const id = this.closest(".collection-card").dataset.id;
-                collection[id] = this.value;
-                save();
-                updateSummary();
-                applyFilters();
+        grid.querySelectorAll(".collection-edit-status").forEach(button => {
+            button.addEventListener("click", function () {
+                editingId = this.dataset.id;
+                const game = games.find(g => String(g.id) === String(editingId));
+                if (!game || !statusDialog || !statusChoice) return;
+                statusGameName.textContent = game.name + (game.edition ? " · edição " + game.edition : "");
+                statusChoice.value = getStatus(editingId);
+                statusDialog.showModal();
             });
         });
 
@@ -84,7 +85,7 @@
 
     function applyFilters() {
         const q = search.value.trim().toLowerCase();
-        const active = statusFilter.value || "TODOS";
+        const active = document.querySelector("#collection-filters button.active")?.dataset.status || "TODOS";
         const genre=genreFilter.value, year=yearFilter.value, sort=sortFilter.value;
         const editions=[...editionButtons].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);
 
@@ -100,7 +101,7 @@
         if(sort==="az") list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR")); if(sort==="za") list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR")); render(list);
     }
 
-    [search,genreFilter,yearFilter,sortFilter,statusFilter].forEach(el=>el.addEventListener(el===search?"input":"change",applyFilters)); editionButtons.forEach(b=>b.addEventListener("click",()=>{b.classList.toggle("active");applyFilters()}));
+    [search,genreFilter,yearFilter,sortFilter].forEach(el=>el.addEventListener(el===search?"input":"change",applyFilters)); editionButtons.forEach(b=>b.addEventListener("click",()=>{b.classList.toggle("active");applyFilters()}));
 
     filters.forEach(button => {
         button.addEventListener("click", function () {
@@ -110,7 +111,16 @@
         });
     });
 
-    search.addEventListener("input", applyFilters);
+    if (statusForm) statusForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (!editingId) return;
+        collection[editingId] = statusChoice.value;
+        save();
+        statusDialog.close();
+        editingId = null;
+        applyFilters();
+    });
+    document.getElementById("status-dialog-cancel")?.addEventListener("click", () => statusDialog.close());
 
     fillFilters();
     applyFilters();
