@@ -1,65 +1,46 @@
 (() => {
   const games = Array.isArray(window.GAMES) ? window.GAMES : [];
   const params = new URLSearchParams(location.search);
-  const id = params.get('id');
+  const id = params.get("id");
+  const requestedTitle = params.get("title");
+  const detail = document.getElementById("detail");
+  if (!detail) return;
 
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, c => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    }[c]));
+  const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+  const normalize = value => String(value ?? "").trim().toLocaleLowerCase("pt-BR").replace(/\s+/g," ");
+  const selectedGame = id ? games.find(g => String(g.id) === String(id)) : null;
+  const title = requestedTitle || (selectedGame && selectedGame.name);
+  const editions = title ? games.filter(g => normalize(g.name) === normalize(title)) : [];
+  let active = selectedGame || editions[0] || null;
+
+  if (!active) {
+    detail.innerHTML = '<div class="detail-card"><div class="info"><h2>Jogo não encontrado</h2><a href="catalogo.html">Voltar ao catálogo</a></div></div>';
+    return;
   }
 
-  const grid = document.getElementById('grid');
-  if (grid) {
-    const count = document.getElementById('count');
-    const search = document.getElementById('search');
-
-    function render(list) {
-      grid.innerHTML = list.map(g => `
-        <a class="card" href="jogo.html?id=${encodeURIComponent(g.id)}">
-          <img class="thumb" src="${g.image}" alt="${esc(g.name)}" loading="lazy">
-          <div class="name">${esc(g.name)}</div>
-          <div class="id">BDJogos ${esc(g.id)}</div>
-        </a>`).join('');
-      count.textContent = `${list.length} jogos`;
-    }
-
-    function filter() {
-      const q = search.value.trim().toLowerCase();
-      render(q ? games.filter(g => g.name.toLowerCase().includes(q)) : games);
-    }
-
-    search.addEventListener('input', filter);
-    render(games);
+  function render() {
+    document.title = active.name + " — Catmasys";
+    const titleEl = document.getElementById("title");
+    if (titleEl) titleEl.textContent = active.name + " — Catmasys";
+    const tags = editions.map(game => '<button type="button" class="edition-tag'+(String(game.id)===String(active.id)?' active':'')+'" data-id="'+esc(game.id)+'" aria-pressed="'+(String(game.id)===String(active.id))+'">'+esc(game.edition || "Edição")+'</button>').join("");
+    detail.innerHTML = '<article class="detail-card game-detail-card">'+
+      '<div class="game-cover-wrap"><img class="cover" src="'+esc(active.image || active.thumb)+'" alt="Capa de '+esc(active.name)+'" onerror="this.onerror=null;this.src=\''+esc(active.thumb || "")+'\';"></div>'+
+      '<div class="info"><span class="detail-eyebrow">CATÁLOGO TEC TOY · MASTER SYSTEM</span><h2>'+esc(active.name)+'</h2>'+
+      '<div class="info-row"><span class="label">Ano</span>'+esc(active.year || "Não informado")+'</div>'+
+      '<div class="info-row"><span class="label">ID do registro</span>'+esc(active.id)+'</div>'+
+      '<div class="info-row"><span class="label">Edição selecionada</span>'+esc(active.edition || "Não especificada")+'</div>'+
+      '<div class="edition-selector"><span class="edition-selector-label">EDIÇÕES DISPONÍVEIS <small>'+editions.length+'</small></span><div class="edition-tags">'+tags+'</div></div>'+
+      '<p class="detail-note">Selecione uma tag para consultar a capa e os dados de cada edição identificada no catálogo.</p>'+
+      '<a class="primary-action detail-collection-link" href="minha_colecao.html">Organizar na minha coleção →</a></div></article>';
+    detail.querySelectorAll(".edition-tag").forEach(button => button.addEventListener("click", () => {
+      const next = editions.find(game => String(game.id) === String(button.dataset.id));
+      if (!next) return;
+      active = next;
+      history.replaceState(null, "", "jogo.html?id="+encodeURIComponent(active.id));
+      render();
+    }));
   }
-
-  const detail = document.getElementById('detail');
-  if (detail) {
-    const g = games.find(x => String(x.id) === String(id));
-
-    if (!g) {
-      detail.innerHTML = `
-        <div class="detail-card">
-          <div class="info">
-            <h2>Jogo não encontrado</h2>
-            <a href="index.html">Voltar ao catálogo</a>
-          </div>
-        </div>`;
-    } else {
-      document.title = `${g.name} — Catmasys`;
-      const titleEl = document.getElementById('title');
-      if (titleEl) titleEl.textContent = g.name;
-
-      detail.innerHTML = `
-        <article class="detail-card">
-          <img class="cover" src="${g.image}" alt="${esc(g.name)}">
-          <div class="info">
-            <h2>${esc(g.name)}</h2>
-            <div class="info-row"><span class="label">ID BDJogos</span>${esc(g.id)}</div>
-            <div class="info-row"><span class="label">Catálogo</span>Master System</div>
-            <p style="margin-top:24px;color:#666">Os demais campos serão adicionados nas próximas etapas.</p>
-          </div>
-        </article>`;
-    }
-  }
+  render();
 })();
