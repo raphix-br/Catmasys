@@ -193,3 +193,8 @@ body:not(.space-harrier-skin) .site-footer{
  body:not(.space-harrier-skin) .view-title-meta{min-height:22px;padding:3px 6px;font-size:9px}
  body:not(.space-harrier-skin) .site-footer{margin-left:50px!important;min-height:180px!important;margin-top:80px!important;padding:26px 14px 20px!important}
 }
+
+.home-footer .footer-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-left:auto;color:#64798f;font-size:9px}
+.home-footer .footer-brand{color:#b9c8d7;font-size:11px;font-weight:850;letter-spacing:.12em}
+.profile-footer{margin-top:0!important}
+@media(max-width:700px){.home-footer .footer-meta{margin-left:0}.home-footer{align-items:flex-start!important}}
