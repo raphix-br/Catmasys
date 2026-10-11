@@ -4,7 +4,12 @@
     const count = document.getElementById("collection-count");
     const statusText = document.getElementById("collection-status");
     const search = document.getElementById("search");
-    const genreFilter=document.getElementById("genre-filter"), yearFilter=document.getElementById("year-filter"), sortFilter=document.getElementById("sort-filter"), statusFilter=document.getElementById("status-filter"), editionButtons=document.querySelectorAll("#editions button");
+    const genreFilter=document.getElementById("genre-filter"), yearFilter=document.getElementById("year-filter"), sortFilter=document.getElementById("sort-filter"), editionButtons=document.querySelectorAll("#editions button");
+    const statusDialog=document.getElementById("collection-status-dialog");
+    const statusForm=document.getElementById("collection-status-form");
+    const statusChoice=document.getElementById("collection-status-choice");
+    const statusGameName=document.getElementById("status-dialog-game-name");
+    let editingId=null;
     const filters = document.querySelectorAll("#collection-filters button");
     const activeUser = (() => { try { return JSON.parse(localStorage.getItem("catmasys_active_user_v1") || "null"); } catch (_) { return null; } })();
     const STORAGE_KEY = activeUser && activeUser.id ? "catmasys_minha_colecao_v1_" + activeUser.id : "catmasys_minha_colecao_v1";
