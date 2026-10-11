@@ -21,7 +21,7 @@
   }
 
   function render() {
-    document.title = active.name + " — Catmasys";
+    document.title = "Catmasys";
     const titleEl = document.getElementById("title");
     if (titleEl) titleEl.textContent = active.name + " — Catmasys";
     const tags = editions.map(game => '<button type="button" class="edition-tag'+(String(game.id)===String(active.id)?' active':'')+'" data-id="'+esc(game.id)+'" aria-pressed="'+(String(game.id)===String(active.id))+'">'+esc(game.edition || "Edição")+'</button>').join("");
