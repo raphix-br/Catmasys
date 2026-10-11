@@ -1,5 +1,7 @@
 (function () {
-const games=Array.isArray(window.CATALOG_GAMES)?window.CATALOG_GAMES:(Array.isArray(window.GAMES)?window.GAMES:[]);
+const catalogGames=Array.isArray(window.CATALOG_GAMES)?window.CATALOG_GAMES:(Array.isArray(window.GAMES)?window.GAMES:[]);
+const editionGames=Array.isArray(window.GAMES)?window.GAMES:catalogGames;
+let games=catalogGames;
 const grid=document.getElementById("grid"),count=document.getElementById("count"),search=document.getElementById("search");
 const genre=document.getElementById("genre-filter"),year=document.getElementById("year-filter"),sort=document.getElementById("sort-filter");
 const editions=document.querySelectorAll("#editions button");
@@ -39,7 +41,7 @@ function renderGroups(list,key,label){
     grid.innerHTML=keys.map((k,index)=>{
         let palette=yearPalette[index%yearPalette.length];
         let colorAttrs=' style="--cm-year-color:'+palette.bg+';--cm-year-text:'+palette.fg+'"';
-        return '<section class="view-section" data-view-key="'+(viewMode==="year"?"year":"genre")+'"'+colorAttrs+'><div class="view-title">'+esc(k)+'</div><div class="thumbs-grid">'+cards(groups[k])+'</div></section>';
+        return '<section class="view-section" data-view-key="'+(viewMode==="year"?"year":"genre")+'"'+colorAttrs+'><div class="view-title"><span class="view-title-label">'+esc(k)+'</span><span class="view-title-meta">'+groups[k].length+(viewMode==="year"?" registros":" jogos")+'</span></div><div class="thumbs-grid">'+cards(groups[k])+'</div></section>';
     }).join("");
 }
 
@@ -101,7 +103,7 @@ function setTimelineIndex(index,animate=true){
 
 function render(list){if(viewMode==="thumbs")renderThumbs(list);else if(viewMode==="year")renderGroups(list,"year","ano");else if(viewMode==="genre")renderGroups(list,"genero","gênero");else renderTimeline(list)}
 
-function apply(){let q=search.value.trim().toLowerCase(),gs=[...editions].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);let list=games.filter(g=>(!q||String(g.name).toLowerCase().includes(q))&&(!genre.value||String(g.genero||"").trim()===genre.value)&&(!year.value||String(g.year||"").trim()===year.value)&&(!gs.length||(Array.isArray(g.editions)?g.editions.some(e=>gs.includes(String(e.edition||"").toUpperCase())):gs.includes(String(g.edition||"").toUpperCase()))));if(sort.value==="az")list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(sort.value==="za")list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR"));render(list);count.textContent=list.length+" títulos"}
+function apply(){let q=search.value.trim().toLowerCase(),gs=[...editions].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);games=viewMode==="year"?editionGames:catalogGames;let list=games.filter(g=>(!q||String(g.name).toLowerCase().includes(q))&&(!genre.value||String(g.genero||"").trim()===genre.value)&&(!year.value||String(g.year||"").trim()===year.value)&&(!gs.length||(Array.isArray(g.editions)?g.editions.some(e=>gs.includes(String(e.edition||"").toUpperCase())):gs.includes(String(g.edition||"").toUpperCase()))));if(sort.value==="az")list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(sort.value==="za")list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR"));render(list);count.textContent=list.length+(viewMode==="year"?" registros (inclui edições)":" títulos")}
 
 modes.forEach(b=>b.addEventListener("click",()=>{if(b.disabled)return;modes.forEach(x=>x.classList.remove("active"));b.classList.add("active");viewMode=b.dataset.view;apply()}));
 
