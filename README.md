@@ -57,6 +57,15 @@ Antes de modificar o Catmasys:
 **Não considere apenas o código atual como especificação. O histórico de versões também faz parte da especificação do projeto.**
 
 
+
+## Páginas principais
+
+- `index.html`: página inicial e entrada do projeto.
+- `perfil.html`: cadastro/login de perfil local.
+- `catalogo.html`: catálogo visual principal (243 títulos agrupados).
+- `minha_colecao.html`: coleção pessoal por registro/edição.
+- `jogo.html`: detalhe do título e tags para alternar entre edições.
+
 ## Catálogo padrão e edições
 
 - `js/games_br.js` preserva os registros individuais de edições em `window.GAMES`.
