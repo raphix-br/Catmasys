@@ -17,7 +17,7 @@ Toda alteração relevante feita no projeto, por uma pessoa ou por uma IA, deve:
 1. Ler primeiro `VERSION` e `CHANGELOG.md`.
 2. Incrementar o número da versão antes de concluir a alteração.
 3. Atualizar o arquivo `VERSION`.
-4. Atualizar também a versão visível no `.site-version` de todas as páginas HTML que exibem a versão.
+4. Atualizar também a versão visível no `.site-version` do rodapé de todas as páginas HTML que exibem a versão.
 5. Registrar no `CHANGELOG.md` exatamente o que foi alterado, quais arquivos foram modificados e, quando relevante, o motivo.
 6. Usar a versão no início da mensagem do commit, no formato:
    `Version 0.XXX — descrição objetiva`.
@@ -85,6 +85,6 @@ Bandeiras e ícones de interface ficam em `assets/flags/` e `assets/ui/`; fundos
 
 ## Identidade e rodapé — Version 0.014
 
-- O título de todas as páginas é `Catmasys`; o favicon é `assets/catmasys-icon.svg`.
+- O título de todas as páginas é `Catmasys`; o favicon é `assets/catmasys-icon.svg`. A versão do projeto fica no rodapé, sem competir com a marca no cabeçalho.
 - A barra lateral usa o termo **Agrupar por ano** para a visualização cronológica com edições separadas.
 - O rodapé de catálogo/coleção contém créditos, aviso de marcas e versão atual.
