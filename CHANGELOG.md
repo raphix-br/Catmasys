@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 0.013
+- Criada uma página inicial para o Catmasys com identidade visual própria, acesso ao catálogo e atalhos para login/criação de perfil.
+- Criada a página de perfil com cadastro e login locais no navegador; senhas são derivadas com PBKDF2, mas não há servidor, recuperação de conta nem sincronização entre dispositivos.
+- O catálogo padrão agora mostra 243 títulos únicos, agrupando as edições; os dois jogos de pacote sem caixa (20 em 1 e Hang On & Safari Hunt) permanecem disponíveis em Minha Coleção, fora da contagem padrão.
+- A página de detalhe exibe as edições disponíveis em tags selecionáveis e atualiza capa/identificação conforme a edição escolhida.
+- Minha Coleção mantém os registros por edição e substitui o menu suspenso repetido em cada jogo por um selo de status e um único diálogo de edição reutilizável.
+- Aplicada paleta padrão escura para aumentar contraste dos cartuchos/capas claras; a skin Space Harrier permanece isolada.
+- Adicionadas bandeiras SVG para BR, USA, Europa, Japão e Coreia em `assets/flags/`; as regiões sem catálogo próprio continuam desabilitadas.
+- Criado `assets/README.md` com a organização recomendada para novas imagens.
+- Arquivos principais alterados: `index.html`, `catalogo.html`, `perfil.html`, `minha_colecao.html`, `jogo.html`, `css/catmasys-ui.css`, `js/games_br.js`, `js/app_catalogo.js`, `js/app_colecao.js`, `js/app.js`, `js/perfil.js`, `assets/flags/*.svg`.
+
 ## Version 0.012
 - Corrigida a versão visível no cabeçalho de `index.html` e `minha_colecao.html`, que ainda estava em `VERSION 0.010` apesar de a versão oficial do repositório já estar em `0.011`.
 - A versão oficial e as versões visíveis nas duas páginas passam a estar sincronizadas em `0.012`.
