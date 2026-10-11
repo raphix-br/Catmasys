@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 0.014
+- Redesenhado o favicon como cartucho retrô mais legível; atualizado o parâmetro de versão do ícone para evitar cache antigo.
+- Padronizado o título da aba do navegador como `Catmasys` em todas as páginas.
+- Simplificado o cabeçalho principal para exibir apenas CATMASYS, com tipografia sem serifa mais limpa e hierarquia mais consistente.
+- Refinados os botões de navegação, filtros, controles regionais e barra lateral.
+- Redesenhadas as barras de ano com fundo escuro, destaque lateral vermelho, tipografia nítida e contagem de registros.
+- Renomeada a opção da barra lateral para explicar que o agrupamento por ano exibe as edições separadamente.
+- O catálogo principal, gênero, miniaturas e linha do tempo usam títulos únicos; somente a visualização/agrupamento por ano mostra os registros de edições separadas.
+- Aumentado o espaço visual no rodapé e adicionados créditos, copyright, aviso de marcas e versão do projeto.
+- Arquivos alterados: `VERSION`, `assets/catmasys-icon.svg`, `css/catmasys-ui.css`, `js/app_catalogo.js`, `index.html`, `catalogo.html`, `minha_colecao.html`, `jogo.html`, `perfil.html`, `CHANGELOG.md`, `README.md`.
+
 ## Version 0.013
 - Criada uma página inicial para o Catmasys com identidade visual própria, acesso ao catálogo e atalhos para login/criação de perfil.
 - Criada a página de perfil com cadastro e login locais no navegador; senhas são derivadas com PBKDF2, mas não há servidor, recuperação de conta nem sincronização entre dispositivos.
