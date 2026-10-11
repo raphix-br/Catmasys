@@ -55,3 +55,20 @@ Antes de modificar o Catmasys:
 - registre a alteração na nova versão.
 
 **Não considere apenas o código atual como especificação. O histórico de versões também faz parte da especificação do projeto.**
+
+
+## Catálogo padrão e edições
+
+- `js/games_br.js` preserva os registros individuais de edições em `window.GAMES`.
+- O mesmo arquivo constrói `window.CATALOG_GAMES`, com um registro por título para o catálogo principal.
+- O catálogo padrão tem 243 títulos: os dois itens de pacote sem caixa (`20 em 1` e `Hang On & Safari Hunt`) continuam acessíveis em Minha Coleção, mas não entram nessa contagem.
+- Ao abrir um título, as edições encontradas são apresentadas em tags selecionáveis.
+- A referência editorial de conferência é [Colecionando.Games — lista de jogos Master System TecToy](https://blog.colecionando.games/lista-completa-master-system-tectoy/).
+
+## Perfis
+
+O perfil desta versão é **local ao navegador**. Não existe backend de autenticação, recuperação de senha ou sincronização na nuvem. Para contas reais acessíveis em vários dispositivos, será necessário integrar um serviço de autenticação e armazenamento no servidor. Não reutilize senhas de outros serviços.
+
+## Imagens
+
+Bandeiras e ícones de interface ficam em `assets/flags/` e `assets/ui/`; fundos em `assets/backgrounds/`. As capas existentes continuam em `CAPAS_MASTER_SYSTEM/` e as miniaturas em `thumbs/`.
