@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 0.015
+- A bandeira do Brasil agora é o único seletor regional visível; botão reduzido ao tamanho exato da imagem, sem fundo, borda, texto ou sombra.
+- Filtros de edição (CP, GG, GP, AB e AZ) movidos para um rail à esquerda, também disponível em Minha Coleção.
+- Cards do catálogo e da coleção receberam dimensões e áreas de capa padronizadas para evitar alturas diferentes entre jogos.
+- Minha Coleção agora exibe tags de características por jogo e permite filtrar por gênero, subgênero, jogadores, periféricos, som FM e save por bateria quando os dados existem.
+- A página de cada jogo agora exibe tags das características preenchidas na base de dados e uma seção de dados do catálogo, mantendo as tags de seleção de edição.
+- Os campos ausentes continuam omitidos; nenhuma característica não presente na planilha é inventada.
+- Arquivos alterados: `VERSION`, `catalogo.html`, `minha_colecao.html`, `jogo.html`, `css/catmasys-ui.css`, `js/app_catalogo.js`, `js/app_colecao.js`, `js/app.js`, `README.md`.
+
+
+
 ## Version 0.014
 - Redesenhado o favicon como cartucho retrô mais legível; atualizado o parâmetro de versão do ícone para evitar cache antigo.
 - Padronizado o título da aba do navegador como `Catmasys` em todas as páginas.
