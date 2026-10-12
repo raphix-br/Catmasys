@@ -381,7 +381,7 @@ body.default-skin .site-footer .footer-legal,body.default-skin .site-footer .foo
 .alphabetic-toggle[data-direction="za"] .alpha-indicator{color:#f3c75d}
 .skin-controls{position:relative;margin-top:auto;padding-top:12px}
 .skin-menu-trigger{flex:0 0 42px}
-.skin-menu{position:absolute;left:52px;bottom:0;z-index:1500;display:flex;flex-direction:column;gap:5px;min-width:142px;padding:7px;border:1px solid #42566b;border-radius:9px;background:#101a26;box-shadow:0 12px 35px rgba(0,0,0,.36)}
+.skin-menu{position:fixed;left:60px;bottom:12px;z-index:1500;display:flex;flex-direction:column;gap:5px;min-width:142px;padding:7px;border:1px solid #42566b;border-radius:9px;background:#101a26;box-shadow:0 12px 35px rgba(0,0,0,.36)}
 .skin-menu[hidden]{display:none!important}
 .skin-menu button{width:100%;min-height:34px;padding:7px 10px;border:1px solid #34495f;border-radius:5px;background:#172332;color:#dbe6f0;text-align:left;font:750 10px/1.2 Inter,"Segoe UI",sans-serif;cursor:pointer}
 .skin-menu button:hover,.skin-menu button.active{background:#d71920;border-color:#f04b52;color:#fff}
@@ -410,7 +410,7 @@ body.space-harrier-skin .timeline-marker span{background:#0b3025!important;color
 @media(max-width:700px){
  .view-menu{top:82px!important;padding:10px 6px!important;width:54px!important}
  .view-mode{width:38px!important;height:38px!important}
- .skin-menu{left:46px}
+ .skin-menu{left:54px}
  .timeline-wrap{height:460px!important;padding-top:195px!important}
  .timeline-track{top:268px!important}
  .timeline-marker{height:245px!important}
