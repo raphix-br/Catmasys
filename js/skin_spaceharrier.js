@@ -1,20 +1,9 @@
 (function(){
-    const body=document.body;
-    const rail=document.querySelector('.future-modes');
-    if(!rail) return;
-    const btn=rail.querySelector('.mode-placeholder');
-    if(!btn) return;
-
-    btn.disabled=false;
-    btn.classList.remove('mode-placeholder');
-    btn.classList.add('skin-toggle');
-    btn.title='Trocar skin';
-    btn.setAttribute('aria-label','Trocar skin');
-    btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="7"/></svg>';
-
-    const key='catmasys-skin';
-    let skin=localStorage.getItem(key)||'default';
-
+ const body=document.body,trigger=document.getElementById("skin-menu-trigger"),panel=document.getElementById("skin-menu");
+ if(!trigger||!panel)return;
+ const buttons=[...panel.querySelectorAll("[data-skin]")],key="catmasys-skin";
+ let skin=localStorage.getItem(key)||"dark";
+ if(!["default","dark","space-harrier"].includes(skin))skin="dark";
     function scene(){
         if(document.querySelector('.space-harrier-floor')) return;
 
@@ -145,17 +134,20 @@
         btn.setAttribute('aria-pressed',String(skin==='space-harrier'));
         btn.title=skin==='space-harrier'?'Skin atual: Space Harrier — clique para voltar':'Trocar skin: Space Harrier';
     }
-    function parallax(){
-        /* Desativado por enquanto: céu e chão ficam totalmente estáticos. */
-        body.style.setProperty('--sh-scroll','0px');
-        body.style.setProperty('--sh-floor','0px');
-    }
-    btn.addEventListener('click',()=>{
-        skin=skin==='space-harrier'?'default':'space-harrier';
-        localStorage.setItem(key,skin);
-        apply();
-        parallax();
-    });
-    apply();
-    parallax();
+
+ function apply(){
+  body.classList.toggle("default-skin",skin==="default");
+  body.classList.toggle("dark-skin",skin==="dark");
+  body.classList.toggle("space-harrier-skin",skin==="space-harrier");
+  if(skin==="space-harrier")scene();
+  buttons.forEach(button=>{const active=button.dataset.skin===skin;button.classList.toggle("active",active);button.setAttribute("aria-pressed",String(active));});
+  trigger.setAttribute("aria-pressed",String(skin!=="default"));
+  trigger.title="Skin atual: "+({"default":"Default","dark":"Escuro","space-harrier":"Space Harrier"}[skin])+" — clique para escolher";
+ }
+ function setOpen(open){panel.hidden=!open;trigger.setAttribute("aria-expanded",String(open));trigger.classList.toggle("menu-open",open);}
+ trigger.addEventListener("click",()=>setOpen(panel.hidden));
+ buttons.forEach(button=>button.addEventListener("click",()=>{skin=button.dataset.skin;localStorage.setItem(key,skin);apply();setOpen(false);}));
+ document.addEventListener("click",event=>{if(!event.target.closest(".skin-controls"))setOpen(false);});
+ document.addEventListener("keydown",event=>{if(event.key==="Escape")setOpen(false);});
+ apply();
 })();
