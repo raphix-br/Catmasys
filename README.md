@@ -83,7 +83,15 @@ O perfil desta versão é **local ao navegador**. Não existe backend de autenti
 Bandeiras e ícones de interface ficam em `assets/flags/` e `assets/ui/`; fundos em `assets/backgrounds/`. As capas existentes continuam em `CAPAS_MASTER_SYSTEM/` e as miniaturas em `thumbs/`.
 
 
-## Identidade e rodapé — Version 0.014
+## Tags, filtros e cards — Version 0.015
+
+- O seletor regional exibe somente a bandeira brasileira, sem moldura ou fundo.
+- Os filtros de edição ficam na barra lateral esquerda, tanto no catálogo quanto em Minha Coleção.
+- Cards mantêm uma altura consistente e reservam espaço fixo para capa, título, tags e ações.
+- Minha Coleção exibe tags derivadas dos dados cadastrados e permite filtrar por características.
+- A página de jogo apresenta tags de gênero, subgênero, jogadores, periféricos, som FM, tamanho, desenvolvedor, distribuidor e exclusividade brasileira quando os campos estão preenchidos. Dados de save por bateria são exibidos somente se houver um campo correspondente na base.
+
+## Identidade e rodapé — Version 0.015
 
 - O título de todas as páginas é `Catmasys`; o favicon é `assets/catmasys-icon.svg`. A versão do projeto fica no rodapé, sem competir com a marca no cabeçalho.
 - A barra lateral usa o termo **Agrupar por ano** para a visualização cronológica com edições separadas.
