@@ -5,13 +5,18 @@ let games=catalogGames;
 const grid=document.getElementById("grid"),count=document.getElementById("count"),search=document.getElementById("search");
 const genre=document.getElementById("genre-filter"),year=document.getElementById("year-filter"),sort=document.getElementById("sort-filter");
 const editions=document.querySelectorAll("#editions button");
-const modes=document.querySelectorAll(".view-mode");
+const modes=document.querySelectorAll(".view-mode[data-view]");
+const alphaButton=document.getElementById("alphabetic-toggle");
 let viewMode="thumbs";
 let timelineIndex=0;
 let timelinePosition=0;
 let timelineList=[];
 let timelineZoom=1;
 let timelineDrag=null;
+let timelineTargetPosition=0;
+let timelineFrame=0;
+let alphaDirection="az";
+let alphaActive=false;
 
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -50,6 +55,7 @@ function renderTimeline(list){
     if(!timelineList.length){grid.innerHTML='<div class="timeline-empty">Nenhum jogo encontrado.</div>';return;}
     timelineIndex=Math.max(0,Math.min(timelineIndex,timelineList.length-1));
     timelinePosition=timelineIndex;
+    timelineTargetPosition=timelinePosition;
     const groups=[];
     let lastYear=null;
     timelineList.forEach((g,i)=>{
@@ -98,12 +104,28 @@ function setTimelineIndex(index,animate=true){
     if(!timelineList.length)return;
     timelineIndex=Math.max(0,Math.min(Math.round(index),timelineList.length-1));
     timelinePosition=timelineIndex;
+    timelineTargetPosition=timelineIndex;
     updateTimeline(animate);
+}
+function clampTimeline(value){return Math.max(0,Math.min(timelineList.length-1,value));}
+function animateTimelineScroll(){
+    if(timelineFrame)return;
+    const tick=()=>{
+        timelineFrame=0;
+        if(viewMode!=="timeline"||!timelineList.length)return;
+        const delta=timelineTargetPosition-timelinePosition;
+        if(Math.abs(delta)<0.002){timelinePosition=timelineTargetPosition;timelineIndex=Math.round(timelinePosition);updateTimeline(false);return;}
+        timelinePosition+=delta*0.18;
+        timelineIndex=Math.round(timelinePosition);
+        updateTimeline(false);
+        timelineFrame=requestAnimationFrame(tick);
+    };
+    timelineFrame=requestAnimationFrame(tick);
 }
 
 function render(list){if(viewMode==="thumbs")renderThumbs(list);else if(viewMode==="year")renderGroups(list,"year","ano");else if(viewMode==="genre")renderGroups(list,"genero","gênero");else renderTimeline(list)}
 
-function apply(){let q=search.value.trim().toLowerCase(),gs=[...editions].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);games=viewMode==="year"?editionGames:catalogGames;let list=games.filter(g=>(!q||String(g.name).toLowerCase().includes(q))&&(!genre.value||String(g.genero||"").trim()===genre.value)&&(!year.value||String(g.year||"").trim()===year.value)&&(!gs.length||(Array.isArray(g.editions)?g.editions.some(e=>gs.includes(String(e.edition||"").toUpperCase())):gs.includes(String(g.edition||"").toUpperCase()))));if(sort.value==="az")list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(sort.value==="za")list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR"));render(list);count.textContent=list.length+(viewMode==="year"?" registros (inclui edições)":" títulos")}
+function apply(){let q=search.value.trim().toLowerCase(),gs=[...editions].filter(b=>b.classList.contains("active")).map(b=>b.dataset.edition);games=viewMode==="year"?editionGames:catalogGames;let list=games.filter(g=>(!q||String(g.name).toLowerCase().includes(q))&&(!genre.value||String(g.genero||"").trim()===genre.value)&&(!year.value||String(g.year||"").trim()===year.value)&&(!gs.length||(Array.isArray(g.editions)?g.editions.some(e=>gs.includes(String(e.edition||"").toUpperCase())):gs.includes(String(g.edition||"").toUpperCase()))));const sortValue=alphaActive?alphaDirection:(sort?sort.value:"default");if(sortValue==="az")list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(sortValue==="za")list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR"));render(list);count.textContent=list.length+(viewMode==="year"?" registros (inclui edições)":" títulos")}
 
 modes.forEach(b=>b.addEventListener("click",()=>{if(b.disabled)return;modes.forEach(x=>x.classList.remove("active"));b.classList.add("active");viewMode=b.dataset.view;apply()}));
 
@@ -116,14 +138,18 @@ document.addEventListener("keydown",e=>{
 grid.addEventListener("wheel",e=>{
     if(viewMode!=="timeline")return;
     e.preventDefault();
-    timelineZoom=Math.max(.58,Math.min(1.65,timelineZoom+(e.deltaY>0?-0.10:0.10)));
-    updateTimeline(false);
+    if(e.ctrlKey){timelineZoom=Math.max(.58,Math.min(1.65,timelineZoom+(e.deltaY>0?-0.06:0.06)));updateTimeline(true);return;}
+    const raw=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+    const unit=e.deltaMode===1?16:(e.deltaMode===2?window.innerHeight:1);
+    timelineTargetPosition=clampTimeline(timelineTargetPosition+raw*unit*0.0055);
+    animateTimelineScroll();
 },{passive:false});
 
 grid.addEventListener("pointerdown",e=>{
     if(viewMode!=="timeline"||e.button!==0)return;
     const wrap=e.target.closest(".timeline-wrap");
     if(!wrap)return;
+    timelineTargetPosition=timelinePosition;
     timelineDrag={x:e.clientX,base:timelinePosition,moved:false};
     wrap.classList.add("dragging");
     wrap.setPointerCapture?.(e.pointerId);
@@ -134,7 +160,8 @@ grid.addEventListener("pointermove",e=>{
     const dx=e.clientX-timelineDrag.x;
     if(Math.abs(dx)>5)timelineDrag.moved=true;
     const step=Math.max(75,125*timelineZoom);
-    timelinePosition=Math.max(0,Math.min(timelineList.length-1,timelineDrag.base-dx/step));
+    timelinePosition=clampTimeline(timelineDrag.base-dx/step);
+    timelineTargetPosition=timelinePosition;
     timelineIndex=Math.round(timelinePosition);
     updateTimeline(false);
 });
@@ -145,7 +172,7 @@ grid.addEventListener("pointerup",e=>{
     if(wrap)wrap.classList.remove("dragging");
     const moved=timelineDrag.moved;
     timelineDrag=null;
-    if(viewMode==="timeline")setTimelineIndex(Math.round(timelinePosition),true);
+    if(viewMode==="timeline"){timelineTargetPosition=timelinePosition;timelineIndex=Math.round(timelinePosition);updateTimeline(true);}
     if(moved)e.preventDefault();
 });
 
@@ -163,7 +190,14 @@ grid.addEventListener("click",e=>{
     if(i!==timelineIndex){e.preventDefault();setTimelineIndex(i);}
 });
 
-[search,genre,year,sort].forEach(x=>x.addEventListener(x===search?"input":"change",apply));
+[search,genre,year,sort].filter(Boolean).forEach(x=>x.addEventListener(x===search?"input":"change",apply));
+if(alphaButton)alphaButton.addEventListener("click",()=>{
+ if(!alphaActive){alphaActive=true;alphaDirection="az";}else alphaDirection=alphaDirection==="az"?"za":"az";
+ alphaButton.dataset.direction=alphaDirection;alphaButton.classList.add("active");alphaButton.setAttribute("aria-pressed","true");
+ alphaButton.setAttribute("aria-label",alphaDirection==="az"?"Ordenar de A a Z":"Ordenar de Z a A");
+ alphaButton.title=alphaDirection==="az"?"Ordem alfabética: A a Z — clique para Z a A":"Ordem alfabética: Z a A — clique para A a Z";
+ const indicator=alphaButton.querySelector(".alpha-indicator");if(indicator)indicator.textContent=alphaDirection==="az"?"A–Z":"Z–A";apply();
+});
 document.querySelectorAll("#catalogs button").forEach(b=>b.addEventListener("click",()=>{if(b.disabled)return;document.querySelectorAll("#catalogs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");apply()}));
 editions.forEach(b=>b.addEventListener("click",()=>{b.classList.toggle("active");apply()}));
 fill();apply();addEventListener("resize",apply);
