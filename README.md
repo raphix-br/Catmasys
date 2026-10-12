@@ -83,6 +83,14 @@ O perfil desta versão é **local ao navegador**. Não existe backend de autenti
 Bandeiras e ícones de interface ficam em `assets/flags/` e `assets/ui/`; fundos em `assets/backgrounds/`. As capas existentes continuam em `CAPAS_MASTER_SYSTEM/` e as miniaturas em `thumbs/`.
 
 
+## Modos de visualização e skins — Version 0.016
+
+- A barra lateral principal é um menu de modos de visualização (view mode rail), com Miniaturas, Cronológico, Gêneros e botão alfabético A–Z/Z–A.
+- A Linha do Tempo experimental fica separada visualmente dos modos principais e navega suavemente com a roda/trackpad; a velocidade acompanha a intensidade do gesto. Ctrl + scroll ajusta o zoom.
+- O seletor de skins é independente e oferece Default (fundo claro com grid escuro), Escuro (tema escuro atual) e Space Harrier. A escolha persiste no navegador.
+- A marca CATMASYS mantém a versão visível logo abaixo do título. As skins não devem mudar a estrutura da aplicação.
+- O modo Cronológico e seus marcadores de ano recebem maior contraste; a Linha do Tempo fica posicionada um pouco abaixo do centro da área visual.
+
 ## Tags, filtros e cards — Version 0.015
 
 - O seletor regional exibe somente a bandeira brasileira, sem moldura ou fundo.
