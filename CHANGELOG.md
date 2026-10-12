@@ -7,7 +7,7 @@
 - Minha Coleção agora exibe tags de características por jogo e permite filtrar por gênero, subgênero, jogadores, periféricos, som FM e save por bateria quando os dados existem.
 - A página de cada jogo agora exibe tags das características preenchidas na base de dados e uma seção de dados do catálogo, mantendo as tags de seleção de edição.
 - Os campos ausentes continuam omitidos; nenhuma característica não presente na planilha é inventada.
-- Arquivos alterados: `VERSION`, `catalogo.html`, `minha_colecao.html`, `jogo.html`, `css/catmasys-ui.css`, `js/app_catalogo.js`, `js/app_colecao.js`, `js/app.js`, `README.md`.
+- Arquivos alterados: `VERSION`, `catalogo.html`, `minha_colecao.html`, `jogo.html`, `css/catmasys-ui.css`, `js/app_catalogo.js`, `js/app_colecao.js`, `js/app.js`, `README.md`, `index.html`, `perfil.html`.
 
 
 
