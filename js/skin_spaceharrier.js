@@ -2,7 +2,7 @@
  const body=document.body,trigger=document.getElementById("skin-menu-trigger"),panel=document.getElementById("skin-menu");
  if(!trigger||!panel)return;
  const buttons=[...panel.querySelectorAll("[data-skin]")],key="catmasys-skin";
- let skin=localStorage.getItem(key)||"dark";
+ let skin=localStorage.getItem(key)||"default";
  if(!["default","dark","space-harrier"].includes(skin))skin="dark";
     function scene(){
         if(document.querySelector('.space-harrier-floor')) return;
@@ -128,13 +128,6 @@
         badge.textContent='SPACE HARRIER';
         body.append(stars,floor,horizon,badge);
     }
-    function apply(){
-        body.classList.toggle('space-harrier-skin',skin==='space-harrier');
-        if(skin==='space-harrier') scene();
-        btn.setAttribute('aria-pressed',String(skin==='space-harrier'));
-        btn.title=skin==='space-harrier'?'Skin atual: Space Harrier — clique para voltar':'Trocar skin: Space Harrier';
-    }
-
  function apply(){
   body.classList.toggle("default-skin",skin==="default");
   body.classList.toggle("dark-skin",skin==="dark");
