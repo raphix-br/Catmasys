@@ -432,3 +432,7 @@ body.default-skin .collection-edit-status{background:#fff!important;color:#222!i
 body.default-skin .status-dialog{background:#fff!important;color:#222!important;border-color:#bbb!important}
 body.default-skin .status-dialog p,body.default-skin .status-dialog label{color:#444!important}
 body.default-skin .status-dialog select{background:#fff!important;color:#222!important;border-color:#aaa!important}
+
+/* Sidebar scrolls internally on short screens; content remains structurally fixed. */
+.view-menu{overflow-y:auto!important;overflow-x:visible!important;scrollbar-width:thin;scrollbar-color:#526579 transparent}
+body.default-skin .view-menu{scrollbar-color:#aaa transparent}
