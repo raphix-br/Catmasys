@@ -39,6 +39,31 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(collection));
     }
 
+    function gameTags(game) {
+        const tags=[];
+        const add=(label,value)=>{const v=String(value??"").trim();if(v)tags.push({label,value:v,text:label?label+": "+v:v,key:(label?label+": ":"")+v});};
+        add("Gênero",game.genero);
+        add("Subgênero",game["sub-genero"]);
+        add("Jogadores",game.players);
+        const peripherals=String(game.peripherals||"").split(/[;,]/).map(x=>x.trim()).filter(Boolean);
+        peripherals.forEach(p=>add("Recurso",p.replace(/3D Glasses/ig,"Óculos 3D").replace(/Light Phaser/ig,"Pistola Light Phaser")));
+        if(/^(true|sim|yes|1)$/i.test(String(game.fm||"").trim())) add("Som","FM");
+        const battery=game.save_bateria||game.battery_save||game.bateria;
+        if(/^(true|sim|yes|1)$/i.test(String(battery||"").trim())) add("Save","Bateria");
+        return [...new Map(tags.map(t=>[t.key,t])).values()];
+    }
+
+    function renderTagFilters(){
+        if(!tagFilters)return;
+        const candidates=new Map();
+        games.forEach(game=>gameTags(game).forEach(tag=>{
+            if(tag.label==="Gênero"||tag.label==="Subgênero"||tag.label==="Jogadores"||tag.label==="Recurso"||tag.label==="Som"||tag.label==="Save") candidates.set(tag.key,tag);
+        }));
+        const sorted=[...candidates.values()].sort((a,b)=>a.text.localeCompare(b.text,"pt-BR"));
+        tagFilters.innerHTML='<span class="tag-filter-caption">CARACTERÍSTICAS</span><button type="button" class="collection-tag'+(!activeTag?' active':'')+'" data-tag="">Todas</button>'+sorted.map(t=>'<button type="button" class="collection-tag'+(activeTag===t.key?' active':'')+'" data-tag="'+esc(t.key)+'">'+esc(t.text)+'</button>').join("");
+        tagFilters.querySelectorAll("[data-tag]").forEach(button=>button.addEventListener("click",()=>{activeTag=button.dataset.tag||"";renderTagFilters();applyFilters();}));
+    }
+
     function getStatus(id) {
         return collection[id] || "NAO_POSSUO";
     }
@@ -55,6 +80,7 @@
                     </a>
                     <div class="collection-name">${esc(g.name)}</div>
                     <div class="collection-id">${esc(g.id)}${g.edition ? " · " + esc(g.edition) : ""}</div>
+                    <div class="collection-card-tags">${gameTags(g).slice(0,4).map(t=>'<span class="game-tag">'+esc(t.text)+'</span>').join("")}</div>
                     <div class="collection-card-actions">
                         <span class="collection-status-badge status-${esc(status.toLowerCase())}">${esc(statuses[status] || "Não possuo")}</span>
                         <button type="button" class="collection-edit-status" data-id="${esc(g.id)}" aria-label="Editar status de ${esc(g.name)}" title="Editar status">✎</button>
@@ -100,7 +126,8 @@
             const matchesGenre=!genre || String(g.genero||"").trim()===genre;
             const matchesYear=!year || String(g.year||"").trim()===year;
             const matchesEdition=!editions.length || editions.includes(String(g.edition||"").toUpperCase());
-            return matchesSearch && matchesStatus && matchesGenre && matchesYear && matchesEdition;
+            const matchesTag=!activeTag || gameTags(g).some(t=>t.key===activeTag);
+            return matchesSearch && matchesStatus && matchesGenre && matchesYear && matchesEdition && matchesTag;
         });
 
         if(sort==="az") list.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR")); if(sort==="za") list.sort((a,b)=>b.name.localeCompare(a.name,"pt-BR")); render(list);
@@ -128,5 +155,6 @@
     document.getElementById("status-dialog-cancel")?.addEventListener("click", () => statusDialog.close());
 
     fillFilters();
+    renderTagFilters();
     applyFilters();
 })();
