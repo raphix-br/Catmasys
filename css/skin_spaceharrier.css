@@ -204,3 +204,10 @@ body.space-harrier-skin .timeline-card{
     position:relative;
     z-index:2;
 }
+
+/* Shared skin selector and mode-rail additions — Version 0.016 */
+body.space-harrier-skin .skin-menu{background:rgba(2,10,15,.96)!important;border-color:#31505b!important}
+body.space-harrier-skin .skin-menu button{background:#081820!important;border-color:#31505b!important;color:#bfe6d0!important}
+body.space-harrier-skin .skin-menu button.active,body.space-harrier-skin .skin-menu button:hover{background:#168c4b!important;border-color:#26c66a!important;color:#fff!important}
+body.space-harrier-skin .header-version{color:#7de8ff!important}
+body.space-harrier-skin .timeline-marker span{background:#0b3025!important;color:#9bffc5!important;border-color:#26c66a!important}
