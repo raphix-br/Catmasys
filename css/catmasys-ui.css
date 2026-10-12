@@ -200,3 +200,95 @@ body:not(.space-harrier-skin) .site-footer{
 @media(max-width:700px){.home-footer .footer-meta{margin-left:0}.home-footer{align-items:flex-start!important}}
 
 .collection-footer,.profile-footer,.detail-footer{margin-left:0!important}
+
+
+/* Version 0.015 — bandeira compacta, filtros de edição no rail e cartões/tags consistentes */
+#catalogs{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:0!important;width:max-content!important;height:26px!important}
+#catalogs button,
+body:not(.space-harrier-skin) #catalogs button,
+body:not(.space-harrier-skin) #catalogs button.active{
+  display:block!important;width:19px!important;min-width:19px!important;height:13px!important;min-height:13px!important;
+  padding:0!important;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:transparent!important;color:transparent!important;line-height:0!important;font-size:0!important;
+}
+#catalogs button img{display:block!important;width:19px!important;height:13px!important;object-fit:fill!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+#catalogs button:hover:not(:disabled){transform:none!important;filter:brightness(1.08)}
+#catalogs button:disabled{display:none!important}
+.topbar #catalog-filters{display:contents!important}
+.topbar #catalogs{grid-column:3!important;grid-row:1!important;justify-self:end!important}
+.topbar #editions{display:none!important}
+.edition-rail{width:100%;padding:0 3px}
+.edition-rail-title{margin:0 0 7px;text-align:center;color:#738ba3;font-size:7px;font-weight:850;letter-spacing:.08em}
+.edition-rail #editions{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:5px!important;width:100%!important;height:auto!important;margin:0!important}
+.edition-rail #editions button,
+body:not(.space-harrier-skin) .edition-rail #editions button{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;min-width:0!important;height:27px!important;min-height:27px!important;
+  padding:0!important;border:1px solid #35495e!important;border-radius:5px!important;
+  background:#172332!important;color:#aebfd0!important;font-size:9px!important;font-weight:800!important;
+}
+.edition-rail #editions button.active,
+body:not(.space-harrier-skin) .edition-rail #editions button.active{background:#b71e2a!important;border-color:#f04b52!important;color:#fff!important;box-shadow:0 0 0 1px rgba(215,25,32,.18)!important}
+.edition-menu .edition-rail{padding-top:20px}
+.edition-menu #editions{gap:7px!important}
+body:not(.space-harrier-skin) .thumbs-grid{grid-auto-rows:1fr!important;align-items:stretch!important}
+body:not(.space-harrier-skin) .card{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  width:100%!important;height:294px!important;min-height:294px!important;max-height:294px!important;
+  padding:10px 8px 9px!important;overflow:hidden!important;
+}
+.card-cover-frame{display:flex;align-items:center;justify-content:center;flex:0 0 184px;width:100%;height:184px;min-height:184px;overflow:hidden}
+body:not(.space-harrier-skin) .card .thumb{
+  display:block!important;width:100%!important;height:176px!important;max-width:100%!important;max-height:176px!important;
+  object-fit:contain!important;object-position:center!important;margin:0 auto!important;
+}
+body:not(.space-harrier-skin) .card .name{
+  display:-webkit-box!important;flex:0 0 34px;width:100%!important;height:34px!important;min-height:34px!important;
+  margin:6px auto 0!important;line-height:16px!important;overflow:hidden!important;
+  -webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;
+}
+.edition-hint{flex:0 0 14px;min-height:14px;margin-top:4px!important;font-size:9px!important}
+.collection-toolbar{display:flex;flex-direction:column;align-items:stretch;gap:12px}
+.collection-tag-filters{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 24px 4px 20px}
+.tag-filter-caption{flex:0 0 100%;color:#70869d;font-size:9px;font-weight:850;letter-spacing:.12em;margin-bottom:2px}
+.collection-tag{display:inline-flex;align-items:center;justify-content:center;max-width:100%;padding:5px 9px;border:1px solid #344a60;border-radius:999px;background:#142131;color:#b8c8d8;font:700 10px/1.2 system-ui,sans-serif;cursor:pointer}
+.collection-tag:hover{border-color:#7e9bb9;color:#fff}
+.collection-tag.active{background:#b71e2a;border-color:#f04b52;color:#fff}
+body:not(.space-harrier-skin) .collection-grid{grid-template-columns:repeat(auto-fill,minmax(165px,1fr))!important;align-items:stretch!important;gap:18px 14px!important}
+body:not(.space-harrier-skin) .collection-card{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  height:390px!important;min-height:390px!important;max-height:390px!important;min-width:0!important;
+  padding:10px 9px 11px!important;overflow:hidden!important;
+}
+.collection-cover-link{display:flex;align-items:center;justify-content:center;flex:0 0 180px;height:180px;min-height:180px;overflow:hidden}
+body:not(.space-harrier-skin) .collection-card .thumb{
+  display:block!important;width:100%!important;height:170px!important;max-width:100%!important;max-height:170px!important;
+  object-fit:contain!important;object-position:center!important;margin:0!important;
+}
+.collection-name{display:-webkit-box!important;flex:0 0 36px;height:36px!important;min-height:36px!important;overflow:hidden!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;line-height:17px!important;margin:7px auto 0!important}
+.collection-id{flex:0 0 14px;min-height:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px!important}
+.collection-card-tags{display:flex;align-content:flex-start;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:4px;flex:0 0 57px;height:57px;overflow:hidden;margin-top:7px}
+.game-tag{display:inline-flex;align-items:center;gap:4px;max-width:100%;padding:4px 7px;border:1px solid #334b63;border-radius:5px;background:#142131;color:#c6d5e4;font-size:9px;font-weight:700;line-height:1.25}
+.game-tag-label{color:#8fa7be;font-size:8px;font-weight:850;text-transform:uppercase;letter-spacing:.03em}
+.collection-card-tags .game-tag{padding:3px 5px;font-size:8px;white-space:nowrap}
+.collection-card-actions{margin-top:auto!important;padding-top:8px}
+.game-metadata-tags,.metadata-table{margin-top:22px;padding-top:15px;border-top:1px solid #2d4054}
+.game-metadata-tags h3,.metadata-table h3{margin:0 0 11px;color:#91a8bf;font-size:10px;font-weight:850;letter-spacing:.12em}
+.game-tags{display:flex;flex-wrap:wrap;gap:7px}
+.game-tags .game-tag{font-size:10px;padding:6px 9px}
+.metadata-empty{color:#7f93a8;font-size:12px}
+.metadata-table .info-row{border-bottom-color:#293a4d!important;color:#dbe4ed}
+.metadata-table .label{color:#91a8bf!important;min-width:145px}
+body:not(.space-harrier-skin) .game-detail-card{align-items:start}
+@media(max-width:700px){
+  #catalogs button,#catalogs button img{width:19px!important;height:13px!important}
+  .collection-tag-filters{padding-left:12px;padding-right:12px}
+  body:not(.space-harrier-skin) .collection-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))!important;gap:14px 8px!important}
+  body:not(.space-harrier-skin) .collection-card{height:374px!important;min-height:374px!important;max-height:374px!important;padding:8px 6px!important}
+  .collection-cover-link{flex-basis:160px;height:160px;min-height:160px}
+  body:not(.space-harrier-skin) .collection-card .thumb{height:152px!important;max-height:152px!important}
+  .collection-card-tags{flex-basis:53px;height:53px}
+  body:not(.space-harrier-skin) .card{height:274px!important;min-height:274px!important;max-height:274px!important;padding:8px 6px!important}
+  .card-cover-frame{flex-basis:166px;height:166px;min-height:166px}
+  body:not(.space-harrier-skin) .card .thumb{height:158px!important;max-height:158px!important}
+}
