@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Catmasys</title><link rel="icon" type="image/svg+xml" href="assets/catmasys-icon.svg?v=015">
+<title>Catmasys</title><link rel="icon" type="image/svg+xml" href="assets/catmasys-icon.svg?v=016">
 <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/catmasys-ui.css">
 </head>
 <body>
 <header class="topbar">
-  <div><h1><a class="header-brand-link" href="index.html">CATMASYS</a></h1></div>
+  <div><h1><a class="header-brand-link" href="index.html">CATMASYS</a></h1><span class="site-version header-version">Version 0.016</span></div>
   <nav class="mode-switch">
     <a class="mode-btn" href="catalogo.html">CATÁLOGO</a>
     <a class="mode-btn active" href="minha_colecao.html">MINHA COLEÇÃO</a>
   </nav>
   <div class="catalog-header-controls"><input id="search" type="search" placeholder="Pesquisar jogo..." autocomplete="off"><select id="genre-filter"><option value="">GÊNERO</option></select><select id="year-filter"><option value="">ANO</option></select><select id="sort-filter"><option value="default">ORDEM</option><option value="az">A-Z</option><option value="za">Z-A</option></select><a class="user-btn" href="perfil.html" id="user-button" title="Perfil e acesso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.6-4.4 3.3-6.5 8-6.5s7.4 2.1 8 6.5"></path></svg><span class="user-button-label">Usuário</span></a></div>
 </header>
-<aside id="view-menu" class="view-menu edition-menu" aria-label="Filtros por edição">
+<aside id="view-menu" class="view-menu edition-menu" aria-label="Filtros e skins">
   <section class="edition-rail" aria-label="Filtrar por edição">
     <div class="edition-rail-title">EDIÇÃO</div>
     <div id="editions">
@@ -26,6 +26,7 @@
       <button data-edition="AZ" title="Filtrar edição AZ">AZ</button>
     </div>
   </section>
+  <div class="skin-controls"><button type="button" class="view-mode skin-menu-trigger" id="skin-menu-trigger" aria-expanded="false" aria-controls="skin-menu" title="Escolher skin" aria-label="Escolher skin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z"/><path d="m4 12 8 4.5 8-4.5M4 16.5 12 21l8-4.5"/></svg></button><div class="skin-menu" id="skin-menu" aria-label="Skins disponíveis" hidden><button type="button" data-skin="default" aria-pressed="false">Default</button><button type="button" data-skin="dark" aria-pressed="true">Escuro</button><button type="button" data-skin="space-harrier" aria-pressed="false">Space Harrier</button></div></div>
 </aside>
 <main>
   <div class="collection-toolbar">
@@ -46,7 +47,7 @@
   <section id="collection-grid" class="collection-grid"></section>
 <dialog id="collection-status-dialog" class="status-dialog"><form id="collection-status-form" method="dialog"><h2>Editar item da coleção</h2><p id="status-dialog-game-name"></p><label for="collection-status-choice">Status do item</label><select id="collection-status-choice"><option value="CIB">CIB</option><option value="BOXED">Boxed</option><option value="LOOSE">Loose</option><option value="INCOMPLETO">Incompleto</option><option value="NAO_POSSUO">Não possuo</option></select><div class="dialog-actions"><button type="button" id="status-dialog-cancel" class="secondary-action">Cancelar</button><button type="submit" class="primary-action">Salvar status</button></div></form></dialog>
 </main>
-<footer class="site-footer" aria-label="Informações do site"><div class="footer-brand">CATMASYS</div><div class="footer-legal">Sua coleção é armazenada localmente neste navegador. Nomes, marcas e imagens dos jogos pertencem aos respectivos titulares.</div><div class="footer-meta"><span>© 2026 Catmasys</span><span class="site-version">Version 0.015</span></div></footer>
+<footer class="site-footer" aria-label="Informações do site"><div class="footer-brand">CATMASYS</div><div class="footer-legal">Sua coleção é armazenada localmente neste navegador. Nomes, marcas e imagens dos jogos pertencem aos respectivos titulares.</div><div class="footer-meta"><span>© 2026 Catmasys</span><span class="site-version">Version 0.016</span></div></footer>
 <script src="js/games_br.js"></script>
 <script src="js/app_colecao.js"></script><script src="js/perfil.js"></script>
 </body>
