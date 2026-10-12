@@ -25,7 +25,7 @@ const yearPalette=[
 
 function fill(){let gs=[...new Set(games.map(g=>String(g.genero||"").trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"pt-BR")),ys=[...new Set(games.map(g=>String(g.year||"").trim()).filter(Boolean))].sort((a,b)=>Number(b)-Number(a));genre.innerHTML='<option value="">GÊNERO</option>'+gs.map(x=>'<option>'+esc(x)+'</option>').join("");year.innerHTML='<option value="">ANO</option>'+ys.map(x=>'<option>'+esc(x)+'</option>').join("")}
 
-function cards(list){return list.map(g=>'<a class="card" href="jogo.html?title='+encodeURIComponent(g.name)+'"><img class="thumb" src="'+esc(g.thumb||g.image)+'" alt="'+esc(g.name)+'" loading="lazy"><div class="name">'+esc(g.name)+'</div>'+(g.editionCount>1?'<div class="edition-hint">'+g.editionCount+' edições</div>':'')+'</a>').join("")}
+function cards(list){return list.map(g=>'<a class="card" href="jogo.html?title='+encodeURIComponent(g.name)+'"><span class="card-cover-frame"><img class="thumb" src="'+esc(g.thumb||g.image)+'" alt="'+esc(g.name)+'" loading="lazy"></span><div class="name">'+esc(g.name)+'</div><div class="edition-hint">'+(g.editionCount>1?g.editionCount+' edições':'&nbsp;')+'</div></a>').join("")}
 
 function renderThumbs(list){grid.innerHTML='<div class="thumbs-grid">'+cards(list)+'</div>'}
 
