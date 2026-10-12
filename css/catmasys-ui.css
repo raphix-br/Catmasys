@@ -318,7 +318,7 @@ body:not(.space-harrier-skin) .game-detail-card{align-items:start}
 
 /* Version 0.016 — arquitetura de modos, skins e marca compartilhadas */
 .topbar>div:first-child{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important}
-body .topbar .header-version{display:block!important;margin:0!important;color:#7e8ea0!important;font:700 9px/1.2 Inter,"Segoe UI",sans-serif!important;letter-spacing:.11em!important;text-transform:uppercase!important}
+body .topbar .header-version,body:not(.space-harrier-skin) .topbar .header-version,body.space-harrier-skin .topbar .header-version{display:block!important;margin:0!important;color:#7e8ea0!important;font:700 9px/1.2 Inter,"Segoe UI",sans-serif!important;letter-spacing:.11em!important;text-transform:uppercase!important}
 body.dark-skin{color:#e8edf4!important}
 body.dark-skin:not(.space-harrier-skin){background:#0d141e!important;background-image:radial-gradient(ellipse at 50% -15%,rgba(42,75,105,.34),transparent 58%),linear-gradient(rgba(132,164,195,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(132,164,195,.055) 1px,transparent 1px)!important;background-size:auto,40px 40px,40px 40px!important}
 body.dark-skin:not(.space-harrier-skin) .topbar{background:rgba(11,18,27,.97)!important;color:#f4f7fb!important;border-bottom:1px solid #2c3c4e!important}
@@ -341,7 +341,7 @@ body.dark-skin:not(.space-harrier-skin) .collection-filters button{background:#1
 body.dark-skin:not(.space-harrier-skin) .collection-filters button.active{background:#b71e2a!important;color:#fff!important;border-color:#f04b52!important}
 body.dark-skin:not(.space-harrier-skin) .collection-tag,body.dark-skin:not(.space-harrier-skin) .game-tag{background:#142131;color:#c6d5e4}
 body.dark-skin:not(.space-harrier-skin) .site-footer{color:#71869c!important}
-body.default-skin{background:#f7f7f7!important;background-image:linear-gradient(rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.14) 1px,transparent 1px)!important;background-size:40px 40px!important;color:#171717!important}
+body.default-skin{background:#f7f7f7!important;background-image:linear-gradient(rgba(0,0,0,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.22) 1px,transparent 1px)!important;background-size:40px 40px!important;color:#171717!important}
 body.default-skin .topbar{background:rgba(255,255,255,.97)!important;color:#171717!important;border-bottom:3px solid #d71920!important;box-shadow:0 2px 8px rgba(0,0,0,.12)!important}
 body.default-skin .header-brand-link{color:#151515!important}
 body.default-skin .topbar .header-version{color:#6c6c6c!important}
@@ -417,3 +417,18 @@ body.space-harrier-skin .timeline-marker span{background:#0b3025!important;color
  .timeline-marker::before{top:248px!important}
  .timeline-marker span{font-size:7px!important;padding:4px 5px!important}
 }
+
+/* Readability and shared header version across every skin */
+body:not(.space-harrier-skin) .topbar .header-version{display:block!important}
+body.space-harrier-skin .topbar .header-version{display:block!important}
+body.default-skin .toolbar,body.default-skin #count{color:#333!important}
+body.default-skin .view-title-meta{color:#444!important}
+body.default-skin .collection-id{color:#555!important}
+body.default-skin .metadata-table .info-row,body.default-skin .info-row{color:#222!important}
+body.default-skin .metadata-table .label,body.default-skin .label{color:#555!important}
+body.default-skin .game-metadata-tags h3,body.default-skin .metadata-table h3{color:#444!important}
+body.default-skin .collection-status-badge{background:#f3f3f3!important;color:#333!important;border-color:#bbb!important}
+body.default-skin .collection-edit-status{background:#fff!important;color:#222!important;border-color:#aaa!important}
+body.default-skin .status-dialog{background:#fff!important;color:#222!important;border-color:#bbb!important}
+body.default-skin .status-dialog p,body.default-skin .status-dialog label{color:#444!important}
+body.default-skin .status-dialog select{background:#fff!important;color:#222!important;border-color:#aaa!important}
