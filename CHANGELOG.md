@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 0.016
+- Reorganizado o menu lateral como barra de modos de visualização: Miniaturas, Cronológico, Gêneros e botão alfabético A–Z/Z–A.
+- Separado visualmente o modo experimental Linha do Tempo dos modos principais.
+- Linha do Tempo agora navega com interpolação suave e velocidade proporcional à roda/trackpad; Ctrl + scroll controla o zoom. O arraste mantém posição contínua sem encaixe brusco em um jogo inteiro.
+- Criado seletor independente de skins com Default (fundo branco e grid escuro), Escuro (tema escuro atual) e Space Harrier, com preferência salva localmente.
+- Recolocada a versão do projeto logo abaixo da marca no canto superior esquerdo.
+- Reforçados o contraste dos marcadores de ano e o posicionamento mais baixo da Linha do Tempo.
+- Alterados: `VERSION`, `catalogo.html`, `minha_colecao.html`, `js/app_catalogo.js`, `js/skin_spaceharrier.js`, `css/catmasys-ui.css`, `css/skin_spaceharrier.css`, `README.md`, `CHANGELOG.md`.
+
+
+
 ## Version 0.015
 - A bandeira do Brasil agora é o único seletor regional visível; botão reduzido ao tamanho exato da imagem, sem fundo, borda, texto ou sombra.
 - Filtros de edição (CP, GG, GP, AB e AZ) movidos para um rail à esquerda, também disponível em Minha Coleção.
