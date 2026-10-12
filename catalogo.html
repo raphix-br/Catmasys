@@ -1,18 +1,6 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catmasys</title><link rel="icon" type="image/svg+xml" href="assets/catmasys-icon.svg?v=014"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/skin_spaceharrier.css"><link rel="stylesheet" href="css/catmasys-ui.css"></head><body><header class="topbar"><div><h1><a class="header-brand-link" href="index.html">CATMASYS</a></h1></div><nav class="mode-switch"><a class="mode-btn active" href="catalogo.html">CATÁLOGO</a><a class="mode-btn" href="minha_colecao.html">MINHA COLEÇÃO</a></nav><div class="catalog-header-controls"><input id="search" type="search" placeholder="Pesquisar jogo..." autocomplete="off"><select id="genre-filter"><option value="">GÊNERO</option></select><select id="year-filter"><option value="">ANO</option></select><select id="sort-filter"><option value="default">ORDEM</option><option value="az">A-Z</option><option value="za">Z-A</option></select><a class="user-btn" href="perfil.html" id="user-button" title="Perfil e acesso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.6-4.4 3.3-6.5 8-6.5s7.4 2.1 8 6.5"></path></svg><span class="user-button-label">Usuário</span></a></div><div id="catalog-filters" class="catalog-filters">
-    <div id="catalogs">
-        <button class="active" data-cat="BR" title="Brasil"><img src="assets/flags/br.svg" alt=""> BR</button>
-        <button disabled data-cat="USA" title="Estados Unidos"><img src="assets/flags/us.svg" alt=""> USA</button>
-        <button disabled data-cat="EUR" title="Europa"><img src="assets/flags/eu.svg" alt=""> EUR</button>
-        <button disabled data-cat="JP" title="Japão"><img src="assets/flags/jp.svg" alt=""> JP</button>
-        <button disabled data-cat="KR" title="Coreia do Sul"><img src="assets/flags/kr.svg" alt=""> KR</button>
-    </div>
-    <div id="editions">
-        <button data-edition="CP">CP</button>
-        <button data-edition="GG">GG</button>
-        <button data-edition="GP">GP</button>
-        <button data-edition="AB">AB</button>
-        <button data-edition="AZ">AZ</button>
-        
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catmasys</title><link rel="icon" type="image/svg+xml" href="assets/catmasys-icon.svg?v=015"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/skin_spaceharrier.css"><link rel="stylesheet" href="css/catmasys-ui.css"></head><body><header class="topbar"><div><h1><a class="header-brand-link" href="index.html">CATMASYS</a></h1></div><nav class="mode-switch"><a class="mode-btn active" href="catalogo.html">CATÁLOGO</a><a class="mode-btn" href="minha_colecao.html">MINHA COLEÇÃO</a></nav><div class="catalog-header-controls"><input id="search" type="search" placeholder="Pesquisar jogo..." autocomplete="off"><select id="genre-filter"><option value="">GÊNERO</option></select><select id="year-filter"><option value="">ANO</option></select><select id="sort-filter"><option value="default">ORDEM</option><option value="az">A-Z</option><option value="za">Z-A</option></select><a class="user-btn" href="perfil.html" id="user-button" title="Perfil e acesso"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.6-4.4 3.3-6.5 8-6.5s7.4 2.1 8 6.5"></path></svg><span class="user-button-label">Usuário</span></a></div><div id="catalog-filters" class="catalog-filters">
+    <div id="catalogs" aria-label="Catálogo regional">
+        <button class="active" data-cat="BR" title="Catálogo do Brasil" aria-label="Catálogo do Brasil"><img src="assets/flags/br.svg" alt="Brasil"></button>
     </div>
 </div></header><aside id="view-menu" class="view-menu" aria-label="Modos de exibição">
     <div class="view-rail-group">
@@ -29,13 +17,24 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18"/><path d="M6 8v8M12 5v14M18 8v8"/></svg>
         </button>
     </div>
+<div class="view-rail-separator"></div>
+    <section class="edition-rail" aria-label="Filtrar por edição">
+        <div class="edition-rail-title">EDIÇÃO</div>
+        <div id="editions">
+            <button data-edition="CP" title="Cartucho padrão">CP</button>
+            <button data-edition="GG" title="Game Gear">GG</button>
+            <button data-edition="GP" title="Grande pacote">GP</button>
+            <button data-edition="AB" title="Edição AB">AB</button>
+            <button data-edition="AZ" title="Edição AZ">AZ</button>
+        </div>
+    </section>
     <div class="view-rail-separator"></div>
     <div class="view-rail-group future-modes" aria-label="Mais modos de exibição">
         <button class="view-mode mode-placeholder" title="Novos modos em breve" aria-label="Novos modos em breve" disabled>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
         </button>
     </div>
-</aside><main><div class="toolbar"><span id="count"></span></div><section id="grid" class="grid"></section></main><footer class="site-footer" aria-label="Informações do site"><div class="footer-brand">CATMASYS</div><div class="footer-legal">Catálogo independente de jogos físicos do Master System. Nomes, marcas e imagens pertencem aos respectivos titulares. O Catmasys não possui vínculo oficial com a SEGA ou a Tectoy.</div><div class="footer-meta"><span>© 2026 Catmasys</span><span class="site-version">Version 0.014</span></div></footer><script src="js/games_br.js"></script><script src="js/app_catalogo.js"></script><script src="js/skin_spaceharrier.js"></script><script src="js/perfil.js"></script></body></html>
+</aside><main><div class="toolbar"><span id="count"></span></div><section id="grid" class="grid"></section></main><footer class="site-footer" aria-label="Informações do site"><div class="footer-brand">CATMASYS</div><div class="footer-legal">Catálogo independente de jogos físicos do Master System. Nomes, marcas e imagens pertencem aos respectivos titulares. O Catmasys não possui vínculo oficial com a SEGA ou a Tectoy.</div><div class="footer-meta"><span>© 2026 Catmasys</span><span class="site-version">Version 0.015</span></div></footer><script src="js/games_br.js"></script><script src="js/app_catalogo.js"></script><script src="js/skin_spaceharrier.js"></script><script src="js/perfil.js"></script></body></html>
 
 
 
