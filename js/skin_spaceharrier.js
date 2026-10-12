@@ -1,7 +1,6 @@
 (function(){
  const body=document.body,trigger=document.getElementById("skin-menu-trigger"),panel=document.getElementById("skin-menu");
- if(!trigger||!panel)return;
- const buttons=[...panel.querySelectorAll("[data-skin]")],key="catmasys-skin";
+ const buttons=panel?[...panel.querySelectorAll("[data-skin]")]:[],key="catmasys-skin";
  let skin=localStorage.getItem(key)||"default";
  if(!["default","dark","space-harrier"].includes(skin))skin="dark";
     function scene(){
@@ -134,13 +133,9 @@
   body.classList.toggle("space-harrier-skin",skin==="space-harrier");
   if(skin==="space-harrier")scene();
   buttons.forEach(button=>{const active=button.dataset.skin===skin;button.classList.toggle("active",active);button.setAttribute("aria-pressed",String(active));});
-  trigger.setAttribute("aria-pressed",String(skin!=="default"));
-  trigger.title="Skin atual: "+({"default":"Default","dark":"Escuro","space-harrier":"Space Harrier"}[skin])+" — clique para escolher";
+  if(trigger){trigger.setAttribute("aria-pressed",String(skin!=="default"));trigger.title="Skin atual: "+({"default":"Default","dark":"Escuro","space-harrier":"Space Harrier"}[skin])+" — clique para escolher";}
  }
- function setOpen(open){panel.hidden=!open;trigger.setAttribute("aria-expanded",String(open));trigger.classList.toggle("menu-open",open);}
- trigger.addEventListener("click",()=>setOpen(panel.hidden));
- buttons.forEach(button=>button.addEventListener("click",()=>{skin=button.dataset.skin;localStorage.setItem(key,skin);apply();setOpen(false);}));
- document.addEventListener("click",event=>{if(!event.target.closest(".skin-controls"))setOpen(false);});
- document.addEventListener("keydown",event=>{if(event.key==="Escape")setOpen(false);});
+ function setOpen(open){if(!panel||!trigger)return;panel.hidden=!open;trigger.setAttribute("aria-expanded",String(open));trigger.classList.toggle("menu-open",open);}
+ if(trigger&&panel){trigger.addEventListener("click",()=>setOpen(panel.hidden));buttons.forEach(button=>button.addEventListener("click",()=>{skin=button.dataset.skin;localStorage.setItem(key,skin);apply();setOpen(false);}));document.addEventListener("click",event=>{if(!event.target.closest(".skin-controls"))setOpen(false);});document.addEventListener("keydown",event=>{if(event.key==="Escape")setOpen(false);});}
  apply();
 })();
